@@ -12,6 +12,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
