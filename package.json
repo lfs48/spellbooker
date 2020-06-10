@@ -18,8 +18,8 @@
     "redux-thunk": "^2.3.0"
   },
   "engines": {
-    "node": "10.13.0",
-    "npm": "6.4.1"
+    "node": "12.11.0",
+    "npm": "6.11.13"
   },
   "version": "0.1.0",
   "devDependencies": {
