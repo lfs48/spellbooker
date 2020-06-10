@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_223630) do
+ActiveRecord::Schema.define(version: 2020_09_04_223803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,29 @@ ActiveRecord::Schema.define(version: 2020_09_04_223630) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["url"], name: "index_spellbooks_on_url", unique: true
+  end
+
+  create_table "spells", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "range", null: false
+    t.integer "level", null: false
+    t.boolean "verbal"
+    t.boolean "somatic"
+    t.boolean "material"
+    t.string "material_desc"
+    t.boolean "ritual"
+    t.boolean "conc"
+    t.string "duration"
+    t.string "cast_time"
+    t.string "school"
+    t.string "damage_type"
+    t.string "classes"
+    t.text "desc", null: false
+    t.text "notes"
+    t.integer "spellbook_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_spells_on_name"
   end
 
 end
