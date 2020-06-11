@@ -1,0 +1,1 @@
+json.extract! spell, :id, :name, :range, :level, :verbal, :somatic, :material, :material_desc, :ritual, :conc, :duration, :cast_time, :school, :damage_type, :classes, :desc, :notes
