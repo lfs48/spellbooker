@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+   
+#app-container {
+    background-color: rgb(217, 206, 237);
+    width: 100vw;
+    height: 100vh;
+}
