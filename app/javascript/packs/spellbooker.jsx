@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import configureStore from './store';
 import Root from './components/root';
 
-import * as SpellsAPIUtil from './util/api/spells_api_util';
-import * as SpellActions from './actions/spell_actions';
-
 const cb = () => {
 
     let preloadedState = {};
@@ -18,6 +15,8 @@ const cb = () => {
     $.ajaxSetup({
       headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
     });
+    $('meta[name="csrf-token"]').remove();
+
 };
 
 document.addEventListener("DOMContentLoaded", cb);
