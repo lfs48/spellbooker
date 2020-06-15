@@ -1,0 +1,28 @@
+#spellbook-container {
+    display: flex;
+    padding: 2em;
+}
+
+#spell-section-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+#spell-list-sidebar {
+    border: 2px solid black;
+    border-radius: 3px;
+    margin-right: 5em;
+}
+
+#spell-filters-bar {
+    border: 2px solid black;
+    border-radius: 3px;
+    margin-bottom: 2em;
+}
+
+#selected-spell-info {
+    border: 2px solid black;
+    border-radius: 3px;
+}

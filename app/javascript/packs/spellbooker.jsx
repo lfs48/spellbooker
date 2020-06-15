@@ -16,6 +16,7 @@ const cb = () => {
       headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
     });
     $('meta[name="csrf-token"]').remove();
+    $('meta[name="authenticity-token"]').remove();
 
 };
 
