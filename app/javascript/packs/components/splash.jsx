@@ -4,11 +4,8 @@ const Splash = () => {
 
     return(
         <section id="spellbook-container">
-            placeholder text
-           <aside id="spell-list-sidebar"></aside>
-           placeholder text
-           <section>
-           placeholder text
+           <aside id="spell-list-sidebar">placeholder text</aside>
+           <section id="spell-section-right">
                <header id="spell-filters-bar">placeholder text</header>
                <article id="selected-spell-info">placeholder text</article>
            </section>
