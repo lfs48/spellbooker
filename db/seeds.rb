@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+spell_list = RestClient.get("https://www.dnd5eapi.co/api/spells")
+spell_arr = JSON.parse(spell_list)["results"]
