@@ -6,5 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-spell_list = RestClient.get("https://www.dnd5eapi.co/api/spells")
-spell_arr = JSON.parse(spell_list)["results"]
+RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
+    spell_arr = JSON.parse(resp)["results"]
+    spell_arr.first(3).each do |spell_pointers|
+        spell_url = spell_pointers["url"]
+        RestClient.get("https://www.dnd5eapi.co#{spell_url}") do |resp, req, res|
+            spell = JSON.parse(resp)
+            classes = []
+            spell["classes"].each {|dndclass| classes << dndclass["index"]}
+            classes = classes.join(",")
+            Spell.create(
+                name: spell["name"],
+                range: spell["range"],
+                level: spell["level"],
+                ritual: spell["ritual"],
+                conc: spell["concentration"],
+                duration: spell["duration"],
+                cast_time: spell["casting_time"],
+                school: spell["school"]["index"],
+                classes: classes,
+                desc: spell["desc"],
+                notes: "",
+                spellbook_id: 1
+            )
+        end
+    end
+end
