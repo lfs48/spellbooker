@@ -4,18 +4,16 @@ class CreateSpells < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :range, null: false
       t.integer :level, null: false
-      t.boolean :verbal
-      t.boolean :somatic
-      t.boolean :material
+      t.string :components
       t.string :material_desc
       t.boolean :ritual
       t.boolean :conc
       t.string :duration
       t.string :cast_time
       t.string :school
-      t.string :damage_type
       t.string :classes
       t.text :desc, null: false
+      t.text :higher_level_desc
       t.text :notes
       t.integer :spellbook_id, null: false
 
