@@ -8,7 +8,7 @@
 
 RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
     spell_arr = JSON.parse(resp)["results"]
-    spell_arr.first(3).each do |spell_pointers|
+    spell_arr.first(5).each do |spell_pointers|
         spell_url = spell_pointers["url"]
         RestClient.get("https://www.dnd5eapi.co#{spell_url}") do |resp, req, res|
             spell = JSON.parse(resp)
@@ -19,6 +19,8 @@ RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
                 name: spell["name"],
                 range: spell["range"],
                 level: spell["level"],
+                components: spell["components"].join(","),
+                material_desc: spell["material"],
                 ritual: spell["ritual"],
                 conc: spell["concentration"],
                 duration: spell["duration"],
@@ -26,6 +28,7 @@ RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
                 school: spell["school"]["index"],
                 classes: classes,
                 desc: spell["desc"],
+                higher_level_desc: spell["higher_level"],
                 notes: "",
                 spellbook_id: 1
             )
