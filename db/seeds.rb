@@ -6,9 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+sb = Spellbook.create(name: "5e SRD Spellbook", url:"srd", desc: "Default 5e SRD spells.")
+
 RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
     spell_arr = JSON.parse(resp)["results"]
-    spell_arr.first(5).each do |spell_pointers|
+    spell_arr.each do |spell_pointers|
         spell_url = spell_pointers["url"]
         RestClient.get("https://www.dnd5eapi.co#{spell_url}") do |resp, req, res|
             spell = JSON.parse(resp)
@@ -30,7 +32,7 @@ RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
                 desc: spell["desc"],
                 higher_level_desc: spell["higher_level"],
                 notes: "",
-                spellbook_id: 1
+                spellbook_id: sb.id
             )
         end
     end
