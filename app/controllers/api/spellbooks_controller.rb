@@ -11,7 +11,7 @@ class Api::SpellbooksController < ApplicationController
     end
 
     def show
-        @spellbook = Spellbook.find_by(id: params[:id])
+        @spellbook = Spellbook.find_by(url: spellbook_params[:url])
         if @spellbook
             render "api/spellbooks/show"
         else
