@@ -1,3 +1,1 @@
-json.post do 
-    json.partial! "api/spells/spell", spell: @spell
-end
+json.partial! "api/spells/spell", spell: @spell
