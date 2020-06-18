@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchSpellbook} from '../actions/spell_actions'; 
+import {intToOrdinal} from '../util/functions/util_functions'
 
 const Splash = () => {
 
@@ -38,7 +39,17 @@ const Splash = () => {
            </aside>
            <section id="spell-section-right">
                <header id="spell-filters-bar">placeholder text</header>
-                <article id="selected-spell-info">{selectedSpell.name}</article>
+                <article id="selected-spell-info">
+                    <header>{selectedSpell.name}</header>
+                    <span>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school}</span>
+                    <span>Casting Time: {selectedSpell.cast_time}</span>
+                    <span>Range: {selectedSpell.range}</span>
+                    <span>Components: {selectedSpell.components}</span>
+                    <span>Duration: {selectedSpell.duration}</span>
+                    <p>
+                        {selectedSpell.desc}
+                    </p>
+                </article>
            </section>
         </section>
     )
