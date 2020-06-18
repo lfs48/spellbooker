@@ -6,7 +6,7 @@ const Splash = () => {
 
     const dispatch = useDispatch();
 
-    const [selectedSpell, setSelectedSpell] = useState(0);
+    const [selectedSpellId, setSelectedSpellId] = useState(0);
 
     useEffect( () => {
         dispatch(fetchSpellbook({url: "srd"}))
@@ -25,8 +25,9 @@ const Splash = () => {
 
     const handleClickSpell = (event, id) => {
         event.preventDefault();
-        setSelectedSpell(id);
+        setSelectedSpellId(id);
     }
+    const selectedSpell = spells[selectedSpellId] ? spells[selectedSpellId] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "", higher_level_desc: "", notes: ""}
 
     return(
         <section id="spellbook-container">
@@ -37,7 +38,7 @@ const Splash = () => {
            </aside>
            <section id="spell-section-right">
                <header id="spell-filters-bar">placeholder text</header>
-                <article id="selected-spell-info">{spells[selectedSpell] ? spells[selectedSpell].name : ""}</article>
+                <article id="selected-spell-info">{selectedSpell.name}</article>
            </section>
         </section>
     )
