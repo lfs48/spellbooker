@@ -1,4 +1,5 @@
 import {merge} from 'lodash';
+import { RECEIVE_SPELLBOOK } from '../actions/types';
 
 const spellsReducer = (state = {}, action) => {
     const newState = merge({}, state);
@@ -6,6 +7,9 @@ const spellsReducer = (state = {}, action) => {
 
     switch (action.type) {
         default: return state;
+
+        case RECEIVE_SPELLBOOK:
+            return action.spellbook.spells
     }
 };
 
