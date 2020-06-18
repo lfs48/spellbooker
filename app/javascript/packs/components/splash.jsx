@@ -40,14 +40,20 @@ const Splash = () => {
            <section id="spell-section-right">
                <header id="spell-filters-bar">placeholder text</header>
                 <article id="selected-spell-info">
-                    <header>{selectedSpell.name}</header>
+                    <h1>{selectedSpell.name}</h1>
                     <span>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school}</span>
+                    <br></br>
                     <span>Casting Time: {selectedSpell.cast_time}</span>
+                    <br></br>
                     <span>Range: {selectedSpell.range}</span>
+                    <br></br>
                     <span>Components: {selectedSpell.components}</span>
+                    <br></br>
                     <span>Duration: {selectedSpell.duration}</span>
                     <blockquote>
                         {JSON.parse(selectedSpell.desc).join("\n")}
+                        <br></br>
+                        {selectedSpell.higher_level_desc ? `At Higher Levels: ${JSON.parse(selectedSpell.higher_level_desc).join("\n")}` : ""}
                     </blockquote>
                 </article>
            </section>
