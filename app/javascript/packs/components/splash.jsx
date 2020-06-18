@@ -28,7 +28,7 @@ const Splash = () => {
         event.preventDefault();
         setSelectedSpellId(id);
     }
-    const selectedSpell = spells[selectedSpellId] ? spells[selectedSpellId] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "", higher_level_desc: "", notes: ""}
+    const selectedSpell = spells[selectedSpellId] ? spells[selectedSpellId] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "[]", higher_level_desc: "", notes: ""}
 
     return(
         <section id="spellbook-container">
@@ -46,9 +46,9 @@ const Splash = () => {
                     <span>Range: {selectedSpell.range}</span>
                     <span>Components: {selectedSpell.components}</span>
                     <span>Duration: {selectedSpell.duration}</span>
-                    <p>
-                        {selectedSpell.desc}
-                    </p>
+                    <blockquote>
+                        {JSON.parse(selectedSpell.desc).join("\n")}
+                    </blockquote>
                 </article>
            </section>
         </section>
