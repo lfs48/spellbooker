@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {useEffect, useSelector} from 'react';
+import {useDispatch} from 'react-redux';
+import {fetchSpellbook} from '../actions/spell_actions'; 
 
 const Splash = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect( () => {
+        dispatch(fetchSpellbook({url: "srd"})),
+        []
+    });
 
     return(
         <section id="spellbook-container">
