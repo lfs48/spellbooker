@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchSpellbook} from '../actions/entities/spell_actions'; 
 import {intToOrdinal} from '../util/functions/util_functions'
+import {dndclassList} from '../data/dndclasses';
 
 const Splash = () => {
 
@@ -30,6 +31,10 @@ const Splash = () => {
     }
     const selectedSpell = spells[selectedSpellId] ? spells[selectedSpellId] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "[]", higher_level_desc: "", notes: ""}
 
+    const classOptions = dndclassList.map( (dndclass, i) => {
+        return <option key={i}>{dndclass}</option>
+    });
+
     return(
         <section id="spellbook-container">
            <aside id="spell-list-sidebar">
@@ -38,7 +43,13 @@ const Splash = () => {
                </ul>
            </aside>
            <section id="spell-section-right">
-               <header id="spell-filters-bar">placeholder text</header>
+               <header id="spell-filters-bar">
+                   <label>Class</label>
+                   <select>
+                       <option>All</option>
+                       {classOptions}
+                   </select>
+               </header>
                 <article id="selected-spell-info">
                     <h1>{selectedSpell.name}</h1>
                     <span>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school}</span>
