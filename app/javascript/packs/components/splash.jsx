@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchSpellbook} from '../actions/spell_actions'; 
+import {fetchSpellbook} from '../actions/entities/spell_actions'; 
 import {intToOrdinal} from '../util/functions/util_functions'
 
 const Splash = () => {
@@ -15,7 +15,7 @@ const Splash = () => {
 
     const {spells} = useSelector(
         state => ({
-            spells: Object.values(state.spells)
+            spells: Object.values(state.entities.spells)
         })
     );
 
