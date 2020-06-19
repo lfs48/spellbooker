@@ -1,0 +1,1 @@
+export const dndclassList = ["artificer", "bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"];
