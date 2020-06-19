@@ -1,1 +1,1 @@
-export const dndclassList = ["artificer", "bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"];
+export const dndclassList = ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"];
