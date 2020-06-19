@@ -1,5 +1,5 @@
-import * as SpellsAPIUtil from '../util/api/spells_api_util';
-import {RECEIVE_SPELL, RECEIVE_SPELLBOOK} from './types';
+import * as SpellsAPIUtil from '../../util/api/spells_api_util';
+import {RECEIVE_SPELL, RECEIVE_SPELLBOOK} from '../types';
 
 // Standard actions
 
