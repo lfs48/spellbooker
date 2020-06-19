@@ -9,6 +9,7 @@ const Splash = () => {
     const dispatch = useDispatch();
 
     const [selectedSpellId, setSelectedSpellId] = useState(0);
+    const [selectedClass, setSelectedClass] = useState("all")
 
     useEffect( () => {
         dispatch(fetchSpellbook({url: "srd"}))
@@ -20,8 +21,12 @@ const Splash = () => {
         })
     );
 
-    let spell_lis = <></>;
-    spell_lis = spells.slice(0,9).map( (spell, i) => {
+    let spellLis = <></>;
+    const filteredSpells = spells.filter( (spell) => {
+        if (selectedClass === 'all') {return true};
+        return spell.classes.split(",").includes(selectedClass);
+    });
+    spellLis = filteredSpells.slice(0,9).map( (spell, i) => {
         return <li key={i} onClick={e => handleClickSpell(e, i)}>{spell.name}</li>
     });
 
@@ -32,21 +37,26 @@ const Splash = () => {
     const selectedSpell = spells[selectedSpellId] ? spells[selectedSpellId] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "[]", higher_level_desc: "", notes: ""}
 
     const classOptions = dndclassList.map( (dndclass, i) => {
-        return <option key={i}>{dndclass}</option>
+        return <option key={i} value={dndclass}>{dndclass}</option>
     });
+
+    const handleClassSelect = (event) => {
+        event.preventDefault();
+        setSelectedClass(event.target.value);
+    }
 
     return(
         <section id="spellbook-container">
            <aside id="spell-list-sidebar">
                <ul>
-                    {spell_lis}
+                    {spellLis}
                </ul>
            </aside>
            <section id="spell-section-right">
                <header id="spell-filters-bar">
                    <label>Class</label>
-                   <select>
-                       <option>All</option>
+                   <select onChange={e => handleClassSelect(e)}>
+                       <option value="all">all</option>
                        {classOptions}
                    </select>
                </header>
