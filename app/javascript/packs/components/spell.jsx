@@ -9,13 +9,14 @@ const Splash = () => {
 
     const [selectedSpellId, setSelectedSpellId] = useState(0);
 
-    const {spells} = useSelector(
+    const {selectedSpell} = useSelector(
         state => ({
-            spells: Object.values(state.entities.spells)
+            selectedSpell: state.entities.spells[state.ui.selectedSpell] ? state.entities.spells[state.ui.selectedSpell] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "[]", higher_level_desc: "", notes: ""}
         })
     );
-    
-    const selectedSpell = spells[selectedSpellId] ? spells[selectedSpellId] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "[]", higher_level_desc: "", notes: ""}
+    debugger
+
+    // const selectedSpell = spells[selectedSpellId] ? spells[selectedSpellId] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "[]", higher_level_desc: "", notes: ""}
 
     return(
         <article id="selected-spell-info">
