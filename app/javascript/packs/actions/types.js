@@ -10,3 +10,7 @@
     // Selected Spell
 
     export const SELECT_SPELL = "SELECT_SPELL";
+
+    // Filters
+
+    export const SELECT_CLASS = "SELECT_CLASS";
