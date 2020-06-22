@@ -1,11 +1,11 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Splash from './splash';
+import Spellbook from './spellbook';
 
 const App = () => (
     <main id="app-container">
         <Switch>
-            <Route path="/" component={Splash} />
+            <Route path="/" component={Spellbook} />
         </Switch>
     </main>
 );
