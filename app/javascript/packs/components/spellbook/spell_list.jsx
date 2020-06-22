@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectSpell} from '../actions/ui/selected_spell_actions'
+import {selectSpell} from '../../actions/ui/selected_spell_actions'
 
 const SpellList = () => {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Spellbook from './spellbook';
+import Spellbook from './spellbook/spellbook';
 
 const App = () => (
     <main id="app-container">

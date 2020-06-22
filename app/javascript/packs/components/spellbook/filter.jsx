@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {dndclassList} from '../data/dndclasses';
-import { selectClass } from '../actions/ui/filter_actions';
+import {dndclassList} from '../../data/dndclasses';
+import { selectClass } from '../../actions/ui/filter_actions';
 
 const Filter = () => {
 
