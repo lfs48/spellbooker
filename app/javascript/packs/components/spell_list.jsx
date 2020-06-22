@@ -6,13 +6,19 @@ const SpellList = () => {
 
     const dispatch = useDispatch();
 
-    const {spells} = useSelector(
+    const {spells, classFilter} = useSelector(
         state => ({
-            spells: Object.values(state.entities.spells)
+            spells: Object.values(state.entities.spells),
+            classLists: state.entities.dndclasses,
+            classFilter: state.ui.filters.classFilter
         })
     );
 
-    const spellLis = spells.slice(0,9).map( (spell, i) => {
+    const filteredSpells = spells.filter( (spell) => {
+        if (classFilter === null) {return true }
+        return spell.classes.split(",").includes(classFilter);
+    });
+    const spellLis = filteredSpells.slice(0,9).map( (spell, i) => {
         return <li key={i} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
     });
 
