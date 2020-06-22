@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchSpellbook} from '../actions/entities/spell_actions'; 
-import {intToOrdinal} from '../util/functions/util_functions'
-import {dndclassList} from '../data/dndclasses';
+import {selectSpell} from '../actions/ui/selected_spell_actions'
 
 const SpellList = () => {
 
     const dispatch = useDispatch();
-
-    const [selectedSpellId, setSelectedSpellId] = useState(0);
 
     const {spells} = useSelector(
         state => ({
@@ -17,12 +13,12 @@ const SpellList = () => {
     );
 
     const spellLis = spells.slice(0,9).map( (spell, i) => {
-        return <li key={i} onClick={e => handleClickSpell(e, i)}>{spell.name}</li>
+        return <li key={i} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
     });
 
     const handleClickSpell = (event, id) => {
         event.preventDefault();
-        setSelectedSpellId(id);
+        dispatch( selectSpell(id) );
     }
 
     return(
