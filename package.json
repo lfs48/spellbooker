@@ -19,7 +19,8 @@
     "redux-thunk": "^2.3.0"
   },
   "engines": {
-    "node": "12.11.0"
+    "node": "12.11.0",
+    "yarn": "1.22.5"
   },
   "version": "0.1.0",
   "devDependencies": {
