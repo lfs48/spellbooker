@@ -14,3 +14,4 @@
     // Filters
 
     export const SELECT_CLASS = "SELECT_CLASS";
+    export const SELECT_LEVEL = "SELECT_LEVEL";
