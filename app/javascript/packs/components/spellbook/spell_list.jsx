@@ -13,7 +13,7 @@ const SpellList = () => {
             classFilter: state.ui.filters.classFilter,
             levelFilter: state.ui.filters.levelFilter,
             schoolFilter: state.ui.filters.schoolFilter,
-            nameSearch: state.ui.filters.nameSearch
+            nameSearch: state.ui.filters.search.name
         })
     );
 

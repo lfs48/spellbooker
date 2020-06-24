@@ -16,4 +16,4 @@
     export const SELECT_CLASS = "SELECT_CLASS";
     export const SELECT_LEVEL = "SELECT_LEVEL";
     export const SELECT_SCHOOL = "SELECT_SCHOOL"
-    export const SEARCH_NAME = "SEARCH_NAME";
+    export const SET_SEARCH = "SET_SEARCH";
