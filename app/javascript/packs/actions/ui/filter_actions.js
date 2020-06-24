@@ -1,6 +1,6 @@
 // Standard actions
 
-import { SELECT_CLASS, SELECT_LEVEL, SELECT_SCHOOL } from "../types";
+import { SELECT_CLASS, SELECT_LEVEL, SELECT_SCHOOL, SEARCH_NAME } from "../types";
 
 export const selectClass = (dndclass) => ({
     type: SELECT_CLASS,
@@ -15,4 +15,9 @@ export const selectLevel = (level) => ({
 export const selectSchool = (school) => ({
     type: SELECT_SCHOOL,
     school: school
+});
+
+export const searchName = (name) => ({
+    type: SEARCH_NAME,
+    name: name
 });
