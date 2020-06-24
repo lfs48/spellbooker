@@ -6,12 +6,13 @@ const SpellList = () => {
 
     const dispatch = useDispatch();
 
-    const {spells, classFilter, levelFilter} = useSelector(
+    const {spells, classFilter, levelFilter, schoolFilter} = useSelector(
         state => ({
             spells: Object.values(state.entities.spells),
             classLists: state.entities.dndclasses,
             classFilter: state.ui.filters.classFilter,
-            levelFilter: state.ui.filters.levelFilter
+            levelFilter: state.ui.filters.levelFilter,
+            schoolFilter: state.ui.filters.schoolFilter,
         })
     );
 
@@ -21,6 +22,9 @@ const SpellList = () => {
         }).filter( (spell) => {
             if (levelFilter === null) {return true }
             return spell.level === parseInt(levelFilter);
+        }).filter( (spell) => {
+            if (schoolFilter === null) {return true }
+            return spell.school === schoolFilter;
         });
 
     const spellLis = filteredSpells.slice(0,9).map( (spell, i) => {
