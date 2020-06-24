@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {dndclassList} from '../../data/dndclasses';
-import { selectClass, selectLevel } from '../../actions/ui/filter_actions';
+import {dndclassList, dndSchoolList} from '../../data/dnd_data';
+import { selectClass, selectLevel, selectSchool } from '../../actions/ui/filter_actions';
 import { intToOrdinal } from '../../util/functions/util_functions';
 
 const Filter = () => {
@@ -14,6 +14,10 @@ const Filter = () => {
 
     const levelOptions = [...Array(10).keys()].map( (level, i) => {
         return <option key={i} value={level}>{intToOrdinal(level)}</option>
+    });
+
+    const schoolOptions = dndSchoolList.map( (school, i) => {
+        return <option key={i} value={school}>{school}</option>
     });
 
     const handleClassSelect = (event) => {
@@ -30,6 +34,13 @@ const Filter = () => {
         dispatch( selectLevel(level) );
     };
 
+    const handleSchoolSelect = (event) => {
+        event.preventDefault();
+        let school = event.target.value;
+        if (school === "—") {school = null;}
+        dispatch( selectSchool(school) );
+    };
+
     return(
         <header id="spell-filters-bar">
             <label>Class</label>
@@ -41,6 +52,11 @@ const Filter = () => {
             <select onChange={e => handleLevelSelect(e)}>
                 <option value="—">—</option>
                 {levelOptions}
+            </select>
+            <label>School</label>
+            <select onChange={e => handleSchoolSelect(e)}>
+                <option value="—">—</option>
+                {schoolOptions}
             </select>
         </header>
     )
