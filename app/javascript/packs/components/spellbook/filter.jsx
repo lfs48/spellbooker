@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {dndclassList, dndSchoolList} from '../../data/dnd_data';
 import { selectClass, selectLevel, selectSchool } from '../../actions/ui/filter_actions';
@@ -7,6 +7,8 @@ import { intToOrdinal } from '../../util/functions/util_functions';
 const Filter = () => {
 
     const dispatch = useDispatch();
+
+    const [searchInput, setSearchInput] = useState("");
 
     const classOptions = dndclassList.map( (dndclass, i) => {
         return <option key={i} value={dndclass}>{dndclass}</option>
@@ -19,6 +21,11 @@ const Filter = () => {
     const schoolOptions = dndSchoolList.map( (school, i) => {
         return <option key={i} value={school}>{school}</option>
     });
+
+    const handleSearchInput = (event) => {
+        event.preventDefault();
+        setSearchInput(event.target.value);
+    }
 
     const handleClassSelect = (event) => {
         event.preventDefault();
@@ -58,6 +65,14 @@ const Filter = () => {
                 <option value="—">—</option>
                 {schoolOptions}
             </select>
+            <label>Name</label>
+            <input
+                type="text"
+                placeholder="Fireball"
+                value={searchInput}
+                onChange={e => handleSearchInput(e)}
+            ></input>
+            <button>Search</button>
         </header>
     )
 }
