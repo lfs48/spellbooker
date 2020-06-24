@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {dndclassList, dndSchoolList} from '../../data/dnd_data';
-import { selectClass, selectLevel, selectSchool } from '../../actions/ui/filter_actions';
+import { selectClass, selectLevel, selectSchool, searchName } from '../../actions/ui/filter_actions';
 import { intToOrdinal } from '../../util/functions/util_functions';
 
 const Filter = () => {
@@ -25,6 +25,11 @@ const Filter = () => {
     const handleSearchInput = (event) => {
         event.preventDefault();
         setSearchInput(event.target.value);
+    };
+
+    const handleSearchButton = (event) => {
+        event.preventDefault();
+        dispatch( searchName(searchInput) )
     }
 
     const handleClassSelect = (event) => {
@@ -72,7 +77,7 @@ const Filter = () => {
                 value={searchInput}
                 onChange={e => handleSearchInput(e)}
             ></input>
-            <button>Search</button>
+            <button onClick={e => handleSearchButton(e)}>Search</button>
         </header>
     )
 }
