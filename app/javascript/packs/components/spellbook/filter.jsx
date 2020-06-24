@@ -1,14 +1,18 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {dndclassList, dndSchoolList} from '../../data/dnd_data';
-import { selectClass, selectLevel, selectSchool, searchName } from '../../actions/ui/filter_actions';
+import { selectClass, selectLevel, selectSchool, setSearch } from '../../actions/ui/filter_actions';
 import { intToOrdinal } from '../../util/functions/util_functions';
+import {merge} from 'lodash';
 
 const Filter = () => {
 
     const dispatch = useDispatch();
 
-    const [searchInput, setSearchInput] = useState("");
+    const [searchInput, setSearchInput] = useState({
+        name: "",
+        desc: ""
+    });
 
     const classOptions = dndclassList.map( (dndclass, i) => {
         return <option key={i} value={dndclass}>{dndclass}</option>
@@ -22,14 +26,16 @@ const Filter = () => {
         return <option key={i} value={school}>{school}</option>
     });
 
-    const handleSearchInput = (event) => {
+    const handleSearchInput = (event, field) => {
         event.preventDefault();
-        setSearchInput(event.target.value);
+        const newState = merge({}, searchInput);
+        newState[field] = event.target.value;
+        setSearchInput(newState);
     };
 
     const handleSearchButton = (event) => {
         event.preventDefault();
-        dispatch( searchName(searchInput) )
+        dispatch( setSearch(searchInput) )
     }
 
     const handleClassSelect = (event) => {
@@ -74,8 +80,8 @@ const Filter = () => {
             <input
                 type="text"
                 placeholder="Fireball"
-                value={searchInput}
-                onChange={e => handleSearchInput(e)}
+                value={searchInput.name}
+                onChange={e => handleSearchInput(e, "name")}
             ></input>
             <button onClick={e => handleSearchButton(e)}>Search</button>
         </header>
