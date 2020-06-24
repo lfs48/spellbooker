@@ -1,6 +1,6 @@
 import {merge} from 'lodash';
 import { RECEIVE_SPELLBOOK } from '../../actions/types';
-import {dndclassList} from '../../data/dndclasses';
+import {dndclassList} from '../../data/dnd_data';
 
 const dndclasses = {};
 dndclassList.forEach(dndclass => dndclasses[dndclass] = []);

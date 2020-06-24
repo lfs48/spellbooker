@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
-import {dndclassList} from '../../data/dndclasses';
+import {dndclassList} from '../../data/dnd_data';
 
 const Splash = () => {
 
