@@ -83,6 +83,13 @@ const Filter = () => {
                 value={searchInput.name}
                 onChange={e => handleSearchInput(e, "name")}
             ></input>
+            <label>Description</label>
+            <input
+                type="text"
+                placeholder="fire damage"
+                value={searchInput.desc}
+                onChange={e => handleSearchInput(e, "desc")}
+            ></input>
             <button onClick={e => handleSearchButton(e)}>Search</button>
         </header>
     )
