@@ -34,8 +34,10 @@ const SpellList = () => {
             return spell.desc.toLowerCase().includes(descSearch.toLowerCase());
         });
 
-    const spellLis = filteredSpells.slice(0,9).map( (spell, i) => {
-        return <li key={i} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
+    let liColorClass = false;
+    const spellLis = filteredSpells.map( (spell, i) => {
+        liColorClass = !liColorClass;
+        return <li key={i} className={liColorClass ? "white-li" : "dark-li"} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
     });
 
     const handleClickSpell = (event, id) => {
