@@ -16,6 +16,27 @@
     margin-right: 5em;
 }
 
+#spell-list-sidebar ol {
+    height: 50em;
+    width: 15em;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#spell-list-sidebar li {
+    border-bottom: 1px solid black;
+    padding: 0.4em 0.5em;
+    font-size: 1.25em;
+}
+
+#spell-list-sidebar li.white-li {
+    background-color: rgb(245, 245, 245, 0.25);
+}
+
+#spell-list-sidebar li.dark-li {
+    background-color: rgb(128, 128, 128, 0.35);
+}
+
 #spell-filters-bar {
     border: 2px solid black;
     border-radius: 3px;
