@@ -3,13 +3,6 @@
     padding: 2em;
 }
 
-#spell-section-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-}
-
 #spell-list-sidebar {
     border: 2px solid black;
     border-radius: 3px;
@@ -37,10 +30,32 @@
     background-color: rgb(128, 128, 128, 0.35);
 }
 
+#spell-section-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 #spell-filters-bar {
     border: 2px solid black;
     border-radius: 3px;
     margin-bottom: 2em;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25em 0.5em;
+}
+
+#search-container, #selects-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#search-container> *, #selects-container > * {
+    padding: 0 0.25em;
+}
+
+#spell-filters-bar label {
+    font-weight: bolder;
 }
 
 #selected-spell-info {
