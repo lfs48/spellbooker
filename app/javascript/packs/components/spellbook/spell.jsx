@@ -18,20 +18,28 @@ const Splash = () => {
     return(
         <article id="selected-spell-info">
             <h1>{selectedSpell.name}</h1>
-            <span>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school}</span>
-            <br></br>
-            <span>Casting Time: {selectedSpell.cast_time}</span>
-            <br></br>
-            <span>Range: {selectedSpell.range}</span>
-            <br></br>
-            <span>Components: {selectedSpell.components}</span>
-            <br></br>
-            <span>Duration: {selectedSpell.duration}</span>
-            <blockquote>
-                {JSON.parse(selectedSpell.desc).join("\n")}
-                <br></br>
-                {selectedSpell.higher_level_desc ? `At Higher Levels: ${JSON.parse(selectedSpell.higher_level_desc).join("\n")}` : ""}
-            </blockquote>
+
+            <section id="spell-details">
+                <span>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school}</span>
+                <dl>
+                    <dt>Range</dt>
+                    <dd>: {selectedSpell.range}</dd>
+                </dl>
+                <dl>
+                    <dt>Components</dt>
+                    <dd>: {selectedSpell.components}</dd>
+                </dl>
+                <dl>
+                    <dt>Duration</dt>
+                    <dd>: {selectedSpell.duration}</dd>
+                </dl>
+
+            </section>
+
+            <section id="spell-desc">
+                <p>{JSON.parse(selectedSpell.desc).join("\n\n")}</p>
+                <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${JSON.parse(selectedSpell.higher_level_desc).join("\n")}` : ""} </p>
+            </section>
         </article>
     )
 
