@@ -23,11 +23,11 @@
 }
 
 #spell-list-sidebar li.white-li {
-    background-color: rgb(245, 245, 245, 0.25);
+    background-color: rgba(245, 245, 245, 0.25);
 }
 
 #spell-list-sidebar li.dark-li {
-    background-color: rgb(128, 128, 128, 0.35);
+    background-color: rgba(128, 128, 128, 0.35);
 }
 
 #spell-section-right {
