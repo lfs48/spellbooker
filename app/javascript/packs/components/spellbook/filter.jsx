@@ -61,36 +61,40 @@ const Filter = () => {
 
     return(
         <header id="spell-filters-bar">
-            <label>Class</label>
-            <select onChange={e => handleClassSelect(e)}>
-                <option value="—">—</option>
-                {classOptions}
-            </select>
-            <label>Level</label>
-            <select onChange={e => handleLevelSelect(e)}>
-                <option value="—">—</option>
-                {levelOptions}
-            </select>
-            <label>School</label>
-            <select onChange={e => handleSchoolSelect(e)}>
-                <option value="—">—</option>
-                {schoolOptions}
-            </select>
-            <label>Name</label>
-            <input
-                type="text"
-                placeholder="Fireball"
-                value={searchInput.name}
-                onChange={e => handleSearchInput(e, "name")}
-            ></input>
-            <label>Description</label>
-            <input
-                type="text"
-                placeholder="fire damage"
-                value={searchInput.desc}
-                onChange={e => handleSearchInput(e, "desc")}
-            ></input>
-            <button onClick={e => handleSearchButton(e)}>Search</button>
+            <section id="search-container">
+                <label>Name</label>
+                <input
+                    type="text"
+                    placeholder="Fireball"
+                    value={searchInput.name}
+                    onChange={e => handleSearchInput(e, "name")}
+                ></input>
+                <label>Description</label>
+                <input
+                    type="text"
+                    placeholder="fire damage"
+                    value={searchInput.desc}
+                    onChange={e => handleSearchInput(e, "desc")}
+                ></input>
+                <button onClick={e => handleSearchButton(e)}>Search</button>
+            </section>
+            <section id="selects-container">
+                <label>Class</label>
+                <select onChange={e => handleClassSelect(e)}>
+                    <option value="—">—</option>
+                    {classOptions}
+                </select>
+                <label>Level</label>
+                <select onChange={e => handleLevelSelect(e)}>
+                    <option value="—">—</option>
+                    {levelOptions}
+                </select>
+                <label>School</label>
+                <select onChange={e => handleSchoolSelect(e)}>
+                    <option value="—">—</option>
+                    {schoolOptions}
+                </select>
+            </section>
         </header>
     )
 }
