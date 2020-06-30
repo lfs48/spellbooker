@@ -7,10 +7,10 @@ class Spellbook < ApplicationRecord
     has_many :spells
 
     def self.generate_url
-        url = SecureRandom.urlsafe_base64(16)
+        url = SecureRandom.alphanumeric(16)
         spellbook = Spellbook.find_by(url: url)
         while spellbook
-            url = SecureRandom.urlsafe_base64(16)
+            url = SecureRandom.alphanumeric(16)
             spellbook = Spellbook.find_by(url: url)
         end
         return url
