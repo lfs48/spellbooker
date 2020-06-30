@@ -33,6 +33,11 @@ const Splash = () => {
         .then( res => history.push(`/spellbook/${res.spellbook.url}`) );
     }
 
+    const handleBackButton = (event) => {
+        event.preventDefault();
+        setStage(1);
+    }
+
     let content = <></>;
     switch (stage) {
         case 1:
@@ -54,6 +59,8 @@ const Splash = () => {
                         onChange={e => updateNameInput(e)}
                     ></input>
                     <button onClick={e => handleCreateButton(e)}>Create</button>
+                    <button onClick={e => handleBackButton(e)}>Back</button>
+
                 </form>
             )
             break;
