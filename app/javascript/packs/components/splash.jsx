@@ -42,10 +42,10 @@ const Splash = () => {
     switch (stage) {
         case 1:
             content = (
-                <>
+                <form>
                     <button onClick={e => handleSRD(e)}>View SRD Spells</button>
                     <button onClick={e => handleNewSpellbook(e)}>Create New Spellbook</button>
-                </>
+                </form>
             )
             break;
 
