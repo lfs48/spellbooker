@@ -36,6 +36,15 @@
     width: 100%;
 }
 
+#spellbook-name-header {
+    font-size: 2em;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1em;
+
+}
+
 #spell-filters-bar {
     border: 2px solid black;
     border-radius: 3px;
