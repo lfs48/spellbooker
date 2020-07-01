@@ -9,7 +9,8 @@ const spellsReducer = (state = {}, action) => {
         default: return state;
 
         case RECEIVE_SPELLBOOK:
-            return action.spellbook.spells
+            const spells = JSON.parse(action.spellbook.spells);
+            return spells;
     }
 };
 
