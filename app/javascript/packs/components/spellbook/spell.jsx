@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {dndclassList} from '../../data/dnd_data';
 
-const Splash = () => {
+const Spell = () => {
 
     const dispatch = useDispatch();
 
@@ -11,7 +11,7 @@ const Splash = () => {
 
     const {selectedSpell} = useSelector(
         state => ({
-            selectedSpell: state.entities.spells[state.ui.selectedSpell] ? state.entities.spells[state.ui.selectedSpell] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: "[]", higher_level_desc: "", notes: ""}
+            selectedSpell: state.entities.spells[state.ui.selectedSpell] ? state.entities.spells[state.ui.selectedSpell] : {name:"", range: "", level: "", components:"", material_desc:"", ritual: false, conc: false, duration: "", cast_time: "", school: "", classes: "", desc: [], higher_level_desc: [], notes: ""}
         })
     );
     
@@ -37,12 +37,12 @@ const Splash = () => {
             </section>
 
             <section id="spell-desc">
-                <p>{JSON.parse(selectedSpell.desc).join("\n\n")}</p>
-                <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${JSON.parse(selectedSpell.higher_level_desc).join("\n")}` : ""} </p>
+                <p>{selectedSpell.desc.join("\n\n")}</p>
+                <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${selectedSpell.higher_level_desc.join("\n")}` : ""} </p>
             </section>
         </article>
     )
 
 }
 
-export default Splash;
+export default Spell;
