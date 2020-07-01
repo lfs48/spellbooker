@@ -1,1 +1,0 @@
-json.partial! "api/spells/spell", spell: @spell
