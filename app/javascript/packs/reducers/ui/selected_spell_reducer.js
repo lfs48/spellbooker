@@ -12,7 +12,7 @@ const selectedSpellReducer = (state = {}, action) => {
             return action.id;
         
         case RECEIVE_SPELLBOOK:
-            return 1;
+            return 0;
     }
 };
 
