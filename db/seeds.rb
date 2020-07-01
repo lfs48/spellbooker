@@ -6,34 +6,37 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-sb = Spellbook.create(name: "5e SRD Spellbook", url:"srd", desc: "Default 5e SRD spells.")
+spells = {}
 
 RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
     spell_arr = JSON.parse(resp)["results"]
-    spell_arr.each do |spell_pointers|
+    spell_arr.each_with_index do |spell_pointers, i|
         spell_url = spell_pointers["url"]
         RestClient.get("https://www.dnd5eapi.co#{spell_url}") do |resp, req, res|
-            spell = JSON.parse(resp)
+            api_spell = JSON.parse(resp)
+            spell = {}
+            spell["id"] = i
+            spell["name"] = api_spell["name"]
+            spell["range"] = api_spell["range"]
+            spell["level"] = api_spell["level"]
+            spell["components"] = api_spell["components"].join(",")
+            spell["material"] = api_spell["material"]
+            spell["ritual"] = api_spell["ritual"]
+            spell["concentration"] = api_spell["concentration"]
+            spell["duration"] = api_spell["duration"]
+            spell["casting_time"] = api_spell["casting_time"]
+            spell["school"] = api_spell["school"]["index"]
             classes = []
-            spell["classes"].each {|dndclass| classes << dndclass["index"]}
+            api_spell["classes"].each {|dndclass| classes << dndclass["index"]}
             classes = classes.join(",")
-            Spell.create(
-                name: spell["name"],
-                range: spell["range"],
-                level: spell["level"],
-                components: spell["components"].join(","),
-                material_desc: spell["material"],
-                ritual: spell["ritual"],
-                conc: spell["concentration"],
-                duration: spell["duration"],
-                cast_time: spell["casting_time"],
-                school: spell["school"]["index"],
-                classes: classes,
-                desc: spell["desc"],
-                higher_level_desc: spell["higher_level"],
-                notes: "",
-                spellbook_id: sb.id
-            )
+            spell["classes"] = classes
+            spell["desc"] = api_spell["desc"]
+            spell["higher_level"] = spell["higher_level"]
+            spell["notes"] = ""
+            spells[i] = spell
         end
     end
 end
+
+spells = spells.to_json
+sb = Spellbook.create(name: "5e SRD Spellbook", url:"srd", spells: spells)
