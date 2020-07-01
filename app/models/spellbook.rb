@@ -1,10 +1,6 @@
 class Spellbook < ApplicationRecord
 
-    after_create :populate_initial_spells
-    
-    validates :name, :url, presence: true
-
-    has_many :spells
+    validates :name, :url, :spells, presence: true
 
     def self.generate_url
         url = SecureRandom.alphanumeric(16)
@@ -21,25 +17,7 @@ class Spellbook < ApplicationRecord
     end
 
     def populate_initial_spells
-        Spellbook.first.spells.first(10).each do |spell|
-            new_spell = Spell.create(
-                name: spell.name,
-                range: spell.range,
-                level: spell.level,
-                components: spell.components,
-                material_desc: spell.material_desc,
-                ritual: spell.ritual,
-                conc: spell.conc,
-                duration: spell.duration,
-                cast_time: spell.cast_time,
-                school: spell.school,
-                classes: spell.classes,
-                desc: spell.desc,
-                higher_level_desc: spell.higher_level_desc,
-                notes: "",
-                spellbook_id: self.id
-            )
-        end
+        self.spells = Spellbook.first.spells.clone
     end
 
 end
