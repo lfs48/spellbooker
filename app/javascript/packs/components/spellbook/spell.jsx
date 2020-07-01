@@ -14,7 +14,7 @@ const Spell = (props) => {
         top: 200,
         width: 500,
         height: 400,
-        minHeight: 30,
+        minHeight: 50,
         minWidth: 200,
         dragging: false,
         dragPrevX: null,
@@ -129,9 +129,14 @@ const Spell = (props) => {
                 <div draggable="true" className="resize-area resize-right" onDrag={e => resizeRight(e)}></div>
             </div>
 
-            <section draggable="true" className="spell-info" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
+            <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
                 <h1>{selectedSpell.name}</h1>
+                <button className="spell-close-button" onClick={e => handleClose(e)}>X</button>
+            </header>
+
+            <section className="spell-info" style={{height: styleData.height-50}}>
                 <section className="spell-details">
+                    <div style={{height: '0.5em'}}></div>
                     <i>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school} {selectedSpell.ritual? "(ritual)" : ""}</i>
                     <dl>
                         <dt>Classes</dt>
@@ -159,9 +164,9 @@ const Spell = (props) => {
                 <section className="spell-desc">
                     <p>{selectedSpell.desc.join("\n\n")}</p>
                     <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${selectedSpell.higher_level_desc.join("\n")}` : ""} </p>
+                    <div style={{height: '0.5em'}}></div>
                 </section>
             </section>
-            <button className="spell-close-button" onClick={e => handleClose(e)}>X</button>
         </article>
     )
 
