@@ -31,7 +31,7 @@ const SpellList = () => {
             return spell.name.toLowerCase().includes(nameSearch.toLowerCase());
         }).filter( (spell) => {
             if (descSearch === "") {return true}
-            return spell.desc.toLowerCase().includes(descSearch.toLowerCase());
+            return spell.desc.join(" ").toLowerCase().includes(descSearch.toLowerCase());
         });
 
     let liColorClass = false;
