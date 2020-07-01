@@ -22,6 +22,11 @@
     font-size: 1.25em;
 }
 
+#spell-list-sidebar li:hover {
+    cursor: pointer;
+    padding-left: 1em;
+}
+
 #spell-list-sidebar li.open-li {
     background-color: rgba(10, 245, 10, 0.5);
 }
