@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resource :spellbooks, only: [:create,  :update, :show]
-    resources :spells, only: [:create, :update, :show, :destroy]
   end
 
 end
