@@ -29,12 +29,9 @@ const Spell = () => {
 
     const resizeUp = (event) => {
         const newState = merge({}, styleData);
-        if (event.pageY < newState.top) {
-            newState.top -=1
-            newState.height += 1;
-        } else {
-            newState.top +=1
-            newState.height -= 1;
+        if (event.pageY > 0) {
+            newState.height += newState.top - event.pageY;
+            newState.top = event.pageY;
         }
 
         setStyleData(newState);
