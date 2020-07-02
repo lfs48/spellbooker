@@ -67,22 +67,26 @@
     font-weight: bolder;
 }
 
-#selected-spell-info {
+#spell-container {
+    display: inline-block;
     border: 2px solid black;
     border-radius: 3px;
-    padding: 0.5em 1em;
-    width: 50%;
     background-color: rgb(182, 180, 180);
+    padding: 0.5em 1em;
 }
 
-#selected-spell-info h1 {
+#spell-info {
+    height: 100%;
+}
+
+#spell-info h1 {
     font-weight: bolder;
     font-size: 1.75em;
     position: relative;
     margin-bottom: 0.5em;
 }
 
-#selected-spell-info h1:after {
+#spell-info h1:after {
     content: '';
     position: absolute;
     left: -0.5em;
@@ -121,10 +125,19 @@
 
 .open-spell {
     height: 12em;
-    overflow: auto;
+    width: 40em;
 }
 
 .hidden-spell {
-    height: 1.5em;
+    height: 2em;
+    width: 10em;
+    overflow: hidden;
+}
+
+.open-spell > * {
+    overflow: auto;
+}
+
+.hidden-spell > * {
     overflow: hidden;
 }
