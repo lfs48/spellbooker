@@ -22,16 +22,53 @@ const Spell = () => {
         })
     );
 
+    useEffect( () => {
+        $('#spell-info').scrollTop(0);
+    }, [styleData]);
+
     const handleDoubleClick = (event) => {
         event.preventDefault();
         setShow(!show);
     }
 
     const resizeUp = (event) => {
+        event.preventDefault();
         const newState = merge({}, styleData);
         if (event.pageY > 0) {
             newState.height += newState.top - event.pageY;
             newState.top = event.pageY;
+        }
+
+        setStyleData(newState);
+    }
+
+    const resizeDown = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (event.pageY > 0) {
+            newState.height = event.pageY - newState.top;
+        }
+        $('#spell-info').scrollTop(0);
+        setStyleData(newState);
+        $('#spell-info').scrollTop(0);
+    }
+
+    const resizeRight = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (event.pageX > 0) {
+            newState.width += event.pageX - newState.left - $('.resizable').outerWidth(true);
+        }
+
+        setStyleData(newState);
+    }
+
+    const resizeLeft = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (event.pageX > 0) {
+            newState.width += newState.left - event.pageX;
+            newState.left = event.pageX;
         }
 
         setStyleData(newState);
@@ -42,10 +79,10 @@ const Spell = () => {
          onDoubleClick={e => handleDoubleClick(e)} id="spell-container"
          style={styleData}>
             <div id="resize-areas-container">
-                <div className="resize-area" id="resize-top" onDrag={e => resizeUp(e)}></div>
-                <div className="resize-area" id="resize-left"></div>
-                <div className="resize-area" id="resize-bottom"></div>
-                <div className="resize-area" id="resize-right"></div>
+                <div draggable="true" className="resize-area" id="resize-top" onDrag={e => resizeUp(e)} ></div>
+                <div draggable="true" className="resize-area" id="resize-left" onDrag={e => resizeLeft(e)}></div>
+                <div draggable="true" className="resize-area" id="resize-bottom" onDrag={e => resizeDown(e)} ></div>
+                <div draggable="true" className="resize-area" id="resize-right" onDrag={e => resizeRight(e)}></div>
             </div>
 
             <section id="spell-info">
