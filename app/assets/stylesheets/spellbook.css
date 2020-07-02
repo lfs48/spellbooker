@@ -71,7 +71,8 @@
     border: 2px solid black;
     border-radius: 3px;
     padding: 0.5em 1em;
-    width: 50%
+    width: 50%;
+    background-color: rgb(182, 180, 180);
 }
 
 #selected-spell-info h1 {
@@ -116,4 +117,14 @@
 
 #spell-desc p {
     margin-bottom: 2em;
+}
+
+.open-spell {
+    height: 12em;
+    overflow: auto;
+}
+
+.hidden-spell {
+    height: 1.5em;
+    overflow: hidden;
 }

@@ -9,15 +9,21 @@ const Spell = () => {
     const dispatch = useDispatch();
 
     const [selectedSpellId, setSelectedSpellId] = useState(0);
+    const [show, setShow] = useState(true);
 
     const {selectedSpell} = useSelector(
         state => ({
             selectedSpell: state.entities.spells[state.ui.selectedSpell] ? state.entities.spells[state.ui.selectedSpell] : {name:"", range: "", level: "", components:"", material:"", ritual: false, concentration: false, duration: "", casting_time: "", school: "", classes: "", desc: [], higher_level_desc: [], notes: ""}
         })
     );
+
+    const handleDoubleClick = (event) => {
+        event.preventDefault();
+        setShow(!show);
+    }
     
     return(
-        <article id="selected-spell-info">
+        <article className={show ? "open-spell" : "hidden-spell"} onDoubleClick={e => handleDoubleClick(e)} id="selected-spell-info">
             <h1>{selectedSpell.name}</h1>
 
             <section id="spell-details">
