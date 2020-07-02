@@ -12,8 +12,10 @@ const Spell = () => {
     const [styleData, setStyleData] = useState({
         left: 400,
         top: 200,
-        width: 400,
-        height: 100
+        width: 500,
+        height: 400,
+        minHeight: 30,
+        minWidth: 200
     });
 
     const {selectedSpell} = useSelector(
@@ -82,7 +84,7 @@ const Spell = () => {
             <section id="spell-info">
                 <h1>{selectedSpell.name}</h1>
                 <section id="spell-details">
-                    <span>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school} {selectedSpell.ritual? "(ritual)" : ""}</span>
+                    <i>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school} {selectedSpell.ritual? "(ritual)" : ""}</i>
                     <dl>
                         <dt>Classes</dt>
                         <dd>: {selectedSpell.classes.split(",").join(", ")}</dd>
