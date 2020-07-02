@@ -117,7 +117,7 @@ const Spell = () => {
     
     return(
         <article className={"resizable draggable" + " " + `${show ? "open-spell" : "hidden-spell"}`} id="spell-container" draggable="true"
-         style={styleData} onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
+         style={styleData} >
             <div id="resize-areas-container">
                 <div draggable="true" className="resize-area" id="resize-top" onDrag={e => resizeUp(e)} ></div>
                 <div draggable="true" className="resize-area" id="resize-left" onDrag={e => resizeLeft(e)}></div>
@@ -125,7 +125,9 @@ const Spell = () => {
                 <div draggable="true" className="resize-area" id="resize-right" onDrag={e => resizeRight(e)}></div>
             </div>
 
-            <section id="spell-info">
+            {/* <div id="draggable" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}></div> */}
+
+            <section draggable="true" id="spell-info" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
                 <h1>{selectedSpell.name}</h1>
                 <section id="spell-details">
                     <i>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school} {selectedSpell.ritual? "(ritual)" : ""}</i>
