@@ -15,7 +15,10 @@ const Spell = () => {
         width: 500,
         height: 400,
         minHeight: 30,
-        minWidth: 200
+        minWidth: 200,
+        dragging: false,
+        dragPrevX: null,
+        dragPrevY: null
     });
 
     const {selectedSpell} = useSelector(
@@ -69,11 +72,52 @@ const Spell = () => {
 
         setStyleData(newState);
     }
+
+    const handleDragStart = (event) => {
+        event.preventDefault();
+        if (!styleData.dragging) {
+            const newState = merge({}, styleData);
+            newState.dragPrevX = event.pageX;
+            newState.dragPrevY = event.pageY;
+            newState.dragging = true;
+            setStyleData(newState);
+        }
+    }
+
+    const handleDrag = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (styleData.dragging) {
+            if (event.pageX > 0) {
+                newState.left += event.pageX - styleData.dragPrevX;
+                newState.left = Math.max(newState.left, 0);
+                newState.left = Math.min( (newState.left + newState.width) , window.innerWidth) - newState.width;
+                newState.dragPrevX = event.pageX;
+            }
+            if (event.pageY > 0) {
+                newState.top += event.pageY - styleData.dragPrevY;
+                newState.top = Math.min(newState.top, window.innerHeight - styleData.height);
+                newState.top = Math.max(newState.top, 0);
+                newState.dragPrevY = event.pageY;
+            }
+            setStyleData(newState);
+        } else {
+            handleDragStart(event);
+        }
+    }
+
+    const handleDragEnd = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        newState.dragPrevX = 0;
+        newState.dragPrevY = 0;
+        newState.dragging = false;
+        setStyleData(newState);
+    }
     
     return(
-        <article className={"resizable" + " " + `${show ? "open-spell" : "hidden-spell"}`}
-         onDoubleClick={e => handleDoubleClick(e)} id="spell-container"
-         style={styleData}>
+        <article className={"resizable draggable" + " " + `${show ? "open-spell" : "hidden-spell"}`} id="spell-container" draggable="true"
+         style={styleData} onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
             <div id="resize-areas-container">
                 <div draggable="true" className="resize-area" id="resize-top" onDrag={e => resizeUp(e)} ></div>
                 <div draggable="true" className="resize-area" id="resize-left" onDrag={e => resizeLeft(e)}></div>
