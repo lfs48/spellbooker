@@ -18,6 +18,11 @@ const cb = () => {
     $('meta[name="csrf-token"]').remove();
     $('meta[name="authenticity-token"]').remove();
 
+    document.addEventListener("dragstart", function( event ) {
+      var img = new Image();
+      event.dataTransfer.setDragImage(img, 0, 0);
+    }, false);
+
 };
 
 document.addEventListener("DOMContentLoaded", cb);
