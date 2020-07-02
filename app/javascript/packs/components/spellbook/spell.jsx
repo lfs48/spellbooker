@@ -22,10 +22,6 @@ const Spell = () => {
         })
     );
 
-    useEffect( () => {
-        $('#spell-info').scrollTop(0);
-    }, [styleData]);
-
     const handleDoubleClick = (event) => {
         event.preventDefault();
         setShow(!show);
@@ -48,9 +44,7 @@ const Spell = () => {
         if (event.pageY > 0) {
             newState.height = event.pageY - newState.top;
         }
-        $('#spell-info').scrollTop(0);
         setStyleData(newState);
-        $('#spell-info').scrollTop(0);
     }
 
     const resizeRight = (event) => {
