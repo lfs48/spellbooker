@@ -5,6 +5,7 @@ import {fetchSpellbook} from '../../actions/entities/spell_actions';
 import SpellList from './spell_list';
 import Filter from './filter';
 import Spell from './spell';
+import SpellbookMenu from './spellbook_menu';
 
 const Spellbook = () => {
 
@@ -24,6 +25,7 @@ const Spellbook = () => {
 
     return(
     <section id="spellbook-container">
+        <SpellbookMenu />
         <SpellList />
         <section id="spell-section-right">
             <header id="spellbook-name-header">{spellbookName}</header>
