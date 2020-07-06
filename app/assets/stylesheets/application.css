@@ -16,7 +16,10 @@
 
    
 #app-container {
-    background-color: rgb(217, 206, 237);
+    background-color: rgb(247, 243, 216);
+}
+
+html, main, body {
     width: 100%;
     height: 100%;
 }
