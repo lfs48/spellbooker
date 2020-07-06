@@ -10,6 +10,7 @@
     // Selected Spell
 
     export const OPEN_SPELL = "OPEN_SPELL";
+    export const CLOSE_SPELL = "CLOSE_SPELL";
     export const FOCUS_SPELL = "FOCUS_SPELL";
 
     // Filters
