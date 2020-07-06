@@ -4,17 +4,18 @@ import Spell from './spell';
 
 const OpenSpells = () => {
 
-    const {spellbookName, openSpellIDs, spells} = useSelector(
+    const {openSpellIDs, focusID, spells} = useSelector(
         state => ({
             openSpellIDs: state.ui.openSpells,
-            spells: state.entities.spells
+            focusID: state.ui.focusSpell,
+            spells: state.entities.spells,
         })
     );
 
     let openSpells = <></>;
     if (openSpellIDs.length > 0) {
         openSpells = openSpellIDs.map( (spellID, i) => {
-            return <Spell key={i} spell={spells[spellID]} />
+            return <Spell key={i} spell={spells[spellID]} isFocus={focusID === spellID}/>
         });
     };
 
