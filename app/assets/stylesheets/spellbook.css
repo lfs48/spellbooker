@@ -132,3 +132,11 @@
 .spell-desc p {
     margin-bottom: 2em;
 }
+
+.focus-spell {
+    z-index: 11;
+}
+
+.unfocus-spell {
+    z-index: 10;
+}
