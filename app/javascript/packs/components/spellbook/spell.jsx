@@ -161,7 +161,7 @@ const Spell = (props) => {
                     <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${selectedSpell.higher_level_desc.join("\n")}` : ""} </p>
                 </section>
             </section>
-            <button onClick={e => handleClose(e)}>X</button>
+            <button className="spell-close-button" onClick={e => handleClose(e)}>X</button>
         </article>
     )
 
