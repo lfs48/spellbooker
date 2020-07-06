@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {merge} from 'lodash';
-import { focusSpell } from '../../actions/ui/selected_spell_actions';
+import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
 
 const Spell = (props) => {
 
@@ -114,6 +114,10 @@ const Spell = (props) => {
     const bringToFront = (event) => {
         dispatch( focusSpell(selectedSpell.id) );
     }
+
+    const handleClose = (event) => {
+        dispatch( closeSpell(selectedSpell.id) );
+    }
     
     return(
         <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${props.isFocus ? "focus-spell" : "unfocus-spell"}`} 
@@ -157,7 +161,7 @@ const Spell = (props) => {
                     <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${selectedSpell.higher_level_desc.join("\n")}` : ""} </p>
                 </section>
             </section>
-
+            <button onClick={e => handleClose(e)}>X</button>
         </article>
     )
 
