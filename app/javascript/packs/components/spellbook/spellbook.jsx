@@ -4,8 +4,8 @@ import { useLocation } from 'react-router-dom';
 import {fetchSpellbook} from '../../actions/entities/spell_actions'; 
 import SpellList from './spell_list';
 import Filter from './filter';
-import Spell from './spell';
 import SpellbookMenu from './spellbook_menu';
+import SelectedSpells from './selected_spells';
 
 const Spellbook = () => {
 
@@ -19,7 +19,7 @@ const Spellbook = () => {
 
     const {spellbookName} = useSelector(
         state => ({
-            spellbookName: state.entities.spellbook.name
+            spellbookName: state.entities.spellbook.name,
         })
     );
 
@@ -30,7 +30,7 @@ const Spellbook = () => {
         <section id="spell-section-right">
             <header id="spellbook-name-header">{spellbookName}</header>
             <Filter />
-            <Spell />
+            <SelectedSpells />
         </section>
     </section>
     );
