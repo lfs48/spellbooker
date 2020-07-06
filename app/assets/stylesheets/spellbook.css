@@ -67,7 +67,7 @@
     font-weight: bolder;
 }
 
-#spell-container {
+.spell-container {
     display: inline-block;
     border: 2px solid black;
     border-radius: 3px;
@@ -75,20 +75,20 @@
     padding: 0.5em 1em;
 }
 
-#spell-info {
+.spell-info {
     height: 100%;
     overflow-x: wrap;
     overflow-y: auto;
 }
 
-#spell-info h1 {
+.spell-info h1 {
     font-weight: bolder;
     font-size: 1.75em;
     position: relative;
     margin-bottom: 0.5em;
 }
 
-#spell-info h1:after {
+.spell-info h1:after {
     content: '';
     position: absolute;
     left: -0.5em;
@@ -98,52 +98,33 @@
     background-image: linear-gradient(to right, black 50%, transparent);
 }
 
-#spell-details {
+.spell-details {
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
 }
 
-#spell-details > * {
+.spell-details > * {
     margin-bottom: 0.25em;
 }
 
-#spell-details i {
+.spell-details i {
     font-style: italic;
 }
 
-#spell-details dl {
+.spell-details dl {
     display: flex;
 }
 
-#spell-details dt {
+.spell-details dt {
     font-weight: bold;
 }
 
-#spell-desc {
+.spell-desc {
     line-height: 1.2em;
     white-space: pre-line;
 }
 
-#spell-desc p {
+.spell-desc p {
     margin-bottom: 2em;
 }
-
-/* .open-spell {
-    height: 12em;
-    width: 40em;
-}
-
-.hidden-spell {
-    height: 2em;
-    width: 10em;
-    overflow: hidden;
-} */
-
-/* .open-spell > * {
-    overflow: auto;
-}
-
-.hidden-spell > * {
-    overflow: hidden;
-} */

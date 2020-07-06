@@ -6,40 +6,40 @@
     position: absolute;
 }
 
-#resize-top {
+.resize-top {
     top: -2px;
     left: 0;
     width: 100%;
     height: 10px;
 }
 
-#resize-right {
+.resize-right {
     top: 0;
     right: -2px;
     width: 10px;
     height: 100%;
 }
 
-#resize-bottom {
+.resize-bottom {
     bottom: -2px;
     left: 0;
     width: 100%;
     height: 10px;
 }
 
-#resize-left {
+.resize-left {
     top: 0;
     left: -2px;
     width: 10px;
     height: 100%;
 }
 
-#resize-top:hover, #resize-bottom:hover {
+.resize-top:hover, .resize-bottom:hover {
     cursor: n-resize;
 }
 
 
 
-#resize-left:hover, #resize-right:hover {
+.resize-left:hover, .resize-right:hover {
     cursor: e-resize;
 }
