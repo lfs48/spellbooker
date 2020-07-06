@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {merge} from 'lodash';
+import { focusSpell } from '../../actions/ui/selected_spell_actions';
 
 const Spell = (props) => {
+
+    const dispatch = useDispatch();
 
     const [show, setShow] = useState(true);
     const [styleData, setStyleData] = useState({
@@ -107,10 +110,14 @@ const Spell = (props) => {
         newState.dragging = false;
         setStyleData(newState);
     }
+
+    const bringToFront = (event) => {
+        dispatch( focusSpell(selectedSpell.id) );
+    }
     
     return(
-        <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${show ? "open-spell" : "hidden-spell"}`} draggable="true"
-         style={styleData} >
+        <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${props.isFocus ? "focus-spell" : "unfocus-spell"}`} 
+        draggable="true" style={styleData} onMouseDown={e => bringToFront(e)}>
             <div className="resize-areas-container">
                 <div draggable="true" className="resize-area resize-top" onDrag={e => resizeUp(e)} ></div>
                 <div draggable="true" className="resize-area resize-left" onDrag={e => resizeLeft(e)}></div>
