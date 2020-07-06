@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectSpell} from '../../actions/ui/selected_spell_actions'
+import {openSpell} from '../../actions/ui/selected_spell_actions'
 
 const SpellList = () => {
 
@@ -43,7 +43,7 @@ const SpellList = () => {
 
     const handleClickSpell = (event, id) => {
         event.preventDefault();
-        dispatch( selectSpell(id) );
+        dispatch( openSpell(id) );
     }
 
     return(
