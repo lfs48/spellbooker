@@ -77,6 +77,8 @@
 
 #spell-info {
     height: 100%;
+    overflow-x: wrap;
+    overflow-y: auto;
 }
 
 #spell-info h1 {
@@ -106,6 +108,10 @@
     margin-bottom: 0.25em;
 }
 
+#spell-details i {
+    font-style: italic;
+}
+
 #spell-details dl {
     display: flex;
 }
@@ -123,7 +129,7 @@
     margin-bottom: 2em;
 }
 
-.open-spell {
+/* .open-spell {
     height: 12em;
     width: 40em;
 }
@@ -132,12 +138,12 @@
     height: 2em;
     width: 10em;
     overflow: hidden;
-}
+} */
 
-.open-spell > * {
+/* .open-spell > * {
     overflow: auto;
 }
 
 .hidden-spell > * {
     overflow: hidden;
-}
+} */
