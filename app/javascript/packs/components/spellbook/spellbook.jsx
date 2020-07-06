@@ -5,7 +5,7 @@ import {fetchSpellbook} from '../../actions/entities/spell_actions';
 import SpellList from './spell_list';
 import Filter from './filter';
 import SpellbookMenu from './spellbook_menu';
-import SelectedSpells from './selected_spells';
+import OpenSpells from './open_spells';
 
 const Spellbook = () => {
 
@@ -30,7 +30,7 @@ const Spellbook = () => {
         <section id="spell-section-right">
             <header id="spellbook-name-header">{spellbookName}</header>
             <Filter />
-            <SelectedSpells />
+            <OpenSpells />
         </section>
     </section>
     );

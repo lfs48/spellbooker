@@ -1,7 +1,7 @@
 import {merge} from 'lodash';
 import { SELECT_SPELL, RECEIVE_SPELLBOOK } from '../../actions/types';
 
-const selectedSpellsReducer = (state = {}, action) => {
+const openSpellsReducer = (state = {}, action) => {
     const newState = merge([], state);
     Object.freeze(state);
 
@@ -17,4 +17,4 @@ const selectedSpellsReducer = (state = {}, action) => {
     }
 };
 
-export default selectedSpellsReducer;
+export default openSpellsReducer;

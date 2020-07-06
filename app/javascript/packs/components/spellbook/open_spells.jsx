@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import Spell from './spell';
 
-const SelectedSpells = () => {
+const OpenSpells = () => {
 
     const {spellbookName, openSpellIDs, spells} = useSelector(
         state => ({
-            openSpellIDs: state.ui.selectedSpells,
+            openSpellIDs: state.ui.openSpells,
             spells: state.entities.spells
         })
     );
@@ -25,4 +25,4 @@ const SelectedSpells = () => {
     );
 }
 
-export default SelectedSpells;
+export default OpenSpells;
