@@ -42,7 +42,7 @@ const Splash = () => {
     switch (stage) {
         case 1:
             content = (
-                <form>
+                <form id="splash-buttons-container">
                     <button onClick={e => handleSRD(e)}>View SRD Spells</button>
                     <button onClick={e => handleNewSpellbook(e)}>Create New Spellbook</button>
                 </form>
@@ -51,7 +51,7 @@ const Splash = () => {
 
         case 2:
             content = (
-                <form>
+                <form id="splash-input-container">
                     <input
                         type="text"
                         value={nameInput}
@@ -68,6 +68,7 @@ const Splash = () => {
 
     return(
         <section id="splash-container">
+            <h1>Spellbooker 5e</h1>
             {content}
         </section>
     )
