@@ -1,19 +1,20 @@
 import {merge} from 'lodash';
 import { SELECT_SPELL, RECEIVE_SPELLBOOK } from '../../actions/types';
 
-const selectedSpellReducer = (state = {}, action) => {
-    const newState = merge({}, state);
+const selectedSpellsReducer = (state = {}, action) => {
+    const newState = merge([], state);
     Object.freeze(state);
 
     switch (action.type) {
         default: return state;
 
         case SELECT_SPELL:
-            return action.id;
+            if(!newState.includes(action.id)) { newState.push(action.id); }
+            return newState;
         
         case RECEIVE_SPELLBOOK:
-            return 0;
+            return [];
     }
 };
 
-export default selectedSpellReducer;
+export default selectedSpellsReducer;

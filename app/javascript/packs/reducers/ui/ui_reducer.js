@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import filtersReducer from './filters/filters_reducer';
-import selectedSpellReducer from './selected_spell_reducer';
+import selectedSpellsReducer from './selected_spells_reducer';
 
 const uiReducer = combineReducers({
     filters: filtersReducer,
-    selectedSpell: selectedSpellReducer
+    selectedSpells: selectedSpellsReducer
 });
 
 export default uiReducer;
