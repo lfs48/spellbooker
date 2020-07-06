@@ -6,7 +6,7 @@ const SpellList = () => {
 
     const dispatch = useDispatch();
 
-    const {spells, classFilter, levelFilter, schoolFilter, nameSearch, descSearch} = useSelector(
+    const {spells, classFilter, levelFilter, schoolFilter, nameSearch, descSearch, openSpells} = useSelector(
         state => ({
             spells: Object.values(state.entities.spells),
             classLists: state.entities.dndclasses,
@@ -14,7 +14,8 @@ const SpellList = () => {
             levelFilter: state.ui.filters.levelFilter,
             schoolFilter: state.ui.filters.schoolFilter,
             nameSearch: state.ui.filters.search.name,
-            descSearch: state.ui.filters.search.desc
+            descSearch: state.ui.filters.search.desc,
+            openSpells: state.ui.openSpells
         })
     );
 
@@ -37,7 +38,7 @@ const SpellList = () => {
     let liColorClass = false;
     const spellLis = filteredSpells.map( (spell, i) => {
         liColorClass = !liColorClass;
-        return <li key={i} className={liColorClass ? "white-li" : "dark-li"} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
+        return <li key={i} className={openSpells.includes(spell.id) ? "open-li" : liColorClass ? "white-li" : "dark-li"} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
     });
 
     const handleClickSpell = (event, id) => {
