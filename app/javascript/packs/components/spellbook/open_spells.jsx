@@ -14,8 +14,8 @@ const OpenSpells = () => {
 
     let openSpells = <></>;
     if (openSpellIDs.length > 0) {
-        openSpells = openSpellIDs.map( (spellID, i) => {
-            return <Spell key={i} spell={spells[spellID]} isFocus={focusID === spellID}/>
+        openSpells = openSpellIDs.map( (spellID) => {
+            return <Spell key={spellID} spell={spells[spellID]} isFocus={focusID === spellID}/>
         });
     };
 
