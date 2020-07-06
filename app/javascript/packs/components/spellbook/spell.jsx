@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {merge} from 'lodash';
 
-const Spell = () => {
+const Spell = (props) => {
 
-    const dispatch = useDispatch();
-
-    const [selectedSpellId, setSelectedSpellId] = useState(0);
     const [show, setShow] = useState(true);
     const [styleData, setStyleData] = useState({
         left: 400,
@@ -21,11 +18,7 @@ const Spell = () => {
         dragPrevY: null
     });
 
-    const {selectedSpell} = useSelector(
-        state => ({
-            selectedSpell: state.entities.spells[state.ui.selectedSpell] ? state.entities.spells[state.ui.selectedSpell] : {name:"", range: "", level: "", components:"", material:"", ritual: false, concentration: false, duration: "", casting_time: "", school: "", classes: "", desc: [], higher_level_desc: [], notes: ""}
-        })
-    );
+    const selectedSpell = props.spell
 
     const handleDoubleClick = (event) => {
         event.preventDefault();
@@ -56,7 +49,7 @@ const Spell = () => {
         event.preventDefault();
         const newState = merge({}, styleData);
         if (event.pageX > 0) {
-            newState.width += event.pageX - newState.left - $('.resizable').outerWidth(true);
+            newState.width += event.pageX - newState.left - $(`#spell-${selectedSpell.id}`).outerWidth(true);
         }
 
         setStyleData(newState);
@@ -91,7 +84,7 @@ const Spell = () => {
             if (event.pageX > 0) {
                 newState.left += event.pageX - styleData.dragPrevX;
                 newState.left = Math.max(newState.left, 0);
-                newState.left = Math.min( (newState.left + newState.width) , window.innerWidth) - newState.width;
+                newState.left = Math.min( (newState.left + $(`#spell-${selectedSpell.id}`).outerWidth(true)) , window.innerWidth) - $(`#spell-${selectedSpell.id}`).outerWidth(true);
                 newState.dragPrevX = event.pageX;
             }
             if (event.pageY > 0) {
@@ -116,20 +109,18 @@ const Spell = () => {
     }
     
     return(
-        <article className={"resizable draggable" + " " + `${show ? "open-spell" : "hidden-spell"}`} id="spell-container" draggable="true"
+        <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${show ? "open-spell" : "hidden-spell"}`} draggable="true"
          style={styleData} >
-            <div id="resize-areas-container">
-                <div draggable="true" className="resize-area" id="resize-top" onDrag={e => resizeUp(e)} ></div>
-                <div draggable="true" className="resize-area" id="resize-left" onDrag={e => resizeLeft(e)}></div>
-                <div draggable="true" className="resize-area" id="resize-bottom" onDrag={e => resizeDown(e)} ></div>
-                <div draggable="true" className="resize-area" id="resize-right" onDrag={e => resizeRight(e)}></div>
+            <div className="resize-areas-container">
+                <div draggable="true" className="resize-area resize-top" onDrag={e => resizeUp(e)} ></div>
+                <div draggable="true" className="resize-area resize-left" onDrag={e => resizeLeft(e)}></div>
+                <div draggable="true" className="resize-area resize-bottom" onDrag={e => resizeDown(e)} ></div>
+                <div draggable="true" className="resize-area resize-right" onDrag={e => resizeRight(e)}></div>
             </div>
 
-            {/* <div id="draggable" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}></div> */}
-
-            <section draggable="true" id="spell-info" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
+            <section draggable="true" className="spell-info" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
                 <h1>{selectedSpell.name}</h1>
-                <section id="spell-details">
+                <section className="spell-details">
                     <i>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school} {selectedSpell.ritual? "(ritual)" : ""}</i>
                     <dl>
                         <dt>Classes</dt>
@@ -154,7 +145,7 @@ const Spell = () => {
 
                 </section>
 
-                <section id="spell-desc">
+                <section className="spell-desc">
                     <p>{selectedSpell.desc.join("\n\n")}</p>
                     <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${selectedSpell.higher_level_desc.join("\n")}` : ""} </p>
                 </section>
