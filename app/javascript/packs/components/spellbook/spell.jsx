@@ -24,8 +24,16 @@ const Spell = (props) => {
     const selectedSpell = props.spell
 
     const handleDoubleClick = (event) => {
-        event.preventDefault();
-        setShow(!show);
+        const newState = merge({}, styleData);
+        if (newState.height > newState.minHeight || newState.width > newState.minWidth) {
+            newState.height = newState.minHeight;
+            newState.width = newState.minWidth;
+        } else if (newState.height === newState.minHeight && newState.width === newState.minWidth) {
+            newState.height = 400;
+            newState.width = 500;
+        }
+        setStyleData(newState);
+
     }
 
     const resizeUp = (event) => {
@@ -133,7 +141,8 @@ const Spell = (props) => {
                 <div draggable="true" className="resize-area resize-right" onDrag={e => resizeRight(e)}></div>
             </div>
 
-            <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} onDragEnd={e => handleDragEnd(e)}>
+            <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} 
+            onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
                 <h1>{selectedSpell.name}</h1>
                 <button className="spell-close-button" onClick={e => handleClose(e)}>X</button>
             </header>
