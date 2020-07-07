@@ -67,7 +67,7 @@ const Spell = (props) => {
         if (event.pageX > 0) {
             const newWidth = newState.width + newState.left - event.pageX;
             newState.width = Math.max(newWidth, newState.minWidth);
-            if (newState.left != styleData.left) {newState.left = event.pageX; }
+            if (newState.width != styleData.width) {newState.left = event.pageX; }
         }
 
         setStyleData(newState);
