@@ -10,8 +10,8 @@ const Spell = (props) => {
 
     const [show, setShow] = useState(true);
     const [styleData, setStyleData] = useState({
-        left: 400,
-        top: 200,
+        left: Math.floor( Math.random() * 800 ) + 300,
+        top: Math.floor( Math.random() * 300 ) + 150,
         width: 500,
         height: 400,
         minHeight: 50,
