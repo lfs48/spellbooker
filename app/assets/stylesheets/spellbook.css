@@ -51,7 +51,6 @@
     width: 100%;
     text-align: center;
     margin-bottom: 1em;
-
 }
 
 #spell-filters-bar {
@@ -78,9 +77,10 @@
 
 .spell-container {
     display: inline-block;
-    border: 2px solid black;
-    border-radius: 3px;
+    border: 3px solid black;
+    border-radius: 5px;
     background-color: rgb(230, 214, 169);
+    box-sizing: content-box;
 }
 
 .spell-info {
@@ -94,11 +94,10 @@
     height: 50px;
     box-sizing: border-box;
     background-color: rgb(229, 211, 157);
-    border-bottom: 3px solid black;
-    padding: 0 0.5em;
+    border-bottom: 4px solid black;
+    padding: 0.5em;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     overflow: hidden;
 }
 
