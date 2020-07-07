@@ -32,8 +32,9 @@ const Spell = (props) => {
         event.preventDefault();
         const newState = merge({}, styleData);
         if (event.pageY > 0) {
-            newState.height += newState.top - event.pageY;
-            newState.top = event.pageY;
+            const newHeight = newState.height + newState.top - event.pageY;
+            newState.height = Math.max(newHeight, newState.minHeight);
+            if (newState.height != styleData.height) {newState.top = event.pageY};
         }
 
         setStyleData(newState);
@@ -43,7 +44,8 @@ const Spell = (props) => {
         event.preventDefault();
         const newState = merge({}, styleData);
         if (event.pageY > 0) {
-            newState.height = event.pageY - newState.top;
+            const newHeight = event.pageY - newState.top;
+            newState.height = Math.max(newHeight, newState.minHeight);
         }
         setStyleData(newState);
     }
@@ -52,7 +54,8 @@ const Spell = (props) => {
         event.preventDefault();
         const newState = merge({}, styleData);
         if (event.pageX > 0) {
-            newState.width += event.pageX - newState.left - $(`#spell-${selectedSpell.id}`).outerWidth(true);
+            const newWidth = newState.width + event.pageX - newState.left - $(`#spell-${selectedSpell.id}`).outerWidth(true)
+            newState.width = Math.max( newWidth, newState.minWidth );
         }
 
         setStyleData(newState);
@@ -62,8 +65,9 @@ const Spell = (props) => {
         event.preventDefault();
         const newState = merge({}, styleData);
         if (event.pageX > 0) {
-            newState.width += newState.left - event.pageX;
-            newState.left = event.pageX;
+            const newWidth = newState.width + newState.left - event.pageX;
+            newState.width = Math.max(newWidth, newState.minWidth);
+            if (newState.left != styleData.left) {newState.left = event.pageX; }
         }
 
         setStyleData(newState);
