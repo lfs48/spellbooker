@@ -19,3 +19,8 @@
     export const SELECT_LEVEL = "SELECT_LEVEL";
     export const SELECT_SCHOOL = "SELECT_SCHOOL"
     export const SET_SEARCH = "SET_SEARCH";
+
+    // Modal
+
+    export const OPEN_MODAL = "OPEN_MODAL";
+    export const CLOSE_MODAL = "CLOSE_MODAL";
