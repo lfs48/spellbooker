@@ -14,6 +14,14 @@ export const createSpellbook = (spellbook) => {
     });
 };
 
+export const updateSpellbook = (spellbook) => {
+    return $.ajax({
+        method: 'PATCH',
+        url: `api/spellbooks/`,
+        data: { spellbook: spellbook }
+    });
+};
+
 export const fetchSpell = (id) => {
     return $.ajax({
         method: 'GET',
