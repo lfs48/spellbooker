@@ -11,7 +11,8 @@ const spellbookReducer = (state = {}, action) => {
         case RECEIVE_SPELLBOOK:
             const spellbook = {
                 id: action.spellbook.id,
-                name: action.spellbook.name
+                name: action.spellbook.name,
+                url: action.spellbook.url
             };
             return spellbook;
     }
