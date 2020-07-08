@@ -12,6 +12,15 @@ class Api::SpellbooksController < ApplicationController
         end
     end
 
+    def update
+        @spellbook = Spellbook.find_by(url: spellbook_params[:url])
+        if @spellbook.update(spellbook_params)
+            render "api/spellbooks/show"
+        else
+            render json: @spellbook.errors.full_messages, status: 422
+        end
+    end
+
     def show
         @spellbook = Spellbook.find_by(url: spellbook_params[:url])
         if @spellbook
@@ -23,7 +32,7 @@ class Api::SpellbooksController < ApplicationController
     private
 
     def spellbook_params
-        params.require(:spellbook).permit(:name, :url, :desc)
+        params.require(:spellbook).permit(:id, :name, :url, :spells)
     end
 
 end
