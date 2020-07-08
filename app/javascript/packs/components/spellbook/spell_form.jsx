@@ -2,8 +2,19 @@ import React, { useState } from 'react';
 import { dndclassList, dndSchoolList } from '../../data/dnd_data';
 import {intToOrdinal} from '../../util/functions/util_functions';
 import { merge } from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateSpellbook } from '../../actions/entities/spell_actions';
 
 const SpellForm = () => {
+
+    const dispatch = useDispatch();
+
+    const {spellbook, spells} = useSelector(
+        state => ({
+            spellbook: state.entities.spellbook,
+            spells: state.entities.spells
+        })
+    );
 
     const [inputs, setInputs] = useState({
         name: "",
@@ -77,6 +88,30 @@ const SpellForm = () => {
         console.log(inputs);
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const spell = {
+            id: Object.keys(spells).length,
+            name: inputs.name,
+            level: inputs.level,
+            school: inputs.school,
+            classes: inputs.classes.join(","),
+            casting_time: inputs.casting_time,
+            range: inputs.range,
+            components: `${inputs.v ? "V" : ""}${inputs.s ? "S" : ""}${inputs.m ? "M" : ""}`.split("").join(","),
+            material: inputs.material,
+            duration: inputs.duration,
+            concentration: inputs.concentration === "true",
+            desc: inputs.desc.split('\n'),
+            higher_level: inputs.higher_level.split('\n')
+        };
+        const newSpells = merge({}, spells);
+        const newSpellbook = merge({}, spellbook);
+        newSpells[spell.id] = spell;
+        newSpellbook.spells = JSON.stringify(newSpells);
+        dispatch(updateSpellbook(newSpellbook));
+    }
+
     return(
         <form className="spell-form">
             <input
@@ -132,6 +167,7 @@ const SpellForm = () => {
                 onChange={e => handleInput(e, 'higher_level')}
             ></textarea>
             <button onClick={e => handleButton(e)}>debug</button>
+            <button onClick={e => handleSubmit(e)}>Submit</button>
         </form>
     );
 };
