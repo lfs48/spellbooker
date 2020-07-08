@@ -31,7 +31,7 @@ RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
             classes = classes.join(",")
             spell["classes"] = classes
             spell["desc"] = api_spell["desc"]
-            spell["higher_level"] = spell["higher_level"]
+            spell["higher_level"] = api_spell["higher_level"]
             spell["notes"] = ""
             spells[i] = spell
         end

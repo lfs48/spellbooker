@@ -176,7 +176,7 @@ const Spell = (props) => {
 
                 <section className="spell-desc">
                     <p>{selectedSpell.desc.join("\n\n")}</p>
-                    <p>{selectedSpell.higher_level_desc ? `At Higher Levels: ${selectedSpell.higher_level_desc.join("\n")}` : ""} </p>
+                    <p>{selectedSpell.higher_level ? `At Higher Levels: ${selectedSpell.higher_level_desc.join("\n")}` : ""} </p>
                     <div style={{height: '0.5em'}}></div>
                 </section>
             </section>
