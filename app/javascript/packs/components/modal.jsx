@@ -14,12 +14,20 @@ const Modal = () => {
         })
     );
 
-    const component = modalComponents[componentName] ? modalComponents[componentName] : <></>;
+    let content = <></>
+    const component = modalComponents[componentName];
+    if (componentName in modalComponents) {
+        content = (
+            <div className="modal-bg">
+                {component}
+            </div>
+        );
+    }
 
     return(
-        <div className="modal-bg">
-            {component}
-        </div>
+        <>
+            {content}
+        </>
     );
 };
 
