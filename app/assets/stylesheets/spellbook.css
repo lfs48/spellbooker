@@ -147,12 +147,14 @@
 }
 
 .spell-close-button {
-    /* position: absolute;
-    top: 10px;
-    right: 50px; */
     background: none;
     border: none;
     color: red;
     font-weight: bolder;
     font-size: 20px;
+}
+
+.spell-form {
+    display: flex;
+    flex-direction: column;
 }
