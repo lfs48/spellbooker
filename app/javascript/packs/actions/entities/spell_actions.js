@@ -29,6 +29,13 @@ export const createSpellbook = (data) => (dispatch) => {
         );
 };
 
+export const updateSpellbook = (data) => (dispatch) => {
+    return SpellsAPIUtil.updateSpellbook(data)
+    .then(
+        (spellbook) => dispatch( receiveSpellbook(spellbook) )
+    );
+};
+
 export const createSpell = (data) => (dispatch) => {
     return SpellsAPIUtil.createSpell(data)
         .then(
