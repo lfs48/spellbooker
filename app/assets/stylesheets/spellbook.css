@@ -158,3 +158,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.spell-form-input {
+    background-color: white;
+    transition: background-color 0.5s;
+}
+
+.spell-form-error {
+    background-color: red;
+    transition: background-color 0.5s;
+}
