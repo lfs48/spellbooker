@@ -21,7 +21,7 @@ const SpellForm = () => {
         level: "0",
         school: "abjuration",
         classes: [],
-        casting_time: "",
+        castingTime: "",
         range: "",
         v: false,
         s: false,
@@ -48,7 +48,11 @@ const SpellForm = () => {
 
     const vsmSelects = ['v', 's', 'm'].map( (el, i) => {
         return(
-            <select key={i} value={inputs[el]} onChange={e => handleInput(e, el)}>
+            <select 
+                id={`spell-form-${el}-input`}
+                className="spell-form-input"
+                key={i} value={inputs[el]} 
+                onChange={e => handleInput(e, el)}>
                 <option value={false}>—</option>
                 <option value={true}>{el}</option>
             </select>
@@ -59,16 +63,19 @@ const SpellForm = () => {
     if (inputs.m === "true") {
         materialInput = (
             <input
-            type="text"
-            placeholder="Material Description"
-            value={inputs.material}
-            onChange={e => handleInput(e, 'material')}
+                id="spell-form-material-input"
+                className="spell-form-input"
+                type="text"
+                placeholder="Material Description"
+                value={inputs.material}
+                onChange={e => handleInput(e, 'material')}
             ></input>
         );
     }
 
     const handleInput = (event, field, arr) => {
         event.preventDefault();
+        event.target.classes = event.target.classList.replace("spell-form-error", "spell-form-input");
         const newState = merge({}, inputs);
         if (arr) {
             if ( newState.classes.includes(event.target.value) ) {
@@ -96,7 +103,7 @@ const SpellForm = () => {
             level: inputs.level,
             school: inputs.school,
             classes: inputs.classes.join(","),
-            casting_time: inputs.casting_time,
+            casting_time: inputs.castingTime,
             range: inputs.range,
             components: `${inputs.v ? "V" : ""}${inputs.s ? "S" : ""}${inputs.m ? "M" : ""}`.split("").join(","),
             material: inputs.material,
@@ -109,33 +116,64 @@ const SpellForm = () => {
         const newSpellbook = merge({}, spellbook);
         newSpells[spell.id] = spell;
         newSpellbook.spells = JSON.stringify(newSpells);
-        dispatch(updateSpellbook(newSpellbook));
+        if ( validateInput() ) { dispatch(updateSpellbook(newSpellbook)); }
+    }
+
+    const validateInput = () => {
+        let errors = false;
+        const validatedInputs = ["name", "classes", "castingTime", "range", "duration", "desc"];
+        validatedInputs.forEach( (input) => {
+            if (inputs[input].length < 1) {
+                $(`#spell-form-${input}-input`).addClass("spell-form-error"); 
+                errors = true;
+            }
+        });
+        return !errors;
     }
 
     return(
         <form className="spell-form">
             <input
+                id="spell-form-name-input"
+                className="spell-form-input"
                 type="text"
                 placeholder="Name"
                 value={inputs.name}
                 onChange={e => handleInput(e, 'name')}
             ></input>
-            <select value={inputs.level} onChange={e => handleInput(e, 'level')}>
+            <select 
+                id="spell-form-level-input"
+                className="spell-form-input"
+                value={inputs.level} 
+                onChange={e => handleInput(e, 'level')}>
                 {levelOptions}
             </select>
-            <select value={inputs.school} onChange={e => handleInput(e, 'school')}>
+            <select 
+                id="spell-form-school-input"
+                className="spell-form-input"
+                value={inputs.school} 
+                onChange={e => handleInput(e, 'school')}>
                 {schoolOptions}
             </select>
-            <select multiple={true} value={inputs.classes} onChange={e => handleInput(e, 'classes', true)}>
+            <select 
+                id="spell-form-classes-input"
+                className="spell-form-input"
+                multiple={true} 
+                value={inputs.classes} 
+                onChange={e => handleInput(e, 'classes', true)}>
                 {classOptions}
             </select>
             <input
+                id="spell-form-castingTime-input"
+                className="spell-form-input"
                 type="text"
-                placeholder="Castine Time"
-                value={inputs.casting_time}
-                onChange={e => handleInput(e, 'casting_time')}
+                placeholder="Casting Time"
+                value={inputs.castingTime}
+                onChange={e => handleInput(e, 'castingTime')}
             ></input>
             <input
+                id="spell-form-range-input"
+                className="spell-form-input"
                 type="text"
                 placeholder="Range"
                 value={inputs.range}
@@ -144,24 +182,32 @@ const SpellForm = () => {
             {vsmSelects}
             {materialInput}
             <input
+                id="spell-form-duration-input"
                 type="text"
+                className="spell-form-input"
                 placeholder="Duration"
                 value={inputs.duration}
                 onChange={e => handleInput(e, 'duration')}
             ></input>
             <label>Concentration?</label>
-            <select value={inputs.concentration} onChange={e => handleInput(e, "concentration")}>
+            <select 
+                id="spell-form-concentration-input"
+                className="spell-form-input"
+                value={inputs.concentration} 
+                onChange={e => handleInput(e, "concentration")}>
                 <option value={false}>No</option>
                 <option value={true}>Yes</option>
             </select>
             <textarea
-                type="text"
+                id="spell-form-desc-input"
+                className="spell-form-input"
                 placeholder="A bright streak flashes from your pointing finger to a point you choose within range..."
                 value={inputs.desc}
                 onChange={e => handleInput(e, 'desc')}
             ></textarea>
             <textarea
-                type="text"
+                id="spell-form-higherLevel-input"
+                className="spell-form-input"
                 placeholder="When you cast this spell using a spell slot of 4th level or higher..."
                 value={inputs.higher_level}
                 onChange={e => handleInput(e, 'higher_level')}
