@@ -39,7 +39,7 @@ const SpellForm = () => {
     });
 
     const levelOptions = [...Array(10).keys()].map( (level, i) => {
-        return <option key={i} value={level}>{intToOrdinal(level)}</option>
+        return <option key={i} value={level}>{intToOrdinal(level)}-level</option>
     });
 
     const schoolOptions = dndSchoolList.map( (school, i) => {
@@ -141,79 +141,100 @@ const SpellForm = () => {
                 value={inputs.name}
                 onChange={e => handleInput(e, 'name')}
             ></input>
-            <select 
-                id="spell-form-level-input"
-                className="spell-form-input"
-                value={inputs.level} 
-                onChange={e => handleInput(e, 'level')}>
-                {levelOptions}
-            </select>
-            <select 
-                id="spell-form-school-input"
-                className="spell-form-input"
-                value={inputs.school} 
-                onChange={e => handleInput(e, 'school')}>
-                {schoolOptions}
-            </select>
-            <select 
-                id="spell-form-classes-input"
-                className="spell-form-input"
-                multiple={true} 
-                value={inputs.classes} 
-                onChange={e => handleInput(e, 'classes', true)}>
-                {classOptions}
-            </select>
-            <input
-                id="spell-form-castingTime-input"
-                className="spell-form-input"
-                type="text"
-                placeholder="Casting Time"
-                value={inputs.castingTime}
-                onChange={e => handleInput(e, 'castingTime')}
-            ></input>
-            <input
-                id="spell-form-range-input"
-                className="spell-form-input"
-                type="text"
-                placeholder="Range"
-                value={inputs.range}
-                onChange={e => handleInput(e, 'range')}
-            ></input>
-            {vsmSelects}
-            {materialInput}
-            <input
-                id="spell-form-duration-input"
-                type="text"
-                className="spell-form-input"
-                placeholder="Duration"
-                value={inputs.duration}
-                onChange={e => handleInput(e, 'duration')}
-            ></input>
-            <label>Concentration?</label>
-            <select 
-                id="spell-form-concentration-input"
-                className="spell-form-input"
-                value={inputs.concentration} 
-                onChange={e => handleInput(e, "concentration")}>
-                <option value={false}>No</option>
-                <option value={true}>Yes</option>
-            </select>
-            <textarea
-                id="spell-form-desc-input"
-                className="spell-form-input"
-                placeholder="A bright streak flashes from your pointing finger to a point you choose within range..."
-                value={inputs.desc}
-                onChange={e => handleInput(e, 'desc')}
-            ></textarea>
-            <textarea
-                id="spell-form-higherLevel-input"
-                className="spell-form-input"
-                placeholder="When you cast this spell using a spell slot of 4th level or higher..."
-                value={inputs.higher_level}
-                onChange={e => handleInput(e, 'higher_level')}
-            ></textarea>
-            <button onClick={e => handleButton(e)}>debug</button>
-            <button onClick={e => handleSubmit(e)}>Submit</button>
+                <section id="level-school-section">
+                    <select 
+                        id="spell-form-level-input"
+                        className="spell-form-input"
+                        value={inputs.level} 
+                        onChange={e => handleInput(e, 'level')}>
+                        {levelOptions}
+                    </select>
+                    <select 
+                        id="spell-form-school-input"
+                        className="spell-form-input"
+                        value={inputs.school} 
+                        onChange={e => handleInput(e, 'school')}>
+                        {schoolOptions}
+                    </select>
+            </section>
+            <section>
+                <select 
+                    id="spell-form-classes-input"
+                    className="spell-form-input"
+                    multiple={true} 
+                    value={inputs.classes} 
+                    size={dndclassList.length}
+                    onChange={e => handleInput(e, 'classes', true)}>
+                    {classOptions}
+                </select>
+            </section>
+            <section>
+                <label htmlFor="spell-form-castingTime-input">Casting Time: </label>
+                <input
+                    id="spell-form-castingTime-input"
+                    className="spell-form-input"
+                    type="text"
+                    placeholder="1 action"
+                    value={inputs.castingTime}
+                    onChange={e => handleInput(e, 'castingTime')}
+                ></input>
+            </section>
+            <section>
+                <label htmlFor="spell-form-range-input">Range: </label>
+                <input
+                    id="spell-form-range-input"
+                    className="spell-form-input"
+                    type="text"
+                    placeholder="60 feet"
+                    value={inputs.range}
+                    onChange={e => handleInput(e, 'range')}
+                ></input>
+            </section>
+             <section>
+                <label>Components: </label>
+                {vsmSelects}
+                {materialInput}
+            </section>
+            <section>
+                <label htmlFor="spell-form-duration-input">Duration: </label>
+                <input
+                    id="spell-form-duration-input"
+                    type="text"
+                    className="spell-form-input"
+                    placeholder="Duration"
+                    value={inputs.duration}
+                    onChange={e => handleInput(e, 'duration')}
+                ></input>
+                <label htmlFor="spell-form-concentration-input">Concentration?</label>
+                <select 
+                    id="spell-form-concentration-input"
+                    className="spell-form-input"
+                    value={inputs.concentration} 
+                    onChange={e => handleInput(e, "concentration")}>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
+                </select>
+            </section>
+            <section id="spell-form-desc-section">
+                <textarea
+                    id="spell-form-desc-input"
+                    className="spell-form-input"
+                    placeholder="A bright streak flashes from your pointing finger to a point you choose within range..."
+                    value={inputs.desc}
+                    onChange={e => handleInput(e, 'desc')}
+                ></textarea>
+                <label>At Higher Levels.</label>
+                <textarea
+                    id="spell-form-higherLevel-input"
+                    className="spell-form-input"
+                    placeholder="When you cast this spell using a spell slot of 4th level or higher..."
+                    value={inputs.higher_level}
+                    onChange={e => handleInput(e, 'higher_level')}
+                ></textarea>
+            </section>
+            <section id="spell-form-button-section">
+                <button onClick={e => handleSubmit(e)}>Submit</button>
+            </section>
         </form>
     );
 };
