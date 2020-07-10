@@ -4,6 +4,7 @@ import {intToOrdinal} from '../../util/functions/util_functions';
 import { merge } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
+import { closeModal } from '../../actions/ui/modal_actions';
 
 const SpellForm = () => {
 
@@ -131,6 +132,11 @@ const SpellForm = () => {
         return !errors;
     }
 
+    const handleCancel = (event) => {
+        event.preventDefault();
+        dispatch( closeModal() );
+    }
+
     return(
         <form className="spell-form">
             <input
@@ -233,6 +239,7 @@ const SpellForm = () => {
                 ></textarea>
             </section>
             <section id="spell-form-button-section">
+                <button onClick={e => handleCancel(e)}>Cancel</button>
                 <button onClick={e => handleSubmit(e)}>Submit</button>
             </section>
         </form>
