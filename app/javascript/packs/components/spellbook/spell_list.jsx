@@ -33,6 +33,12 @@ const SpellList = () => {
         }).filter( (spell) => {
             if (descSearch === "") {return true}
             return spell.desc.join(" ").toLowerCase().includes(descSearch.toLowerCase());
+        }).sort( (spellA, spellB) => {
+            if (spellA.name.toLowerCase() >= spellB.name.toLowerCase()) {
+                return 1;
+            } else {
+                return -1;
+            }
         });
 
     let liColorClass = false;
