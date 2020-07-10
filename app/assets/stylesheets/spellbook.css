@@ -229,23 +229,23 @@
 }
 
 #spell-form-classes-error {
-    top: 5.65em;
+    top: 6.6em;
 }
 
 #spell-form-castingTime-error {
-    top: 7.55em
+    top: 9.9em
 }
 
 #spell-form-range-error {
-    top: 9.05em;
+    top: 11.4em;
 }
 
 #spell-form-duration-error {
-    top: 11.8em;
+    top: 14.15em;
 }
 
 #spell-form-desc-error {
-    top: 18em;
+    top: 20.5em;
 }
 
 .spell-form label {
@@ -267,9 +267,31 @@
     font-style: italic;
 }
 
-#spell-form-classes-input {
-    height: 30px;
-    overflow: hidden;
+#spell-form-classes-section {
+    height: 4em;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+#spell-form-classes-section button {
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-right: 0.5em;
+    font-size: auto;
+    width: 88px;
+    box-sizing: border-box;
+    margin-bottom: 0.25em;
+    height: 1.8em;
+}
+
+.add-class-button {
+    background-color: red;
+    color: white;
+}
+
+.remove-class-button {
+    background-color: green;
 }
 
 #spell-form-classes-input option {
@@ -305,7 +327,7 @@
     height: 3em;
 }
 
-.spell-form button {
+#spell-form-button-section button {
     border: 2px solid black;
     border-radius: 3px;
     color: black;
