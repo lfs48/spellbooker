@@ -36,6 +36,15 @@ const SpellForm = () => {
 
     });
 
+    const [errors, setErrors] = useState({
+        name: false,
+        classes: false,
+        castingTime: false,
+        range: false,
+        duration: false,
+        desc: false
+    });
+
     const classOptions = dndclassList.map( (dndclass, i) => {
         return <option key={i} value={dndclass}>{dndclass}</option>
     });
@@ -126,15 +135,24 @@ const SpellForm = () => {
     }
 
     const validateInput = () => {
-        let errors = false;
+        let hasErrors = false;
+        const newErrors = {
+            name: false,
+            classes: false,
+            castingTime: false,
+            range: false,
+            duration: false,
+            desc: false
+        };
         const validatedInputs = ["name", "classes", "castingTime", "range", "duration", "desc"];
         validatedInputs.forEach( (input) => {
-            if (inputs[input].length < 1) {
-                $(`#spell-form-${input}-input`).addClass("spell-form-error"); 
-                errors = true;
+            if (inputs[input].length < 1) { 
+                hasErrors = true;
+                newErrors[input] = true;
             }
         });
-        return !errors;
+        setErrors(newErrors);
+        return !hasErrors;
     }
 
     const handleCancel = (event) => {
@@ -142,8 +160,22 @@ const SpellForm = () => {
         dispatch( closeModal() );
     }
 
+    const errorMessages = {
+        name: "Spell must have a name",
+        classes: "Spell must belong to at least one class",
+        castingTime: "Spell must have a casting time",
+        range: "Spell must have a range",
+        duration: "Spell must have a duration",
+        desc: "Your spell must do something"
+    };
+
+    const errorComponents = Object.entries(errors).map( ([key, val], i) => {
+        return <span key={i} className={ val ? "spell-form-error-message" : "spell-form-error-hidden"} id={`spell-form-${key}-error`}>{errorMessages[key]}</span>
+    });
+
     return(
         <form className="spell-form">
+            {errorComponents}
             <input
                 id="spell-form-name-input"
                 className="spell-form-input"
