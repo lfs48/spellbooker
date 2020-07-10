@@ -242,7 +242,7 @@
 
 #spell-form-button-section {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     height: 3em;
 }
@@ -254,4 +254,24 @@
     font-weight: bolder;
     background: var(--dark-parchment);
     font-size: 1.25em;
+}
+
+#spell-menu {
+    border: 2px solid black;
+    border-radius: 3px;
+    background: var(--light-parchment);
+    margin-right: 0.5em;
+    height: min-content;
+    padding: 0.5em;
+}
+
+#spell-menu svg {
+    font-size: 2em;
+    transition: color 0.5s;
+}
+
+#spell-menu svg:hover {
+    cursor: pointer;
+    color: green;
+    transition: color 0.5s;
 }
