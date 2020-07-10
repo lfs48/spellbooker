@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 const SpellbookMenu = () => {
 
@@ -13,8 +15,8 @@ const SpellbookMenu = () => {
 
 
     return(
-        <aside>
-            <button onClick={e => handleCreateButton(e)}>+</button>
+        <aside id="spell-menu">
+            <FontAwesomeIcon icon={faPlusSquare} onClick={e => handleCreateButton(e) } />
         </aside>
     );
 };
