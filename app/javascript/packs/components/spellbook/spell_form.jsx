@@ -45,8 +45,12 @@ const SpellForm = () => {
         desc: false
     });
 
-    const classOptions = dndclassList.map( (dndclass, i) => {
-        return <option key={i} value={dndclass}>{dndclass}</option>
+    const classButtons = dndclassList.map( (dndclass, i) => {
+        if (inputs.classes.includes(dndclass)) {
+            return <button key={i} className="remove-class-button" onClick={e => removeClass(e, dndclass)}>{dndclass} ✓</button>
+        } else {
+            return <button key={i} className="add-class-button" onClick={e => addClass(e, dndclass)}>{dndclass}</button>
+        }
     });
 
     const levelOptions = [...Array(10).keys()].map( (level, i) => {
@@ -84,26 +88,25 @@ const SpellForm = () => {
         );
     }
 
-    const handleInput = (event, field, arr) => {
+    const handleInput = (event, field) => {
         event.preventDefault();
-        event.target.classes = event.target.classList.replace("spell-form-error", "spell-form-input");
         const newState = merge({}, inputs);
-        if (arr) {
-            if ( newState.classes.includes(event.target.value) ) {
-                newState[field] = newState[field].filter(el => el != event.target.value);
-            } else {
-                newState[field].push(event.target.value);
-            }
-        } else {
-            newState[field] = event.target.value;
-        }
-
+        newState[field] = event.target.value;
         setInputs(newState);
     }
 
-    const handleButton = (event) => {
+    const addClass = (event, dndclass) => {
         event.preventDefault();
-        console.log(inputs);
+        const newState = merge({}, inputs);
+        newState.classes.push(dndclass);
+        setInputs(newState);
+    }
+
+    const removeClass = (event, dndclass) => {
+        event.preventDefault();
+        const newState = merge({}, inputs);
+        newState.classes = newState.classes.filter( el => el != dndclass);
+        setInputs(newState);
     }
 
     const handleSubmit = (event) => {
@@ -200,16 +203,10 @@ const SpellForm = () => {
                         {schoolOptions}
                     </select>
             </section>
-            <section>
-                <select 
-                    id="spell-form-classes-input"
-                    className="spell-form-input"
-                    multiple={true} 
-                    value={inputs.classes} 
-                    size={dndclassList.length}
-                    onChange={e => handleInput(e, 'classes', true)}>
-                    {classOptions}
-                </select>
+            <section id="spell-form-classes-section">
+                <div>
+                    {classButtons}
+                </div>
             </section>
             <section>
                 <label htmlFor="spell-form-castingTime-input">Casting Time: </label>
