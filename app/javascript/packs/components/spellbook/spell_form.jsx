@@ -5,6 +5,7 @@ import { merge } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
+import { openSpell } from '../../actions/ui/selected_spell_actions';
 
 const SpellForm = () => {
 
@@ -117,7 +118,11 @@ const SpellForm = () => {
         const newSpellbook = merge({}, spellbook);
         newSpells[spell.id] = spell;
         newSpellbook.spells = JSON.stringify(newSpells);
-        if ( validateInput() ) { dispatch(updateSpellbook(newSpellbook)); }
+        if ( validateInput() ) { 
+            dispatch(updateSpellbook(newSpellbook))
+            .then( () => dispatch( closeModal() ) )
+            .then( () => dispatch( openSpell(spell.id) ) ); 
+        }
     }
 
     const validateInput = () => {
