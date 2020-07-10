@@ -193,6 +193,61 @@
     transition: background-color 0.5s;
 }
 
+.spell-form-error-hidden, .spell-form-error-message {
+    position: absolute;
+    width: fit-content;
+    font-size: 0.9em;
+    padding: 0.15em 0.3em;
+    border-radius: 3px;
+}
+
+.spell-form-error-hidden {
+    right: 38em;
+    border: 0.25px solid transparent;
+    border-radius: 3px;
+    background-color: transparent;
+    color: transparent;
+    transition: border 1s, background-color 1s, color 1s, right 0.5s;
+}
+
+.spell-form-error-message {
+    right: 35em;
+    color: white;
+    background-color: red;
+    font-weight: bolder;
+    width: fit-content;
+    font-size: 0.9em;
+    padding: 0.15em 0.3em;
+    box-sizing: border-box;
+    border: 0.25px solid white;
+    border-radius: 3px;
+    transition: border 1s, background-color 1s, color 1s, right 0.5s;
+}
+
+#spell-form-name-error {
+    top: 1.1em;
+}
+
+#spell-form-classes-error {
+    top: 5.65em;
+}
+
+#spell-form-castingTime-error {
+    top: 7.55em
+}
+
+#spell-form-range-error {
+    top: 9.05em;
+}
+
+#spell-form-duration-error {
+    top: 11.8em;
+}
+
+#spell-form-desc-error {
+    top: 18em;
+}
+
 .spell-form label {
     font-weight: bolder;
 }
