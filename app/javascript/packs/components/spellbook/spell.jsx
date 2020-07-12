@@ -133,7 +133,7 @@ const Spell = (props) => {
     
     return(
         <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${props.isFocus ? "focus-spell" : "unfocus-spell"}`} 
-        draggable="true" style={styleData} onMouseDown={e => bringToFront(e)}>
+        style={styleData} onMouseDown={e => bringToFront(e)}>
             <div className="resize-areas-container">
                 <div draggable="true" className="resize-area resize-top" onDrag={e => resizeUp(e)} ></div>
                 <div draggable="true" className="resize-area resize-left" onDrag={e => resizeLeft(e)}></div>
