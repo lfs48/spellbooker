@@ -15,7 +15,7 @@ const Spell = (props) => {
         width: 500,
         height: 400,
         minHeight: 50,
-        minWidth: 200,
+        minWidth: 225,
         dragging: false,
         dragPrevX: null,
         dragPrevY: null
