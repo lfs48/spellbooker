@@ -169,16 +169,17 @@ const Spell = (props) => {
                     </dl>
                     <dl>
                         <dt>Duration</dt>
-                        <dd>:{selectedSpell.duration} {selectedSpell.concentration ? "(concentration)" : ""}</dd>
+                        <dd>: {selectedSpell.duration} {selectedSpell.concentration ? "(concentration)" : ""}</dd>
                     </dl>
 
                 </section>
 
                 <section className="spell-desc">
                     <p>{selectedSpell.desc.join("\n\n")}</p>
-                    <p>{selectedSpell.higher_level ? `At Higher Levels: ${selectedSpell.higher_level.join("\n")}` : ""} </p>
-                    <div style={{height: '0.5em'}}></div>
+                    <label>{selectedSpell.higher_level ? `\nAt Higher Levels.\n\n` : ""}</label>
+                    <p>{selectedSpell.higher_level ? `${selectedSpell.higher_level.join("\n\n")}` : ""} </p>
                 </section>
+
             </section>
         </article>
     )
