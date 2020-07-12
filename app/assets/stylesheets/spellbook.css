@@ -117,7 +117,16 @@
 .spell-details {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1em;
+    margin-bottom: 0.75em;
+}
+
+.spell-details::after {
+    content: '';
+    width: 75%;
+    margin: auto;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(87, 87, 87);
+    margin-top: 0.75em;
 }
 
 .spell-details > * {
@@ -139,6 +148,11 @@
 .spell-desc {
     line-height: 1.2em;
     white-space: pre-line;
+    margin-bottom: 0.5em;
+}
+
+.spell-desc label {
+    font-weight: bold;
 }
 
 .focus-spell {
