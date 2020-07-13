@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {openSpell} from '../../actions/ui/selected_spell_actions'
+import { intToOrdinal } from '../../util/functions/util_functions';
 
 const SpellList = () => {
 
@@ -68,7 +69,16 @@ const SpellList = () => {
     let liColorClass = false;
     const spellLis = filteredSpells.map( (spell, i) => {
         liColorClass = !liColorClass;
-        return <li key={i} className={openSpells.includes(spell.id) ? "open-li" : liColorClass ? "white-li" : "dark-li"} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
+        return (
+            <li 
+            key={i} 
+            className={openSpells.includes(spell.id) ? "open-li" : liColorClass ? "white-li" : "dark-li"} 
+            onClick={e => handleClickSpell(e, spell.id)}
+            >
+                <span>{spell.name}</span>
+                <span>{intToOrdinal(spell.level)}</span>
+            </li>
+        );
     });
 
     const switchSort = (event, field) => {
@@ -90,11 +100,11 @@ const SpellList = () => {
 
     return(
         <aside id="spell-list-sidebar">
-                <header>
-                    <button onClick={e => switchSort(e, "name")}>Name</button>
-                    <button onClick={e => switchSort(e, "level")}>Level</button>
-                </header>
                <ol>
+                   <header id="spell-list-button-li">
+                        <button onClick={e => switchSort(e, "name")}>Name</button>
+                        <button onClick={e => switchSort(e, "level")}>Level</button>
+                   </header>
                     {spellLis}
                </ol>
         </aside>
