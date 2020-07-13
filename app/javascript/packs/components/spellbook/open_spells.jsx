@@ -20,7 +20,7 @@ const OpenSpells = () => {
     };
 
     return(
-    <ul id="spellbook-container">
+    <ul id="open-spells-container">
         {openSpells}
     </ul>
     );
