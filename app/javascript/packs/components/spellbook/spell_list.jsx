@@ -6,6 +6,11 @@ const SpellList = () => {
 
     const dispatch = useDispatch();
 
+    const [sort, setSort] = useState({
+        field: "name",
+        order: 1
+    });
+
     const {spells, classFilter, levelFilter, schoolFilter, nameSearch, descSearch, openSpells} = useSelector(
         state => ({
             spells: Object.values(state.entities.spells),
@@ -18,6 +23,16 @@ const SpellList = () => {
             openSpells: state.ui.openSpells
         })
     );
+
+    const sortFunctions = {
+        name: (spellA, spellB) => {
+            if (spellA.name.toLowerCase() >= spellB.name.toLowerCase()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    }
 
     const filteredSpells = spells.filter( (spell) => {
             if (classFilter === null) {return true }
@@ -34,11 +49,7 @@ const SpellList = () => {
             if (descSearch === "") {return true}
             return spell.desc.join(" ").toLowerCase().includes(descSearch.toLowerCase());
         }).sort( (spellA, spellB) => {
-            if (spellA.name.toLowerCase() >= spellB.name.toLowerCase()) {
-                return 1;
-            } else {
-                return -1;
-            }
+            return sortFunctions[sort.field](spellA, spellB) * sort.order;
         });
 
     let liColorClass = false;
@@ -47,6 +58,18 @@ const SpellList = () => {
         return <li key={i} className={openSpells.includes(spell.id) ? "open-li" : liColorClass ? "white-li" : "dark-li"} onClick={e => handleClickSpell(e, spell.id)}>{spell.name}</li>
     });
 
+    const switchSort = (event, field) => {
+        event.preventDefault();
+        const newState = {
+            field: field,
+            order: 1
+        };
+        if (sort.field === field) {
+            newState.order = sort.order * -1;
+        };
+        setSort(newState);
+    }
+
     const handleClickSpell = (event, id) => {
         event.preventDefault();
         dispatch( openSpell(id) );
@@ -54,6 +77,9 @@ const SpellList = () => {
 
     return(
         <aside id="spell-list-sidebar">
+                <header>
+                    <button onClick={e => switchSort(e, "name")}>Name</button>
+                </header>
                <ol>
                     {spellLis}
                </ol>
