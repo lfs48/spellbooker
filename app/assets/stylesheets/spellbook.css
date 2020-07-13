@@ -4,17 +4,39 @@
 }
 
 #spell-list-sidebar {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 3px;
     margin-right: 5em;
 }
 
 #spell-list-sidebar ol {
-    height: 50em;
+    height: 44em;
     width: 15em;
     overflow-x: hidden;
     overflow-y: auto;
     font-size: 1.1em;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(500px);
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+#spell-list-sidebar ol::-webkit-scrollbar {
+    width: 10px;
+}
+
+#spell-list-sidebar ol::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#spell-list-sidebar ol::-webkit-scrollbar-thumb {
+    background: #888;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    background-clip: padding-box;
 }
 
 #spell-list-sidebar header, #spell-list-sidebar li {
@@ -23,8 +45,14 @@
 }
 
 #spell-list-sidebar header {
+    border-top: 2px solid black;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     border-bottom: 3px solid black;
-    padding: 0.4em 0.5em;
+    padding: 0.4em 1em;
+    background-color: rgba(0,0,0,0.33);
 }
 
 #spell-list-sidebar button {
@@ -33,17 +61,19 @@
     font-size: inherit;
     font-family: inherit;
     font-weight: bold;
+    height: 2em;
 }
 
 #spell-list-sidebar li {
     border-bottom: 1px solid black;
-    padding: 0.4em 0.5em;
+    padding: 0.4em 1em;
     transition: background-color 0.3s, padding-left 0.3s;
+    border-right: 2px solid black;
 }
 
 #spell-list-sidebar li:hover {
     cursor: pointer;
-    padding-left: 1em;
+    padding-left: 2em;
     transition: background-color 0.3s, padding-left 0.3s;
 }
 
