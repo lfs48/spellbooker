@@ -14,12 +14,30 @@
     width: 15em;
     overflow-x: hidden;
     overflow-y: auto;
+    font-size: 1.1em;
+}
+
+#spell-list-sidebar header, #spell-list-sidebar li {
+    display: flex;
+    justify-content: space-between;
+}
+
+#spell-list-sidebar header {
+    border-bottom: 3px solid black;
+    padding: 0.4em 0.5em;
+}
+
+#spell-list-sidebar button {
+    border: none;
+    background: none;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: bold;
 }
 
 #spell-list-sidebar li {
     border-bottom: 1px solid black;
     padding: 0.4em 0.5em;
-    font-size: 1.25em;
     transition: background-color 0.3s, padding-left 0.3s;
 }
 
