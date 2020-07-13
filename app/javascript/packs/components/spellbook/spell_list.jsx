@@ -27,9 +27,22 @@ const SpellList = () => {
     const sortFunctions = {
         name: (spellA, spellB) => {
             if (spellA.name.toLowerCase() >= spellB.name.toLowerCase()) {
-                return 1;
+                return 1 * sort.order;
             } else {
-                return -1;
+                return -1 * sort.order;
+            }
+        },
+        level: (spellA, spellB) => {
+            if (spellA.level > spellB.level) {
+                return 1 * sort.order;
+            } else if (spellA.level < spellB.level) {
+                return -1 * sort.order;
+            } else if (spellA.level === spellB.level) {
+                if (spellA.name.toLowerCase() >= spellB.name.toLowerCase()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
             }
         }
     }
@@ -49,7 +62,7 @@ const SpellList = () => {
             if (descSearch === "") {return true}
             return spell.desc.join(" ").toLowerCase().includes(descSearch.toLowerCase());
         }).sort( (spellA, spellB) => {
-            return sortFunctions[sort.field](spellA, spellB) * sort.order;
+            return sortFunctions[sort.field](spellA, spellB);
         });
 
     let liColorClass = false;
@@ -79,6 +92,7 @@ const SpellList = () => {
         <aside id="spell-list-sidebar">
                 <header>
                     <button onClick={e => switchSort(e, "name")}>Name</button>
+                    <button onClick={e => switchSort(e, "level")}>Level</button>
                 </header>
                <ol>
                     {spellLis}
