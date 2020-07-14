@@ -176,7 +176,6 @@ const SpellForm = () => {
         };
         const validatedInputs = ["name", "classes", "castingTime", "range", "duration", "desc"];
         validatedInputs.forEach( (input) => {
-            debugger
             if (inputs[input].length < 1) { 
                 hasErrors = true;
                 newErrors[input] = true;
