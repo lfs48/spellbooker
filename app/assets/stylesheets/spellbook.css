@@ -24,15 +24,15 @@
     border-bottom-right-radius: 3px;
 }
 
-#spell-list-sidebar ol::-webkit-scrollbar {
+#spell-list-sidebar ol::-webkit-scrollbar, .spell-info::-webkit-scrollbar {
     width: 10px;
 }
 
-#spell-list-sidebar ol::-webkit-scrollbar-track {
+#spell-list-sidebar ol::-webkit-scrollbar-track, .spell-info::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-#spell-list-sidebar ol::-webkit-scrollbar-thumb {
+#spell-list-sidebar ol::-webkit-scrollbar-thumb, .spell-info::-webkit-scrollbar-thumb {
     background: #888;
     border: 2px solid rgba(0, 0, 0, 0);
     border-radius: 10px;
