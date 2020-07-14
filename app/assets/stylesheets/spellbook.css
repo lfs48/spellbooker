@@ -13,7 +13,7 @@
     height: 40em;
     width: 15em;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     font-size: 1.1em;
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(500px);
