@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import Spellbook from './spellbook/spellbook';
 import Splash from './splash';
 import Modal from './modal';
@@ -8,7 +8,10 @@ const App = () => (
     <main id="app-container">
         <Modal />
         <Switch>
-            <Route path="/spellbook" component={Spellbook} />
+            <Route path="/spellbook/:url" component={Spellbook} />
+            <Route exact path="/spellbook">
+                <Redirect to="/spellbook/srd"/>
+            </Route>
             <Route path="/" component={Splash} />
         </Switch>
     </main>
