@@ -24,3 +24,7 @@
 
     export const OPEN_MODAL = "OPEN_MODAL";
     export const CLOSE_MODAL = "CLOSE_MODAL";
+
+    // Edit spell
+
+    export const EDIT_SPELL = "EDIT_SPELL";
