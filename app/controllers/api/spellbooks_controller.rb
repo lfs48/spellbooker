@@ -13,11 +13,17 @@ class Api::SpellbooksController < ApplicationController
     end
 
     def update
-        @spellbook = Spellbook.find_by(url: spellbook_params[:url])
-        if @spellbook.update(spellbook_params)
-            render "api/spellbooks/show"
+        if (spellbook_params[:url] == "srd")
+            render json: {
+                error: "SRD Spellbook may not be modified."
+            }, status: 403
         else
-            render json: @spellbook.errors.full_messages, status: 422
+            @spellbook = Spellbook.find_by(url: spellbook_params[:url])
+            if @spellbook.update(spellbook_params)
+                render "api/spellbooks/show"
+            else
+                render json: @spellbook.errors.full_messages, status: 422
+            end
         end
     end
 
