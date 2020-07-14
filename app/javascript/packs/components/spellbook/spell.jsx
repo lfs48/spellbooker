@@ -5,6 +5,8 @@ import {merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
 import { openModal } from '../../actions/ui/modal_actions';
 import { editSpell } from '../../actions/ui/edit_spell_actions';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 const Spell = (props) => {
 
@@ -152,8 +154,10 @@ const Spell = (props) => {
             <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} 
             onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
                 <h1>{selectedSpell.name}</h1>
-                <button className="spell-edit-button" onClick={e => handleEdit(e)}>Edit</button>
-                <button className="spell-close-button" onClick={e => handleClose(e)}>X</button>
+                <section>
+                    <FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)} />
+                    <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />
+                </section>
             </header>
 
             <section className="spell-info" style={{height: styleData.height-50}}>
