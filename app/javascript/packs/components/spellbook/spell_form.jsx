@@ -6,35 +6,62 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
 import { openSpell } from '../../actions/ui/selected_spell_actions';
+import { editSpell } from '../../actions/ui/edit_spell_actions';
 
 const SpellForm = () => {
 
     const dispatch = useDispatch();
 
-    const {spellbook, spells} = useSelector(
+    const {spellbook, spells, editID} = useSelector(
         state => ({
             spellbook: state.entities.spellbook,
-            spells: state.entities.spells
+            spells: state.entities.spells,
+            editID: state.ui.editSpell.id
         })
     );
 
-    const [inputs, setInputs] = useState({
-        name: "",
-        level: "0",
-        school: "abjuration",
-        classes: [],
-        castingTime: "",
-        range: "",
-        v: false,
-        s: false,
-        m: false,
-        material: "",
-        duration: "",
-        concentration: "false",
-        desc: "",
-        higher_level: ""
+    let presetInputs;
 
-    });
+    if (editID) {
+        const spell = spells[editID];
+        presetInputs = {
+            id: spell.id,
+            name: spell.name,
+            level: spell.level,
+            school: spell.school,
+            classes: spell.classes.split(","),
+            castingTime: spell.casting_time,
+            range: spell.range,
+            v: spell.components.includes("V") ? "true" : "false",
+            s: spell.components.includes("S")  ? "true" : "false",
+            m: spell.components.includes("M")  ? "true" : "false",
+            material: spell.material,
+            duration: spell.duration,
+            concentration: spell.concentration ? "true" : "false",
+            desc: spell.desc.join("\n\n"),
+            higher_level: spell.higher_level ? spell.higher_level.join("\n\n") : ""
+        }
+    } else {
+        presetInputs = {
+            id: Object.keys(spells).length,
+            name: "",
+            level: 0,
+            school: "abjuration",
+            classes: [],
+            castingTime: "",
+            range: "",
+            v: "false",
+            s: "false",
+            m: "false",
+            material: "",
+            duration: "",
+            concentration: "false",
+            desc: "",
+            higher_level: ""
+        }
+    };
+
+    const [inputs, setInputs] = useState(presetInputs);
 
     const [errors, setErrors] = useState({
         name: false,
@@ -112,19 +139,19 @@ const SpellForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const spell = {
-            id: Object.keys(spells).length,
+            id: inputs.id,
             name: inputs.name,
-            level: inputs.level,
+            level: parseInt(inputs.level),
             school: inputs.school,
             classes: inputs.classes.join(","),
             casting_time: inputs.castingTime,
             range: inputs.range,
-            components: `${inputs.v ? "V" : ""}${inputs.s ? "S" : ""}${inputs.m ? "M" : ""}`.split("").join(","),
+            components: `${inputs.v === "true" ? "V" : ""}${inputs.s  === "true" ? "S" : ""}${inputs.m  === "true" ? "M" : ""}`.split("").join(","),
             material: inputs.material,
             duration: inputs.duration,
             concentration: inputs.concentration === "true",
-            desc: inputs.desc.split('\n'),
-            higher_level: inputs.higher_level.split('\n')
+            desc: inputs.desc.split('\n\n'),
+            higher_level: inputs.higher_level.split('\n\n')
         };
         const newSpells = merge({}, spells);
         const newSpellbook = merge({}, spellbook);
@@ -149,6 +176,7 @@ const SpellForm = () => {
         };
         const validatedInputs = ["name", "classes", "castingTime", "range", "duration", "desc"];
         validatedInputs.forEach( (input) => {
+            debugger
             if (inputs[input].length < 1) { 
                 hasErrors = true;
                 newErrors[input] = true;
