@@ -5,7 +5,15 @@ import Root from './components/root';
 
 const cb = () => {
 
-    let preloadedState = {};
+    let preloadedState = {
+      ui: {
+        filters: {
+          classFilter: null,
+          levelFilter: null,
+          schoolFilter: null
+        }
+      }
+    };
     const store = configureStore(preloadedState);
 
     const root = document.getElementById("root");
