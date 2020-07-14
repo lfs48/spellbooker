@@ -3,6 +3,8 @@ import {useDispatch} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
+import { openModal } from '../../actions/ui/modal_actions';
+import { editSpell } from '../../actions/ui/edit_spell_actions';
 
 const Spell = (props) => {
 
@@ -130,6 +132,12 @@ const Spell = (props) => {
     const handleClose = (event) => {
         dispatch( closeSpell(selectedSpell.id) );
     }
+
+    const handleEdit = (event) => {
+        event.preventDefault();
+        dispatch( editSpell(selectedSpell.id) );
+        dispatch( openModal("SpellForm") );
+    }
     
     return(
         <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${props.isFocus ? "focus-spell" : "unfocus-spell"}`} 
@@ -144,6 +152,7 @@ const Spell = (props) => {
             <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} 
             onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
                 <h1>{selectedSpell.name}</h1>
+                <button className="spell-edit-button" onClick={e => handleEdit(e)}>Edit</button>
                 <button className="spell-close-button" onClick={e => handleClose(e)}>X</button>
             </header>
 
