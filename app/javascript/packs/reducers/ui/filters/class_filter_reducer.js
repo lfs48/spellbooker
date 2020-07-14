@@ -10,9 +10,6 @@ const classFilterReducer = (state = {}, action) => {
 
         case SELECT_CLASS:
             return action.dndclass;
-        
-        case RECEIVE_SPELLBOOK:
-            return null;
     }
 };
 

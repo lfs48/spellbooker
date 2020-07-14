@@ -10,9 +10,6 @@ const levelFilterReducer = (state = {}, action) => {
 
         case SELECT_LEVEL:
             return action.level;
-        
-        case RECEIVE_SPELLBOOK:
-            return null;
     }
 };
 

@@ -10,9 +10,6 @@ const schoolFilterReducer = (state = {}, action) => {
 
         case SELECT_SCHOOL:
             return action.school;
-        
-        case RECEIVE_SPELLBOOK:
-            return null;
     }
 };
 
