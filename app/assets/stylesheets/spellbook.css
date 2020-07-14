@@ -162,6 +162,22 @@
     position: relative;
 }
 
+.spell-button-section {
+    font-size: 1.75em;
+}
+
+.spell-button-section svg {
+    margin-right: 0.5em;
+}
+
+.spell-button-section svg:hover {
+    cursor: pointer;
+}
+
+.spell-close-button {
+    color: red;
+}
+
 .spell-details {
     display: flex;
     flex-direction: column;
@@ -209,14 +225,6 @@
 
 .unfocus-spell {
     z-index: 10;
-}
-
-.spell-close-button {
-    background: none;
-    border: none;
-    color: red;
-    font-weight: bolder;
-    font-size: 20px;
 }
 
 .spell-form {

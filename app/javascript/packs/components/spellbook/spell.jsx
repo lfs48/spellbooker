@@ -154,7 +154,7 @@ const Spell = (props) => {
             <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} 
             onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
                 <h1>{selectedSpell.name}</h1>
-                <section>
+                <section className="spell-button-section">
                     <FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)} />
                     <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />
                 </section>
