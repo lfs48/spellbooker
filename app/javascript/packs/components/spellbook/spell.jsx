@@ -7,10 +7,12 @@ import { openModal } from '../../actions/ui/modal_actions';
 import { editSpell } from '../../actions/ui/edit_spell_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { useLocation } from 'react-router-dom';
 
 const Spell = (props) => {
 
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const [show, setShow] = useState(true);
     const [styleData, setStyleData] = useState({
@@ -155,7 +157,7 @@ const Spell = (props) => {
             onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
                 <h1>{selectedSpell.name}</h1>
                 <section className="spell-button-section">
-                    <FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)} />
+                    { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
                     <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />
                 </section>
             </header>
