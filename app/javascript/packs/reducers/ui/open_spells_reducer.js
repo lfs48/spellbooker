@@ -14,9 +14,6 @@ const openSpellsReducer = (state = {}, action) => {
 
         case CLOSE_SPELL:
             return newState.filter( (id) => id != action.id );
-        
-        case RECEIVE_SPELLBOOK:
-            return [];
     }
 };
 
