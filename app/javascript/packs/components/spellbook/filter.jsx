@@ -60,24 +60,7 @@ const Filter = () => {
     };
 
     return(
-        <header id="spell-filters-bar">
-            <section id="search-container">
-                <label>Name</label>
-                <input
-                    type="text"
-                    placeholder="Fireball"
-                    value={searchInput.name}
-                    onChange={e => handleSearchInput(e, "name")}
-                ></input>
-                <label>Description</label>
-                <input
-                    type="text"
-                    placeholder="fire damage"
-                    value={searchInput.desc}
-                    onChange={e => handleSearchInput(e, "desc")}
-                ></input>
-                <button onClick={e => handleSearchButton(e)}>Search</button>
-            </section>
+        <nav id="filters-nav">
             <section id="selects-container">
                 <label>Class</label>
                 <select onChange={e => handleClassSelect(e)}>
@@ -95,7 +78,30 @@ const Filter = () => {
                     {schoolOptions}
                 </select>
             </section>
-        </header>
+            <section id="search-container">
+                <form>
+                    <section>
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            placeholder="Fireball"
+                            value={searchInput.name}
+                            onChange={e => handleSearchInput(e, "name")}
+                        ></input>
+                    </section>
+                    <section>
+                        <label>Description</label>
+                        <input
+                            type="text"
+                            placeholder="fire damage"
+                            value={searchInput.desc}
+                            onChange={e => handleSearchInput(e, "desc")}
+                        ></input>
+                    </section>
+                </form>
+                <button onClick={e => handleSearchButton(e)}>Search</button>
+            </section>
+        </nav>
     )
 }
 
