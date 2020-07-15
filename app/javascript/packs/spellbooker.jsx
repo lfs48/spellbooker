@@ -7,6 +7,7 @@ const cb = () => {
 
     let preloadedState = {
       ui: {
+        openSpells: [],
         filters: {
           classFilter: null,
           levelFilter: null,
