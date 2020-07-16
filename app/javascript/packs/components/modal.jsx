@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import DeleteSpellConfirmation from './spellbook/delete_spell_confirmation';
 import SpellForm from './spellbook/spell_form';
 
 const Modal = () => {
 
     const modalComponents = ({
-        SpellForm: <SpellForm />
+        SpellForm: <SpellForm />,
+        DeleteSpellConfirmation: <DeleteSpellConfirmation />
     });
 
     const {modal} = useSelector(
