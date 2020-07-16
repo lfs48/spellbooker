@@ -9,10 +9,14 @@ const modalReducer = (state = {}, action) => {
         default: return state;
 
         case OPEN_MODAL:
-            return action.modal;
-        
+            newState.name = action.name;
+            newState.data = action.data || {};
+            return newState;
+
         case CLOSE_MODAL:
-            return null;
+            newState.name = null;
+            newState.data = null;
+            return newState;
     }
 };
 

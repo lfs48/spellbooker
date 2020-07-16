@@ -1,8 +1,9 @@
 import { OPEN_MODAL, CLOSE_MODAL } from "../types";
 
-export const openModal = (modal) => ({
+export const openModal = (name, data) => ({
     type: OPEN_MODAL,
-    modal: modal
+    name: name,
+    data: data
 });
 
 export const closeModal = () => ({
