@@ -4,7 +4,6 @@ import {intToOrdinal} from '../../util/functions/util_functions'
 import {merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
 import { openModal } from '../../actions/ui/modal_actions';
-import { editSpell } from '../../actions/ui/edit_spell_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
@@ -14,7 +13,6 @@ const Spell = (props) => {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    const [show, setShow] = useState(true);
     const [styleData, setStyleData] = useState({
         left: Math.floor( Math.random() * (window.innerWidth - $(`#spell-list-sidebar`).outerWidth(true) - 500 ) ) + $(`#spell-list-sidebar`).outerWidth(true),
         top: Math.floor( Math.random() * (window.innerHeight - $(`#spellbook-name-header`).outerHeight(true) - $(`#filters-nav`).outerHeight(true) - 400 ) ) + $(`#spellbook-name-header`).outerHeight(true) + $(`#filters-nav`).outerHeight(true),
@@ -139,8 +137,7 @@ const Spell = (props) => {
 
     const handleEdit = (event) => {
         event.preventDefault();
-        dispatch( editSpell(selectedSpell.id) );
-        dispatch( openModal("SpellForm") );
+        dispatch( openModal("SpellForm", {id: selectedSpell.id}) );
     }
     
     return(

@@ -6,24 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
 import { openSpell } from '../../actions/ui/selected_spell_actions';
-import { editSpell } from '../../actions/ui/edit_spell_actions';
 
 const SpellForm = () => {
 
     const dispatch = useDispatch();
 
-    const {spellbook, spells, editID} = useSelector(
+    const {spellbook, spells, modal} = useSelector(
         state => ({
             spellbook: state.entities.spellbook,
             spells: state.entities.spells,
-            editID: state.ui.editSpell.id
+            modal: state.ui.modal
         })
     );
 
     let presetInputs;
 
-    if (editID) {
-        const spell = spells[editID];
+    if (modal.data.id) {
+        const spell = spells[modal.data.id];
         presetInputs = {
             id: spell.id,
             name: spell.name,
