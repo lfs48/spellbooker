@@ -5,7 +5,7 @@ import {merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
 
 const Spell = (props) => {
@@ -139,6 +139,11 @@ const Spell = (props) => {
         event.preventDefault();
         dispatch( openModal("SpellForm", {id: selectedSpell.id}) );
     }
+
+    const handleDelete = (event) => {
+        event.preventDefault();
+        dispatch( openModal("DeleteSpellConfirmation", {id: selectedSpell.id}) )
+    }
     
     return(
         <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${props.isFocus ? "focus-spell" : "unfocus-spell"}`} 
@@ -155,6 +160,7 @@ const Spell = (props) => {
                 <h1>{selectedSpell.name}</h1>
                 <section className="spell-button-section">
                     { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
+                    { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faTrash} className="spell-delete-button" onClick={e => handleDelete(e)}/> : <></> }
                     <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />
                 </section>
             </header>
