@@ -25,7 +25,7 @@ const Spellbook = () => {
 
     return(
     <section id="spellbook-container">
-        <SpellbookMenu />
+        {spellbook_url != "srd" ? <SpellbookMenu/> : <></> }
         <SpellList />
         <section id="spell-section-right">
             <header id="spellbook-name-header">{spellbookName}</header>

@@ -18,7 +18,7 @@ const SpellbookMenu = () => {
 
     return(
         <aside id="spell-menu">
-            {location.pathname.slice(11) != "srd" ? <FontAwesomeIcon icon={faPlusSquare} onClick={e => handleCreateButton(e) }/> : <></> }
+            <FontAwesomeIcon icon={faPlusSquare} onClick={e => handleCreateButton(e) }/>
         </aside>
     );
 };
