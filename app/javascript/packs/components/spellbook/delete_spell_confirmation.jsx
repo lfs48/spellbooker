@@ -34,10 +34,14 @@ const DeleteSpellConfirmation = () => {
     }
 
     return(
-        <form>
+        <form id="delete-spell-confirmation-form">
             <h1>Delete Spell?</h1>
-            <button onClick={e => handleCancel(e)}>Cancel</button>
-            <button onClick={e => handleConfirm(e)}>Confirm</button>
+            <i>This action cannot be undone.</i>
+            <section>
+                <button onClick={e => handleCancel(e)}>Cancel</button>
+                <button onClick={e => handleConfirm(e)}>Confirm</button>
+            </section>
+
         </form>
     );
 };
