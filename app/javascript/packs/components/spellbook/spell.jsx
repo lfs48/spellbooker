@@ -17,7 +17,7 @@ const Spell = (props) => {
     const [show, setShow] = useState(true);
     const [styleData, setStyleData] = useState({
         left: Math.floor( Math.random() * (window.innerWidth - $(`#spell-list-sidebar`).outerWidth(true) - 500 ) ) + $(`#spell-list-sidebar`).outerWidth(true),
-        top: Math.floor( Math.random() * (window.innerHeight - $(`#spellbook-name-header`).outerHeight(true) - $(`#spell-filters-bar`).outerHeight(true) - 400 ) ) + $(`#spellbook-name-header`).outerHeight(true) + $(`#spell-filters-bar`).outerHeight(true),
+        top: Math.floor( Math.random() * (window.innerHeight - $(`#spellbook-name-header`).outerHeight(true) - $(`#filters-nav`).outerHeight(true) - 400 ) ) + $(`#spellbook-name-header`).outerHeight(true) + $(`#filters-nav`).outerHeight(true),
         width: 500,
         height: 400,
         minHeight: 50,
