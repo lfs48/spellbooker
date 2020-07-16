@@ -8,15 +8,15 @@ const Modal = () => {
         SpellForm: <SpellForm />
     });
 
-    const {componentName} = useSelector(
+    const {modal} = useSelector(
         state => ({
-            componentName: state.ui.modal,
+            modal: state.ui.modal,
         })
     );
 
     let content = <></>
-    const component = modalComponents[componentName];
-    if (componentName in modalComponents) {
+    const component = modalComponents[modal.name];
+    if (modal.name in modalComponents) {
         content = (
             <div className="modal-bg">
                 {component}
