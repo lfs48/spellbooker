@@ -150,7 +150,7 @@ const SpellForm = () => {
             duration: inputs.duration,
             concentration: inputs.concentration === "true",
             desc: inputs.desc.split('\n\n'),
-            higher_level: inputs.higher_level.split('\n\n')
+            higher_level: inputs.higher_level.length > 0 ? inputs.higher_level.split('\n\n') : null
         };
         const newSpells = merge({}, spells);
         const newSpellbook = merge({}, spellbook);
