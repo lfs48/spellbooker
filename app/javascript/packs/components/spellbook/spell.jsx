@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
-import {merge} from 'lodash';
+import {capitalize, merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -171,7 +171,7 @@ const Spell = (props) => {
                     <i>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school} {selectedSpell.ritual? "(ritual)" : ""}</i>
                     <dl>
                         <dt>Classes</dt>
-                        <dd>: {selectedSpell.classes.split(",").join(", ")}</dd>
+                        <dd>: {selectedSpell.classes.split(",").map(dndclass => capitalize(dndclass)).join(", ")}</dd>
                     </dl>
                     <dl>
                         <dt>Casting Time</dt>

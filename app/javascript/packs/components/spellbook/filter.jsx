@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {dndclassList, dndSchoolList} from '../../data/dnd_data';
 import { selectClass, selectLevel, selectSchool, setSearch } from '../../actions/ui/filter_actions';
 import { intToOrdinal } from '../../util/functions/util_functions';
-import {merge} from 'lodash';
+import {capitalize, merge} from 'lodash';
 
 const Filter = () => {
 
@@ -15,7 +15,7 @@ const Filter = () => {
     });
 
     const classOptions = dndclassList.map( (dndclass, i) => {
-        return <option key={i} value={dndclass}>{dndclass}</option>
+        return <option key={i} value={dndclass}>{capitalize(dndclass)}</option>
     });
 
     const levelOptions = [...Array(10).keys()].map( (level, i) => {
@@ -23,7 +23,7 @@ const Filter = () => {
     });
 
     const schoolOptions = dndSchoolList.map( (school, i) => {
-        return <option key={i} value={school}>{school}</option>
+        return <option key={i} value={school}>{capitalize(school)}</option>
     });
 
     const handleSearchInput = (event, field) => {
