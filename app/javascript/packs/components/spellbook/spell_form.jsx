@@ -110,6 +110,7 @@ const SpellForm = () => {
                 placeholder="Material Description"
                 value={inputs.material}
                 onChange={e => handleInput(e, 'material')}
+                autoComplete="off"
             ></input>
         );
     }
@@ -212,6 +213,7 @@ const SpellForm = () => {
                 placeholder="Name"
                 value={inputs.name}
                 onChange={e => handleInput(e, 'name')}
+                autoComplete="off"
             ></input>
                 <section id="level-school-section">
                     <select 
@@ -243,6 +245,7 @@ const SpellForm = () => {
                     placeholder="1 action"
                     value={inputs.castingTime}
                     onChange={e => handleInput(e, 'castingTime')}
+                    autoComplete="off"
                 ></input>
             </section>
             <section>
@@ -254,6 +257,7 @@ const SpellForm = () => {
                     placeholder="60 feet"
                     value={inputs.range}
                     onChange={e => handleInput(e, 'range')}
+                    autoComplete="off"
                 ></input>
             </section>
              <section>
@@ -270,6 +274,7 @@ const SpellForm = () => {
                     placeholder="Duration"
                     value={inputs.duration}
                     onChange={e => handleInput(e, 'duration')}
+                    autoComplete="off"
                 ></input>
                 <label htmlFor="spell-form-concentration-input">Concentration?</label>
                 <select 
