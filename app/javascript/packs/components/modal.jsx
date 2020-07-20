@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import CreateClass from './spellbook/create_class';
 import DeleteSpellConfirmation from './spellbook/delete_spell_confirmation';
 import SpellForm from './spellbook/spell_form';
 
@@ -7,7 +8,8 @@ const Modal = () => {
 
     const modalComponents = ({
         SpellForm: <SpellForm />,
-        DeleteSpellConfirmation: <DeleteSpellConfirmation />
+        DeleteSpellConfirmation: <DeleteSpellConfirmation />,
+        CreateClass: <CreateClass />
     });
 
     const {modal} = useSelector(
