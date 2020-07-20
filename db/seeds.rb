@@ -39,4 +39,5 @@ RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
 end
 
 spells = spells.to_json
-sb = Spellbook.create(name: "5e SRD Spellbook", url:"srd", spells: spells)
+dndclasses = "bard,cleric,druid,paladin,ranger,sorcerer,warlock,wizard"
+sb = Spellbook.create(name: "5e SRD Spellbook", url:"srd", spells: spells, classes: dndclasses)
