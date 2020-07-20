@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dndclassList, dndSchoolList } from '../../data/dnd_data';
+import { dndSchoolList } from '../../data/dnd_data';
 import {intToOrdinal} from '../../util/functions/util_functions';
 import { merge } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
@@ -71,7 +71,7 @@ const SpellForm = () => {
         desc: false
     });
 
-    const classButtons = dndclassList.map( (dndclass, i) => {
+    const classButtons = spellbook.classes.map( (dndclass, i) => {
         if (inputs.classes.includes(dndclass)) {
             return <button key={i} className="remove-class-button" onClick={e => removeClass(e, dndclass)}>{dndclass} ✓</button>
         } else {

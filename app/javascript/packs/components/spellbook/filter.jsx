@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {dndclassList, dndSchoolList} from '../../data/dnd_data';
+import {useDispatch, useSelector} from 'react-redux';
+import {dndSchoolList} from '../../data/dnd_data';
 import { selectClass, selectLevel, selectSchool, setSearch } from '../../actions/ui/filter_actions';
 import { intToOrdinal } from '../../util/functions/util_functions';
 import {capitalize, merge} from 'lodash';
@@ -13,6 +13,12 @@ const Filter = () => {
         name: "",
         desc: ""
     });
+
+    const {dndclassList} = useSelector(
+        state => ({
+            dndclassList: state.entities.spellbook.classes
+        })
+    );
 
     const classOptions = dndclassList.map( (dndclass, i) => {
         return <option key={i} value={dndclass}>{capitalize(dndclass)}</option>
