@@ -6,6 +6,13 @@ import Root from './components/root';
 const cb = () => {
 
     let preloadedState = {
+      entities: {
+        spellbook: {
+          name: "",
+          url: "",
+          classes: []
+        }
+      },
       ui: {
         openSpells: [],
         filters: {
