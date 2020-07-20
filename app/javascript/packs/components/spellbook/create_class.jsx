@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {merge} from 'lodash';
+import { updateSpellbook } from '../../actions/entities/spell_actions';
 
 const CreateClass = () => {
 
+    const dispatch = useDispatch();
     const [inputs, setInputs] = useState({
         name: "",
         spells: []
     });
 
-    const {spells} = useSelector(
+    const {spellbook, spells} = useSelector(
         state => ({
-            spells: Object.values(state.entities.spells)
+            spellbook: state.entities.spellbook,
+            spells: state.entities.spells
         })
     );
 
@@ -28,7 +31,23 @@ const CreateClass = () => {
         setInputs(newState);
     };
 
-    const spellOptions = spells.map( (spell) => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const newClass = inputs.name.toLowerCase();
+        const newSpells = merge({}, spells);
+        inputs.spells.forEach( id => {
+            const classList = newSpells[id].classes.split(",");
+            classList.push(newClass);
+            newSpells[id].classes = classList.sort().join(",");
+        });
+        const newSpellbook = merge({}, spellbook);
+        newSpellbook.classes.push(newClass);
+        newSpellbook.classes = newSpellbook.classes.sort().join(",");
+        newSpellbook.spells = JSON.stringify(newSpells);
+        dispatch( updateSpellbook(newSpellbook) );
+    }
+
+    const spellOptions = Object.values(spells).map( (spell) => {
         return <option key={spell.id} value={spell.id}>{spell.name}</option>
     });
 
@@ -48,6 +67,7 @@ const CreateClass = () => {
             >
                 {spellOptions}
             </select>
+            <button onClick={e => handleSubmit(e)}>Submit</button>
         </form>
     )
 };
