@@ -15,6 +15,7 @@ const SpellbookMenu = () => {
 
     const handleAddClassButton = (event) => {
         event.preventDefault();
+        dispatch( openModal("CreateClass") );
     }
 
     return(
