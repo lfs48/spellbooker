@@ -55,28 +55,36 @@ const CreateClass = () => {
         dispatch( closeModal() );
     }
 
+    let colorClass = false;
+
     const spellOptions = Object.values(spells).map( (spell) => {
+        colorClass = !colorClass
         return <option key={spell.id} value={spell.id}>{spell.name}</option>
     });
 
     return(
-        <form>
-            <input
-                type="text"
-                placeholder="Name"
-                value={inputs.name}
-                onChange={e => handleInput(e, 'name')}
-            ></input>
-            <label>Optional: Seed spell list for new class</label>
-            <select 
-                multiple={true}
-                value={inputs.spells}
-                onChange={e => handleInput(e, 'spells', true)}
-            >
-                {spellOptions}
-            </select>
-            <button onClick={e => handleSubmit(e)}>Submit</button>
-            <button onClick={e => handleCancel(e)}>Cancel</button>
+        <form className="modal-form" id="create-class">
+            <h1>Create Class</h1>
+            <section id="create-class-input-section">
+                <input
+                    type="text"
+                    placeholder="Name"
+                    value={inputs.name}
+                    onChange={e => handleInput(e, 'name')}
+                ></input>
+                <i>Optional: Choose spells for new class</i>
+                <select 
+                    multiple={true}
+                    value={inputs.spells}
+                    onChange={e => handleInput(e, 'spells', true)}
+                >
+                    {spellOptions}
+                </select>
+            </section>
+            <section>
+                <button onClick={e => handleCancel(e)}>Cancel</button>
+                <button onClick={e => handleSubmit(e)}>Submit</button>
+            </section>
         </form>
     )
 };
