@@ -1,1 +1,1 @@
-json.extract! spellbook, :id, :name, :url, :spells
+json.extract! spellbook, :id, :name, :url, :classes, :spells
