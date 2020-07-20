@@ -34,7 +34,7 @@ const DeleteSpellConfirmation = () => {
     }
 
     return(
-        <form id="delete-spell-confirmation-form">
+        <form className="modal-form" id="delete-spell-confirmation">
             <h1>Delete Spell?</h1>
             <i>This action cannot be undone.</i>
             <section>
