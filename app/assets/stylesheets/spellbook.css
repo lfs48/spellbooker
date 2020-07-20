@@ -112,7 +112,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.25em 0.5em;
-    height: 4em;
+    min-height: 4em;
 }
 
 #search-container {
@@ -149,12 +149,6 @@
     height: 3em;
     font-weight: bolder;
 }
-
-#selects-container {
-    display: flex;
-    justify-content: space-evenly;
-}
-
 #search-container> *, #selects-container > * {
     padding: 0 0.25em;
 }
