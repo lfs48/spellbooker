@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {merge} from 'lodash';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
+import { closeModal } from '../../actions/ui/modal_actions';
 
 const CreateClass = () => {
 
@@ -44,7 +45,9 @@ const CreateClass = () => {
         newSpellbook.classes.push(newClass);
         newSpellbook.classes = newSpellbook.classes.sort().join(",");
         newSpellbook.spells = JSON.stringify(newSpells);
-        dispatch( updateSpellbook(newSpellbook) );
+        dispatch( updateSpellbook(newSpellbook) )
+        .then( () => dispatch(closeModal()) );
+        ;
     }
 
     const spellOptions = Object.values(spells).map( (spell) => {
