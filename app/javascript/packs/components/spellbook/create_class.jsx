@@ -24,7 +24,12 @@ const CreateClass = () => {
         const newState = merge({}, inputs);
 
         if (isArr) {
-            newState[field].push(event.target.value);
+            if (newState[field].includes(event.target.value)) {
+                newState[field] = newState[field].filter(el => el != event.target.value);
+            } else {
+                newState[field].push(event.target.value);
+            }
+
         } else {
             newState[field] = event.target.value;
         }
@@ -47,7 +52,6 @@ const CreateClass = () => {
         newSpellbook.spells = JSON.stringify(newSpells);
         dispatch( updateSpellbook(newSpellbook) )
         .then( () => dispatch(closeModal()) );
-        ;
     }
 
     const handleCancel = (event) => {
