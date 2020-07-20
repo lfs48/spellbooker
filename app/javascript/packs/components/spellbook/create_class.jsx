@@ -11,6 +11,7 @@ const CreateClass = () => {
         name: "",
         spells: []
     });
+    const [errors, setErrors] = useState([]);
 
     const {spellbook, spells} = useSelector(
         state => ({
@@ -50,8 +51,25 @@ const CreateClass = () => {
         newSpellbook.classes.push(newClass);
         newSpellbook.classes = newSpellbook.classes.sort().join(",");
         newSpellbook.spells = JSON.stringify(newSpells);
-        dispatch( updateSpellbook(newSpellbook) )
-        .then( () => dispatch(closeModal()) );
+        if (validateInputs()) {
+            dispatch( updateSpellbook(newSpellbook) )
+            .then( () => dispatch(closeModal()) );
+        }
+    }
+
+    const validateInputs = () => {
+        const errors = [];
+        if (inputs.name.length <= 0) {
+            errors.push("Class must have a name");
+        }
+        if (inputs.name.length > 20) {
+            errors.push("Class name too long");
+        }
+        if ( spellbook.classes.some( dndclass => dndclass.toLowerCase() === inputs.name.toLocaleLowerCase() ) ) {
+            errors.push("That class already exists");
+        }
+        setErrors(errors);
+        return errors.length === 0;
     }
 
     const handleCancel = (event) => {
@@ -66,8 +84,15 @@ const CreateClass = () => {
         return <option key={spell.id} value={spell.id}>{spell.name}</option>
     });
 
+    const errorLis = errors.map( (error, i) => {
+        return <li key={i}>{error}</li>
+    });
+
     return(
         <form className="modal-form" id="create-class">
+            <ul className={errors.length > 0 ? `error-list` : `error-list-hidden`}>
+                {errorLis}
+            </ul>
             <h1>Create Class</h1>
             <section id="create-class-input-section">
                 <input
@@ -75,6 +100,7 @@ const CreateClass = () => {
                     placeholder="Name"
                     value={inputs.name}
                     onChange={e => handleInput(e, 'name')}
+                    maxLength={20}
                 ></input>
                 <i>Optional: Choose spells for new class</i>
                 <select 
