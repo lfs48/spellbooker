@@ -465,15 +465,40 @@
     background: var(--light-parchment);
     margin-right: 0.5em;
     height: min-content;
-    padding: 0.5em;
+    padding: 0 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10em;
+    width: 5em;
+}
+
+.spell-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    transition: color 0.5s;
+}
+
+.spell-menu-item label {
+    font-size: 0.75em;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 0.3em;
+    font-family: sans-serif;
+}
+
+.spell-menu-item label:hover {
+    cursor: pointer;
 }
 
 #spell-menu svg {
     font-size: 2em;
-    transition: color 0.5s;
 }
 
-#spell-menu svg:hover {
+.spell-menu-item:hover {
     cursor: pointer;
     color: green;
     transition: color 0.5s;
