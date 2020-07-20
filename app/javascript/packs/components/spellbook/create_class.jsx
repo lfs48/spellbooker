@@ -50,6 +50,11 @@ const CreateClass = () => {
         ;
     }
 
+    const handleCancel = (event) => {
+        event.preventDefault();
+        dispatch( closeModal() );
+    }
+
     const spellOptions = Object.values(spells).map( (spell) => {
         return <option key={spell.id} value={spell.id}>{spell.name}</option>
     });
@@ -71,6 +76,7 @@ const CreateClass = () => {
                 {spellOptions}
             </select>
             <button onClick={e => handleSubmit(e)}>Submit</button>
+            <button onClick={e => handleCancel(e)}>Cancel</button>
         </form>
     )
 };
