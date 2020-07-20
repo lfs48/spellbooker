@@ -1,19 +1,36 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {merge} from 'lodash';
 
 const CreateClass = () => {
 
     const [inputs, setInputs] = useState({
         name: "",
-        spells: ""
+        spells: []
     });
 
-    const handleInput = (event, field) => {
+    const {spells} = useSelector(
+        state => ({
+            spells: Object.values(state.entities.spells)
+        })
+    );
+
+    const handleInput = (event, field, isArr) => {
         event.preventDefault();
-        newState = merge({}, inputs);
-        newState[field] = event.target.value;
+        const newState = merge({}, inputs);
+
+        if (isArr) {
+            newState[field].push(event.target.value);
+        } else {
+            newState[field] = event.target.value;
+        }
+
         setInputs(newState);
-    }
+    };
+
+    const spellOptions = spells.map( (spell) => {
+        return <option key={spell.id} value={spell.id}>{spell.name}</option>
+    });
 
     return(
         <form>
@@ -23,13 +40,14 @@ const CreateClass = () => {
                 value={inputs.name}
                 onChange={e => handleInput(e, 'name')}
             ></input>
-            <label>Optional: Seed class spell list with a comma separated list of spell names</label>
-            <textarea
-                type="text"
-                placeholder="Acid Arrow, Aid, Animate Objects, Awaken, ..."
+            <label>Optional: Seed spell list for new class</label>
+            <select 
+                multiple={true}
                 value={inputs.spells}
-                onChange={e => handleInput(e, 'spells')}
-            ></textarea>
+                onChange={e => handleInput(e, 'spells', true)}
+            >
+                {spellOptions}
+            </select>
         </form>
     )
 };
