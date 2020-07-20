@@ -37,7 +37,7 @@ class Api::SpellbooksController < ApplicationController
     private
 
     def spellbook_params
-        params.require(:spellbook).permit(:id, :name, :url, :spells)
+        params.require(:spellbook).permit(:id, :name, :url, :spells, :classes)
     end
 
 end
