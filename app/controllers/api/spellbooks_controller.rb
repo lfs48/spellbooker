@@ -3,8 +3,7 @@ class Api::SpellbooksController < ApplicationController
 
     def create
         @spellbook = Spellbook.new(spellbook_params)
-        @spellbook.ensure_url
-        @spellbook.populate_initial_spells
+        @spellbook.initialize_data
         if @spellbook.save
             render "api/spellbooks/show"
         else
