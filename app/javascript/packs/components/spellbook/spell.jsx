@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {capitalize, merge} from 'lodash';
@@ -13,19 +13,25 @@ const Spell = (props) => {
     const dispatch = useDispatch();
     const location = useLocation();
 
+    const selectedSpell = props.spell
+
     const [styleData, setStyleData] = useState({
         left: Math.floor( Math.random() * (window.innerWidth - $(`#spell-list-sidebar`).outerWidth(true) - 500 ) ) + $(`#spell-list-sidebar`).outerWidth(true),
         top: Math.floor( Math.random() * (window.innerHeight - $(`#spellbook-name-header`).outerHeight(true) - $(`#filters-nav`).outerHeight(true) - 400 ) ) + $(`#spellbook-name-header`).outerHeight(true) + $(`#filters-nav`).outerHeight(true),
         width: 500,
         height: 400,
         minHeight: 50,
-        minWidth: 225,
+        minWidth: 0,
         dragging: false,
         dragPrevX: null,
         dragPrevY: null
     });
 
-    const selectedSpell = props.spell
+    useEffect(() => {
+        const newState = merge({}, styleData);
+        newState.minWidth = $(`#spell-${selectedSpell.id}-name`).outerWidth() + $(`.spell-button-section`).outerWidth() + 20;
+        setStyleData(newState);
+    }, []);
 
     const handleDoubleClick = (event) => {
         const newState = merge({}, styleData);
@@ -157,7 +163,7 @@ const Spell = (props) => {
 
             <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} 
             onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
-                <h1>{selectedSpell.name}</h1>
+                <h1 id={`spell-${selectedSpell.id}-name`}>{selectedSpell.name}</h1>
                 <section className="spell-button-section">
                     { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
                     { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faTrash} className="spell-delete-button" onClick={e => handleDelete(e)}/> : <></> }
