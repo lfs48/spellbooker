@@ -63,6 +63,10 @@
     height: 2em;
 }
 
+#spell-list-sidebar ol {
+    background-color: var(--light-parchment);
+}
+
 #spell-list-sidebar li {
     border-bottom: 1px solid black;
     padding: 0.4em 1em;
@@ -82,11 +86,11 @@
 }
 
 .white-li {
-    background-color: rgba(245, 245, 245, 0.25);
+    background-color: rgba(245, 245, 245, 0.5);
 }
 
 .dark-li {
-    background-color: rgba(128, 128, 128, 0.35);
+    background-color: rgba(128, 128, 128, 0.5);
 }
 
 #spell-section-right {
