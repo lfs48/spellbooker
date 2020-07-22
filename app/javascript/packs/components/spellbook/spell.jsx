@@ -16,7 +16,7 @@ const Spell = (props) => {
     const selectedSpell = props.spell
 
     const [styleData, setStyleData] = useState({
-        left: Math.floor( Math.random() * (window.innerWidth - $(`#spell-list-sidebar`).outerWidth(true) - 500 ) ) + $(`#spell-list-sidebar`).outerWidth(true),
+        left: Math.floor( Math.random() * (window.innerWidth - $(`#spell-list-sidebar`).outerWidth(true) - 500 ) ) + $(`#spell-list-sidebar`).outerWidth(true) - 100,
         top: Math.floor( Math.random() * (window.innerHeight - $(`#spellbook-name-header`).outerHeight(true) - $(`#filters-nav`).outerHeight(true) - 400 ) ) + $(`#spellbook-name-header`).outerHeight(true) + $(`#filters-nav`).outerHeight(true),
         width: 500,
         height: 400,
@@ -24,13 +24,21 @@ const Spell = (props) => {
         minWidth: 0,
         dragging: false,
         dragPrevX: null,
-        dragPrevY: null
+        dragPrevY: null,
+        stage: 0
     });
 
     useEffect(() => {
         const newState = merge({}, styleData);
+        newState.left += 100;
         newState.minWidth = $(`#spell-${selectedSpell.id}-name`).outerWidth() + $(`.spell-button-section`).outerWidth() + 20;
+        newState.stage = 1;
         setStyleData(newState);
+        setTimeout( () => {
+            const newerState = merge({}, newState);
+            newerState.stage = 2;
+            setStyleData(newerState);
+        }, 550);
     }, []);
 
     const handleDoubleClick = (event) => {
@@ -118,6 +126,7 @@ const Spell = (props) => {
                 newState.top = Math.max(newState.top, 0);
                 newState.dragPrevY = event.pageY;
             }
+            console.log(event.pageX + " vs " + newState.left);
             setStyleData(newState);
         } else {
             handleDragStart(event);
@@ -152,7 +161,7 @@ const Spell = (props) => {
     }
     
     return(
-        <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + " " + `${props.isFocus ? "focus-spell" : "unfocus-spell"}`} 
+        <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + ` ${props.isFocus ? "focus-spell" : "unfocus-spell"}` + ` ${styleData.isOpen ? "open-spell-panel" : "hidden-spell-panel"}` + `  spell-stage-${styleData.stage}`} 
         style={styleData} onMouseDown={e => bringToFront(e)}>
             <div className="resize-areas-container">
                 <div draggable="true" className="resize-area resize-top" onDrag={e => resizeUp(e)} ></div>
