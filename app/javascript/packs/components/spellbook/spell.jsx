@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {capitalize, merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
-import { openModal } from '../../actions/ui/modal_actions';
+import { closeModal, openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faTimes, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
@@ -126,7 +126,6 @@ const Spell = (props) => {
                 newState.top = Math.max(newState.top, 0);
                 newState.dragPrevY = event.pageY;
             }
-            console.log(event.pageX + " vs " + newState.left);
             setStyleData(newState);
         } else {
             handleDragStart(event);
@@ -147,7 +146,17 @@ const Spell = (props) => {
     }
 
     const handleClose = (event) => {
-        dispatch( closeSpell(selectedSpell.id) );
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        newState.stage = 1;
+        setStyleData(newState);
+        const newerState = merge({}, newState);
+        newerState.stage = 0;
+        newerState.left -= 100;
+        setStyleData(newerState);
+        setTimeout( () => {
+            dispatch( closeSpell(selectedSpell.id) );
+        }, 550);
     }
 
     const handleEdit = (event) => {
@@ -161,7 +170,7 @@ const Spell = (props) => {
     }
     
     return(
-        <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + ` ${props.isFocus ? "focus-spell" : "unfocus-spell"}` + ` ${styleData.isOpen ? "open-spell-panel" : "hidden-spell-panel"}` + `  spell-stage-${styleData.stage}`} 
+        <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + ` ${props.isFocus ? "focus-spell" : "unfocus-spell"}` + `  spell-stage-${styleData.stage}`} 
         style={styleData} onMouseDown={e => bringToFront(e)}>
             <div className="resize-areas-container">
                 <div draggable="true" className="resize-area resize-top" onDrag={e => resizeUp(e)} ></div>
