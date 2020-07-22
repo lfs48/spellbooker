@@ -1,1 +1,1 @@
-# README
+# Visit the live site [here](http://spellbooker.com)
