@@ -599,3 +599,13 @@
     font-family: sans-serif;
     transition: left 0.5s, background-color 1s, color 1s, border 1s;
 }
+
+.spell-stage-1 {
+    opacity: 1;
+    transition: left 0.5s, opacity 0.5s;
+}
+
+.spell-stage-0 {
+    opacity: 0;
+    transition: left 0.5s, opacity .5s;
+}
