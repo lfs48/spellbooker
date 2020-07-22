@@ -52,7 +52,7 @@ const Spell = (props) => {
         }
         setStyleData(newState);
 
-    }
+    };
 
     const resizeUp = (event) => {
         event.preventDefault();
@@ -64,7 +64,7 @@ const Spell = (props) => {
         }
 
         setStyleData(newState);
-    }
+    };
 
     const resizeDown = (event) => {
         event.preventDefault();
@@ -74,7 +74,7 @@ const Spell = (props) => {
             newState.height = Math.max(newHeight, newState.minHeight);
         }
         setStyleData(newState);
-    }
+    };
 
     const resizeRight = (event) => {
         event.preventDefault();
@@ -85,7 +85,7 @@ const Spell = (props) => {
         }
 
         setStyleData(newState);
-    }
+    };
 
     const resizeLeft = (event) => {
         event.preventDefault();
@@ -97,7 +97,7 @@ const Spell = (props) => {
         }
 
         setStyleData(newState);
-    }
+    };
 
     const handleDragStart = (event) => {
         event.preventDefault();
@@ -108,7 +108,7 @@ const Spell = (props) => {
             newState.dragging = true;
             setStyleData(newState);
         }
-    }
+    };
 
     const handleDrag = (event) => {
         event.preventDefault();
@@ -130,7 +130,7 @@ const Spell = (props) => {
         } else {
             handleDragStart(event);
         }
-    }
+    };
 
     const handleDragEnd = (event) => {
         event.preventDefault();
@@ -139,11 +139,11 @@ const Spell = (props) => {
         newState.dragPrevY = 0;
         newState.dragging = false;
         setStyleData(newState);
-    }
+    };
 
     const bringToFront = (event) => {
         dispatch( focusSpell(selectedSpell.id) );
-    }
+    };
 
     const handleClose = (event) => {
         event.preventDefault();
@@ -157,17 +157,17 @@ const Spell = (props) => {
         setTimeout( () => {
             dispatch( closeSpell(selectedSpell.id) );
         }, 550);
-    }
+    };
 
     const handleEdit = (event) => {
         event.preventDefault();
         dispatch( openModal("SpellForm", {id: selectedSpell.id}) );
-    }
+    };
 
     const handleDelete = (event) => {
         event.preventDefault();
         dispatch( openModal("DeleteSpellConfirmation", {id: selectedSpell.id}) )
-    }
+    };
     
     return(
         <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + ` ${props.isFocus ? "focus-spell" : "unfocus-spell"}` + `  spell-stage-${styleData.stage}`} 
@@ -224,7 +224,7 @@ const Spell = (props) => {
 
             </section>
         </article>
-    )
+    );
 
 }
 
