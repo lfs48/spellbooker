@@ -28,7 +28,6 @@ const Spellbook = () => {
         {spellbook_url != "srd" ? <SpellbookMenu/> : <></> }
         <SpellList />
         <section id="spell-section-right">
-            <header id="spellbook-name-header">{spellbookName}</header>
             <Filter />
             <OpenSpells />
         </section>
