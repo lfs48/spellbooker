@@ -143,7 +143,7 @@ const SpellForm = () => {
             name: inputs.name,
             level: parseInt(inputs.level),
             school: inputs.school,
-            classes: inputs.classes.join(","),
+            classes: inputs.classes.sort().join(","),
             casting_time: inputs.castingTime,
             range: inputs.range,
             components: `${inputs.v === "true" ? "V" : ""}${inputs.s  === "true" ? "S" : ""}${inputs.m  === "true" ? "M" : ""}`.split("").join(","),
