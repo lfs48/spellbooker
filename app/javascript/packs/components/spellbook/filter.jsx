@@ -14,8 +14,9 @@ const Filter = () => {
         desc: ""
     });
 
-    const {dndclassList} = useSelector(
+    const {bookName, dndclassList} = useSelector(
         state => ({
+            bookName: state.entities.spellbook.name,
             dndclassList: state.entities.spellbook.classes
         })
     );
@@ -84,6 +85,7 @@ const Filter = () => {
                     {schoolOptions}
                 </select>
             </section>
+            <b>{bookName}</b>
             <section id="search-container">
                 <form>
                     <section>
