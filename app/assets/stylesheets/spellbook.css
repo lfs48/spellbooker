@@ -51,6 +51,8 @@
     border-right: 2px solid black;
     border-bottom: 3px solid black;
     padding: 0.4em 1em;
+    height: 4.5em;
+    box-sizing: border-box;
     background-color: rgba(0,0,0,0.33);
 }
 
@@ -61,6 +63,7 @@
     font-family: inherit;
     font-weight: bold;
     height: 2em;
+    margin-top: 2em;
 }
 
 #spell-list-sidebar ol {
@@ -116,7 +119,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.25em 0.5em;
-    min-height: 4em;
+    min-height: 4.5em;
+    box-sizing: border-box;
+}
+
+#filters-nav b {
+    font-weight: bolder;
+    font-size: 2em;
 }
 
 #search-container {
