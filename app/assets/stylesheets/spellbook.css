@@ -38,32 +38,63 @@
     background-clip: padding-box;
 }
 
-#spell-list-sidebar header, #spell-list-sidebar li {
+#spell-list-sort, #spell-list-sidebar li {
     display: flex;
     justify-content: space-between;
 }
 
-#spell-list-sidebar header {
+#spell-list-tabs {
+    width: 100%;
+    box-sizing: border-box;
+    height: 1.5em;
+}
+
+#spell-list-tabs button {
+    background-color: rgb(166, 163, 145);
     border-top: 2px solid black;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+    font-size: 1em;
+    box-sizing: border-box;
+    width: 50%;
+    height: 2em;
+}
+
+#spell-list-tabs button:first-child {
+    border-left: 2px solid black;
+    border-right: 1px solid black;
+}
+
+#spell-list-tabs button:last-child {
+    border-left: 1px solid black;
+    border-right: 2px solid black;
+}
+
+.active-tab {
+    border-bottom: none;
+}
+
+.inactive-tab {
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+#spell-list-sort {
     border-left: 2px solid black;
     border-right: 2px solid black;
     border-bottom: 3px solid black;
     padding: 0.4em 1em;
-    height: 4.5em;
     box-sizing: border-box;
-    background-color: rgba(0,0,0,0.33);
+    background-color: rgb(166, 163, 145);
 }
 
-#spell-list-sidebar button {
+#spell-list-sort button {
     border: none;
     background: none;
     font-size: inherit;
     font-family: inherit;
     font-weight: bold;
-    height: 2em;
-    margin-top: 2em;
+    margin-top: 0.65em;
 }
 
 #spell-list-sidebar ol {
