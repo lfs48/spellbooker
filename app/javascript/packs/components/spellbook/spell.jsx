@@ -206,7 +206,7 @@ const Spell = (props) => {
             onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
                 <h1 id={`spell-${selectedSpell.id}-name`}>{selectedSpell.name}</h1>
                 <section className="spell-button-section">
-                    <FontAwesomeIcon icon={faBookmark} className={ (spellbookID in cookies.bookmarks && cookies.bookmarks[spellbookID].includes(selectedSpell.id) ) ? "already-bookmarked" : "not-bookmarked"} onClick={e => handleBookmark(e)}/>
+                    <FontAwesomeIcon icon={faBookmark} className={ ("bookmarks" in cookies && spellbookID in cookies.bookmarks && cookies.bookmarks[spellbookID].includes(selectedSpell.id) ) ? "already-bookmarked" : "not-bookmarked"} onClick={e => handleBookmark(e)}/>
                     { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
                     { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faTrash} className="spell-delete-button" onClick={e => handleDelete(e)}/> : <></> }
                     <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />

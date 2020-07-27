@@ -68,7 +68,7 @@ const SpellList = () => {
             return spell.desc.join(" ").toLowerCase().includes(descSearch.toLowerCase());
         }).filter( (spell) => {
             if (tab === "all") {return true}
-            if (spellbookID in cookies.bookmarks) {
+            if ("bookmarks" in cookies && spellbookID in cookies.bookmarks) {
                 return cookies.bookmarks[spellbookID].includes(spell.id);
             } else {
                 return false;
