@@ -100,7 +100,11 @@ const SpellList = () => {
 
     return(
         <aside id="spell-list-sidebar">
-            <header id="spell-list-button-li">
+            <header id="spell-list-tabs">
+                <button>All</button>
+                <button>Bookmarked</button>
+            </header>
+            <header id="spell-list-sort">
                 <button onClick={e => switchSort(e, "name")}>Name {sort.field === "name" ? sort.order > 0 ? "▼" : "▲" : ""}</button>
                 <button onClick={e => switchSort(e, "level")}>Level {sort.field === "level" ? sort.order > 0 ? "▼" : "▲" : ""}</button>
             </header>
