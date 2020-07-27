@@ -181,7 +181,11 @@ const Spell = (props) => {
         event.preventDefault();
         const newCookies = merge({}, cookies.bookmarks);
         if (spellbookID in newCookies) {
-            newCookies[spellbookID].push(selectedSpell.id);
+            if (newCookies[spellbookID].includes(selectedSpell.id)) {
+                newCookies[spellbookID] = newCookies[spellbookID].filter(id => id != selectedSpell.id);
+            } else {
+                newCookies[spellbookID].push(selectedSpell.id);
+            }
         } else {
             newCookies[spellbookID] = [selectedSpell.id];
         }
