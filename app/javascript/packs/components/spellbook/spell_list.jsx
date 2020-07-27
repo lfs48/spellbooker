@@ -2,19 +2,23 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {openSpell} from '../../actions/ui/selected_spell_actions'
 import { intToOrdinal } from '../../util/functions/util_functions';
+import {useCookies} from 'react-cookie';
 
 const SpellList = () => {
 
     const dispatch = useDispatch();
+    const [cookies, setCookie, removeCookie] = useCookies(["bookmarks"]);
 
     const [sort, setSort] = useState({
         field: "name",
         order: 1
     });
+    const [tab, setTab] = useState("all");
 
-    const {spells, classFilter, levelFilter, schoolFilter, nameSearch, descSearch, openSpells} = useSelector(
+    const {spells, spellbookID, classFilter, levelFilter, schoolFilter, nameSearch, descSearch, openSpells} = useSelector(
         state => ({
             spells: Object.values(state.entities.spells),
+            spellbookID: state.entities.spellbook.id,
             classLists: state.entities.dndclasses,
             classFilter: state.ui.filters.classFilter,
             levelFilter: state.ui.filters.levelFilter,
@@ -62,6 +66,13 @@ const SpellList = () => {
         }).filter( (spell) => {
             if (descSearch === "") {return true}
             return spell.desc.join(" ").toLowerCase().includes(descSearch.toLowerCase());
+        }).filter( (spell) => {
+            if (tab === "all") {return true}
+            if (spellbookID in cookies.bookmarks) {
+                return cookies.bookmarks[spellbookID].includes(spell.id);
+            } else {
+                return false;
+            }
         }).sort( (spellA, spellB) => {
             return sortFunctions[sort.field](spellA, spellB);
         });
@@ -98,11 +109,16 @@ const SpellList = () => {
         dispatch( openSpell(id) );
     }
 
+    const handleTab = (event, tab) => {
+        event.preventDefault();
+        setTab(tab);
+    }
+
     return(
         <aside id="spell-list-sidebar">
             <header id="spell-list-tabs">
-                <button>All</button>
-                <button>Bookmarked</button>
+                <button onClick={e => handleTab(e, "all")}>All</button>
+                <button onClick={e => handleTab(e, "bookmarked")}>Bookmarked</button>
             </header>
             <header id="spell-list-sort">
                 <button onClick={e => switchSort(e, "name")}>Name {sort.field === "name" ? sort.order > 0 ? "▼" : "▲" : ""}</button>
