@@ -618,3 +618,7 @@
     opacity: 0;
     transition: left 0.5s, opacity .5s;
 }
+
+.already-bookmarked {
+    color: green;
+}
