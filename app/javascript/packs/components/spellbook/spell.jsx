@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {capitalize, merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
@@ -7,13 +7,21 @@ import { closeModal, openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faTimes, faEdit, faTrash, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
+import {useCookies} from 'react-cookie'
 
 const Spell = (props) => {
 
     const dispatch = useDispatch();
     const location = useLocation();
+    const [cookies, setCookie, removeCookie] = useCookies(["bookmarks"]);
 
     const selectedSpell = props.spell
+
+    const {spellbookID} = useSelector(
+        state => ({
+            spellbookID: state.entities.spellbook.id
+        })
+    );
 
     const [styleData, setStyleData] = useState({
         left: Math.floor( Math.random() * (window.innerWidth - $(`#spell-list-sidebar`).outerWidth(true) - 500 ) ) + $(`#spell-list-sidebar`).outerWidth(true) - 100,
@@ -171,6 +179,14 @@ const Spell = (props) => {
 
     const handleBookmark = (event) => {
         event.preventDefault();
+        const newCookies = merge({}, cookies.bookmarks);
+        if (spellbookID in newCookies) {
+            newCookies[spellbookID].push(selectedSpell.id);
+        } else {
+            newCookies[spellbookID] = [selectedSpell.id];
+        }
+        debugger
+        setCookie("bookmarks", newCookies);
     }
     
     return(
