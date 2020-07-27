@@ -117,8 +117,8 @@ const SpellList = () => {
     return(
         <aside id="spell-list-sidebar">
             <header id="spell-list-tabs">
-                <button onClick={e => handleTab(e, "all")}>All</button>
-                <button onClick={e => handleTab(e, "bookmarked")}>Bookmarked</button>
+                <button className={tab === "all" ? "active-tab" : "inactive-tab"} onClick={e => handleTab(e, "all")}>All</button>
+                <button className={tab === "bookmarked" ? "active-tab" : "inactive-tab"} onClick={e => handleTab(e, "bookmarked")}>Bookmarked</button>
             </header>
             <header id="spell-list-sort">
                 <button onClick={e => switchSort(e, "name")}>Name {sort.field === "name" ? sort.order > 0 ? "▼" : "▲" : ""}</button>
