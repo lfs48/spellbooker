@@ -5,7 +5,7 @@ import {capitalize, merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
 import { closeModal, openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faTimes, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faEdit, faTrash, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
 
 const Spell = (props) => {
@@ -168,6 +168,10 @@ const Spell = (props) => {
         event.preventDefault();
         dispatch( openModal("DeleteSpellConfirmation", {id: selectedSpell.id}) )
     };
+
+    const handleBookmark = (event) => {
+        event.preventDefault();
+    }
     
     return(
         <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + ` ${props.isFocus ? "focus-spell" : "unfocus-spell"}` + `  spell-stage-${styleData.stage}`} 
@@ -183,6 +187,7 @@ const Spell = (props) => {
             onDragEnd={e => handleDragEnd(e)} onDoubleClick={e => handleDoubleClick(e)}>
                 <h1 id={`spell-${selectedSpell.id}-name`}>{selectedSpell.name}</h1>
                 <section className="spell-button-section">
+                    <FontAwesomeIcon icon={faBookmark} className="spell-bookmark-button" onClick={e => handleBookmark(e)}/>
                     { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faEdit} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
                     { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faTrash} className="spell-delete-button" onClick={e => handleDelete(e)}/> : <></> }
                     <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />
