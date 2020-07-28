@@ -652,4 +652,9 @@
 
 .already-bookmarked {
     color: green;
+    transition: color 0.5s;
+}
+
+.not-bookmarked {
+    transition: color 0.5s;
 }
