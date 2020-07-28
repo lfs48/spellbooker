@@ -82,7 +82,7 @@ const SpellList = () => {
         liColorClass = !liColorClass;
         return (
             <li 
-            key={i} 
+            key={spell.id} 
             className={openSpells.includes(spell.id) ? "open-li" : liColorClass ? "white-li" : "dark-li"} 
             onClick={e => handleClickSpell(e, spell.id)}
             >
