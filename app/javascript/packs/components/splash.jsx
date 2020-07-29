@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createSpellbook } from '../actions/entities/spell_actions';
+import { closeModal } from '../actions/ui/modal_actions';
+import { closeAllSpells } from '../actions/ui/selected_spell_actions';
 
 const Splash = () => {
 
@@ -10,6 +12,11 @@ const Splash = () => {
 
     const [nameInput, setNameInput] = useState("");
     const [stage, setStage] = useState(1);
+
+    useEffect( () => {
+        dispatch( closeModal() );
+        dispatch( closeAllSpells() );
+    }, []);
 
     const handleSRD = (event) => {
         event.preventDefault();

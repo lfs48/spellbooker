@@ -6,6 +6,8 @@ import SpellList from './spell_list';
 import Filter from './filter';
 import SpellbookMenu from './spellbook_menu';
 import OpenSpells from './open_spells';
+import { closeAllSpells } from '../../actions/ui/selected_spell_actions';
+import { closeModal } from '../../actions/ui/modal_actions';
 
 const Spellbook = () => {
 
@@ -13,15 +15,17 @@ const Spellbook = () => {
     const location = useLocation();
     const spellbook_url = location.pathname.slice(11);
 
-    useEffect( () => {
-        dispatch(fetchSpellbook({url: spellbook_url}))
-    }, []);
-
     const {spellbookName} = useSelector(
         state => ({
             spellbookName: state.entities.spellbook.name,
         })
     );
+
+    useEffect( () => {
+        dispatch( closeModal() );
+        dispatch( closeAllSpells() );
+        dispatch(fetchSpellbook({url: spellbook_url}));
+    }, [location]);
 
     return(
     <section id="spellbook-container">

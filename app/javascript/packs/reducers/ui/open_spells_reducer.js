@@ -1,5 +1,5 @@
 import {merge} from 'lodash';
-import { OPEN_SPELL, CLOSE_SPELL, RECEIVE_SPELLBOOK } from '../../actions/types';
+import { OPEN_SPELL, CLOSE_SPELL, CLOSE_ALL_SPELLS } from '../../actions/types';
 
 const openSpellsReducer = (state = {}, action) => {
     const newState = merge([], state);
@@ -14,6 +14,9 @@ const openSpellsReducer = (state = {}, action) => {
 
         case CLOSE_SPELL:
             return newState.filter( (id) => id != action.id );
+
+        case CLOSE_ALL_SPELLS:
+            return [];
     }
 };
 
