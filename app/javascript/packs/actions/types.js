@@ -12,6 +12,7 @@
     export const OPEN_SPELL = "OPEN_SPELL";
     export const CLOSE_SPELL = "CLOSE_SPELL";
     export const FOCUS_SPELL = "FOCUS_SPELL";
+    export const CLOSE_ALL_SPELLS = "CLOSE_ALL_SPELLS";
 
     // Filters
 

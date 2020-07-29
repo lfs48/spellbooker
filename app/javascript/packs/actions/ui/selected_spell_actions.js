@@ -1,4 +1,4 @@
-import {OPEN_SPELL, FOCUS_SPELL, CLOSE_SPELL} from '../types';
+import {OPEN_SPELL, FOCUS_SPELL, CLOSE_SPELL, CLOSE_ALL_SPELLS} from '../types';
 
 // Standard actions
 
@@ -15,4 +15,8 @@ export const closeSpell = (id) => ({
 export const focusSpell = (id) => ({
     type: FOCUS_SPELL,
     id: id
+});
+
+export const closeAllSpells = () => ({
+    type: CLOSE_ALL_SPELLS
 });
