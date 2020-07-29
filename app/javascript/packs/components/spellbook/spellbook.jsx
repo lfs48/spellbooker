@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {fetchSpellbook} from '../../actions/entities/spell_actions'; 
 import SpellList from './spell_list';
@@ -14,12 +14,6 @@ const Spellbook = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const spellbook_url = location.pathname.slice(11);
-
-    const {spellbookName} = useSelector(
-        state => ({
-            spellbookName: state.entities.spellbook.name,
-        })
-    );
 
     useEffect( () => {
         dispatch( closeModal() );
