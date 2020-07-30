@@ -28,6 +28,7 @@ const SpellForm = () => {
             name: spell.name,
             level: spell.level,
             school: spell.school,
+            ritual: spell.ritual,
             classes: spell.classes.split(","),
             castingTime: spell.casting_time,
             range: spell.range,
@@ -46,6 +47,7 @@ const SpellForm = () => {
             name: "",
             level: 0,
             school: "abjuration",
+            ritual: "false",
             classes: [],
             castingTime: "",
             range: "",
@@ -143,6 +145,7 @@ const SpellForm = () => {
             name: inputs.name,
             level: parseInt(inputs.level),
             school: inputs.school,
+            ritual: inputs.ritual,
             classes: inputs.classes.sort().join(","),
             casting_time: inputs.castingTime,
             range: inputs.range,
@@ -230,6 +233,15 @@ const SpellForm = () => {
                         onChange={e => handleInput(e, 'school')}>
                         {schoolOptions}
                     </select>
+                    <label htmlFor="spell-form-ritual-input">Ritual?</label>
+                    <select 
+                    id="spell-form-ritual-input"
+                    className="spell-form-input"
+                    value={inputs.ritual} 
+                    onChange={e => handleInput(e, "ritual")}>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
+                </select>
             </section>
             <section id="spell-form-classes-section">
                 <div>
