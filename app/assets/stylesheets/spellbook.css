@@ -428,6 +428,12 @@
     font-style: italic;
 }
 
+#level-school-section label {
+    font-style: inherit;
+    margin-left: 1em;
+    margin-right: 0.25em;
+}
+
 #spell-form-classes-section {
     min-height: 4em;
     box-sizing: border-box;
