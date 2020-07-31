@@ -10,19 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_165555) do
+ActiveRecord::Schema.define(version: 2020_09_25_205032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "spellbooks", force: :cascade do |t|
     t.string "name", null: false
-    t.string "url", null: false
+    t.string "edit_url", null: false
     t.text "spells", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "classes", null: false
-    t.index ["url"], name: "index_spellbooks_on_url", unique: true
+    t.string "share_url", null: false
+    t.index ["edit_url"], name: "index_spellbooks_on_edit_url", unique: true
+    t.index ["share_url"], name: "index_spellbooks_on_share_url", unique: true
   end
 
 end
