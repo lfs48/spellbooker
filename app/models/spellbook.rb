@@ -1,6 +1,6 @@
 class Spellbook < ApplicationRecord
 
-    validates :name, :edit_url, :share_url, :spells, presence: true
+    validates :name, :edit_url, :share_url, :spells, :classes, presence: true
 
     def self.find_by_url(url)
         return Spellbook.find_by(share_url: url) || Spellbook.find_by(edit_url: url)
