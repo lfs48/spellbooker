@@ -40,4 +40,4 @@ end
 
 spells = spells.to_json
 dndclasses = "bard,cleric,druid,paladin,ranger,sorcerer,warlock,wizard"
-sb = Spellbook.create(name: "5e SRD Spellbook", url:"srd", spells: spells, classes: dndclasses)
+sb = Spellbook.create(name: "5e SRD Spellbook", edit_url:"srd", share_url:"srd", spells: spells, classes: dndclasses)
