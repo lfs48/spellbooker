@@ -4,7 +4,7 @@ class Api::SpellbooksController < ApplicationController
         @spellbook = Spellbook.new(spellbook_params)
         @spellbook.initialize_data
         if @spellbook.save
-            render "api/spellbooks/show"
+            render "api/spellbooks/create_res"
         else
             render json: @spellbook.errors.full_messages, status: 422
         end
