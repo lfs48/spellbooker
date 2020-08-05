@@ -207,8 +207,8 @@ const Spell = (props) => {
                 <h1 id={`spell-${selectedSpell.id}-name`}>{selectedSpell.name}</h1>
                 <section className="spell-button-section">
                     <FontAwesomeIcon icon={faBookmark} className={ ("bookmarks" in cookies && spellbookID in cookies.bookmarks && cookies.bookmarks[spellbookID].includes(selectedSpell.id) ) ? "already-bookmarked" : "not-bookmarked"} onClick={e => handleBookmark(e)}/>
-                    { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faPencilAlt} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
-                    { location.pathname.slice(11) != "srd" ?<FontAwesomeIcon icon={faTrash} className="spell-delete-button" onClick={e => handleDelete(e)}/> : <></> }
+                    { props.editMode ?<FontAwesomeIcon icon={faPencilAlt} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
+                    { props.editMode ?<FontAwesomeIcon icon={faTrash} className="spell-delete-button" onClick={e => handleDelete(e)}/> : <></> }
                     <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />
                 </section>
             </header>
