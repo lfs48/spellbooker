@@ -13,7 +13,9 @@ const Spellbook = () => {
 
     const dispatch = useDispatch();
     const location = useLocation();
-    const spellbook_url = location.pathname.slice(11);
+    let spellbook_url = location.pathname.slice(11);
+    const edit = spellbook_url.includes("edit")
+    spellbook_url = spellbook_url.slice( spellbook_url.indexOf("/") + 1 );
 
     useEffect( () => {
         dispatch( closeModal() );
@@ -23,11 +25,11 @@ const Spellbook = () => {
 
     return(
     <section id="spellbook-container">
-        {spellbook_url != "srd" ? <SpellbookMenu/> : <></> }
+        <SpellbookMenu editMode={edit} />
         <SpellList />
         <section id="spell-section-right">
             <Filter />
-            <OpenSpells />
+            <OpenSpells editMode={edit} />
         </section>
     </section>
     );

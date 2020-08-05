@@ -4,7 +4,7 @@ import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faScroll, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
-const SpellbookMenu = () => {
+const SpellbookMenu = ({editMode}) => {
 
     const dispatch = useDispatch();
 
@@ -20,14 +20,18 @@ const SpellbookMenu = () => {
 
     return(
         <aside id="spell-menu">
-            <section className="spell-menu-item" onClick={e => handleCreateButton(e) }>
-                <label>Create Spell</label>
-                <FontAwesomeIcon icon={faScroll}/>
-            </section>
-            <section className="spell-menu-item" onClick={e => handleAddClassButton(e)}>
-                <label>Create Class</label>
-                <FontAwesomeIcon icon={faUserPlus}/>
-            </section>
+            {editMode ?
+                <>
+                <section className="spell-menu-item" onClick={e => handleCreateButton(e) }>
+                    <label>Create Spell</label>
+                    <FontAwesomeIcon icon={faScroll}/>
+                </section>
+                <section className="spell-menu-item" onClick={e => handleAddClassButton(e)}>
+                    <label>Create Class</label>
+                    <FontAwesomeIcon icon={faUserPlus}/>
+                </section>
+                </>
+            : <></>}
         </aside>
     );
 };
