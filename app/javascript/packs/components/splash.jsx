@@ -37,7 +37,7 @@ const Splash = () => {
         event.preventDefault();
         const spellbook = { name: nameInput };
         dispatch( createSpellbook(spellbook) )
-        .then( res => history.push(`/spellbook/${res.spellbook.url}`) );
+        .then( res => history.push(`/spellbook/edit/${res.spellbook.edit_url}`) );
     }
 
     const handleBackButton = (event) => {
