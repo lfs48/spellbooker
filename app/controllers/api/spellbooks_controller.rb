@@ -1,4 +1,3 @@
-
 class Api::SpellbooksController < ApplicationController
 
     def create
@@ -17,8 +16,8 @@ class Api::SpellbooksController < ApplicationController
                 error: "SRD Spellbook may not be modified."
             }, status: 403
         else
-            @spellbook = Spellbook.find_by(edit_url: spellbook_params[:edit_url])
-            if @spellbook.update(spellbook_params)
+            @spellbook = Spellbook.find_by(edit_url: spellbook_params[:url])
+            if @spellbook.update(spellbook_params.permit(:name, :spells, :classes))
                 render "api/spellbooks/show"
             else
                 render json: @spellbook.errors.full_messages, status: 422
@@ -37,7 +36,7 @@ class Api::SpellbooksController < ApplicationController
     private
 
     def spellbook_params
-        params.require(:spellbook).permit(:id, :name, :url, :edit_url, :share_url, :spells, :classes)
+        params.require(:spellbook).permit(:id, :name, :url, :spells, :classes)
     end
 
 end
