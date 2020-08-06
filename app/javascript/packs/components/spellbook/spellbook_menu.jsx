@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faScroll, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faScroll, faUserPlus, faShare } from '@fortawesome/free-solid-svg-icons'
 
 const SpellbookMenu = ({editMode}) => {
 
@@ -16,6 +16,11 @@ const SpellbookMenu = ({editMode}) => {
     const handleAddClassButton = (event) => {
         event.preventDefault();
         dispatch( openModal("CreateClass") );
+    }
+
+    const handleShareButton = (event) => {
+        event.preventDefault();
+        dispatch( openModal("Share") );
     }
 
     return(
@@ -32,6 +37,10 @@ const SpellbookMenu = ({editMode}) => {
                 </section>
                 </>
             : <></>}
+                <section className="spell-menu-item" onClick={e => handleShareButton(e) }>
+                    <label>Share</label>
+                    <FontAwesomeIcon icon={faShare}/>
+                </section>
         </aside>
     );
 };
