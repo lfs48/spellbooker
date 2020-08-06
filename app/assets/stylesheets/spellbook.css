@@ -668,3 +668,16 @@
 .not-bookmarked {
     transition: color 0.5s;
 }
+
+#spellbook-share h1 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+#spellbook-share input {
+    background-color: white;
+    font-size: 1em;
+    width: 27em;
+    margin-bottom: 1em;
+    padding: 0.125em 0.25em;
+}
