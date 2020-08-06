@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import CreateClass from './spellbook/create_class';
 import DeleteSpellConfirmation from './spellbook/delete_spell_confirmation';
+import Share from './spellbook/share';
 import SpellForm from './spellbook/spell_form';
 
 const Modal = () => {
@@ -9,7 +10,8 @@ const Modal = () => {
     const modalComponents = ({
         SpellForm: <SpellForm />,
         DeleteSpellConfirmation: <DeleteSpellConfirmation />,
-        CreateClass: <CreateClass />
+        CreateClass: <CreateClass />,
+        Share: <Share />
     });
 
     const {modal} = useSelector(
