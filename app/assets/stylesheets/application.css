@@ -17,6 +17,7 @@
    
 #app-container {
     background-color: rgb(247, 243, 216);
+    font-family: sans-serif;
 }
 
 html, main, body {
