@@ -26,7 +26,7 @@ const Splash = () => {
 
     const handleSRD = (event) => {
         event.preventDefault();
-        history.push("/spellbook/srd");
+        history.push("/spellbook/view/srd");
     }
 
     const handleNewSpellbook = (event) => {
