@@ -4,11 +4,14 @@ import { useDispatch } from 'react-redux';
 import { createSpellbook } from '../actions/entities/spell_actions';
 import { closeModal } from '../actions/ui/modal_actions';
 import { closeAllSpells } from '../actions/ui/selected_spell_actions';
+import { useCookies } from 'react-cookie';
+import {merge} from 'lodash';
 
 const Splash = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
+    const [cookies, setCookie, removeCookie] = useCookies(["spellbook"]);
 
     const [nameInput, setNameInput] = useState("");
     const [stage, setStage] = useState(1);
@@ -16,6 +19,9 @@ const Splash = () => {
     useEffect( () => {
         dispatch( closeModal() );
         dispatch( closeAllSpells() );
+        if( "spellbook" in cookies && "url" in cookies.spellbook) {
+            setStage(3);
+        }
     }, []);
 
     const handleSRD = (event) => {
@@ -37,7 +43,19 @@ const Splash = () => {
         event.preventDefault();
         const spellbook = { name: nameInput };
         dispatch( createSpellbook(spellbook) )
-        .then( res => history.push(`/spellbook/edit/${res.spellbook.edit_url}`) );
+        .then( res => {
+            const newCookies = merge({}, cookies.spellbook);
+            newCookies["url"] = res.spellbook.edit_url;
+            newCookies["name"] = res.spellbook.name;
+            debugger
+            setCookie("spellbook", newCookies);
+            history.push(`/spellbook/edit/${res.spellbook.edit_url}`)
+        });
+    }
+
+    const handleOpenSpellbook = (event) => {
+        event.preventDefault();
+        history.push(`/spellbook/edit/${cookies.spellbook.url}`);
     }
 
     const handleBackButton = (event) => {
@@ -71,6 +89,15 @@ const Splash = () => {
                 </form>
             )
             break;
+        case 3:
+            content = (
+                <form id="splash-buttons-container">
+                    <button onClick={e => handleSRD(e)}>View SRD Spells</button>
+                    <button onClick={e => handleOpenSpellbook(e)}>{cookies.spellbook.name}</button>
+                </form>
+            )
+            break;
+
     }
 
     return(
