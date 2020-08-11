@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faScroll, faUserPlus, faShare } from '@fortawesome/free-solid-svg-icons'
+import { faScroll, faUserPlus, faShare, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { closeAllSpells } from '../../actions/ui/selected_spell_actions';
 
 const SpellbookMenu = ({editMode}) => {
 
@@ -16,6 +17,11 @@ const SpellbookMenu = ({editMode}) => {
     const handleAddClassButton = (event) => {
         event.preventDefault();
         dispatch( openModal("CreateClass") );
+    }
+
+    const handleCloseButton = (event) => {
+        event.preventDefault();
+        dispatch( closeAllSpells() );
     }
 
     const handleShareButton = (event) => {
@@ -38,8 +44,12 @@ const SpellbookMenu = ({editMode}) => {
                 </>
             : <></>}
                 <section className="spell-menu-item" onClick={e => handleShareButton(e) }>
-                    <label>Share</label>
+                    <label>Share Spellbook</label>
                     <FontAwesomeIcon icon={faShare}/>
+                </section>
+                <section className="spell-menu-item" onClick={e => handleCloseButton(e) }>
+                    <label>Close All Spells</label>
+                    <FontAwesomeIcon icon={faTimesCircle}/>
                 </section>
         </aside>
     );
