@@ -20,7 +20,8 @@ const Spellbook = () => {
     useEffect( () => {
         dispatch( closeModal() );
         dispatch( closeAllSpells() );
-        dispatch(fetchSpellbook({url: spellbook_url}));
+        dispatch(fetchSpellbook({url: spellbook_url}))
+        .then( res => document.title = res.spellbook.name );
     }, [location]);
 
     return(
