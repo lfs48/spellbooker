@@ -154,11 +154,6 @@
     box-sizing: border-box;
 }
 
-#filters-nav b {
-    font-weight: bolder;
-    font-size: 2em;
-}
-
 #search-container {
     display: flex;
     align-items: center;
