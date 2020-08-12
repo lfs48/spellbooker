@@ -31,7 +31,7 @@ const Share = () => {
                 id="share-url"
                 type="text"
                 onChange={e => e.preventDefault()}
-                value={`http://spellbooker.com/spellbook/view/${url}`}
+                value={`http://spellbooker.com/#/spellbook/view/${url}`}
             ></input>
             <section>
                 <button onClick={e => handleClose(e)}>Close</button>
