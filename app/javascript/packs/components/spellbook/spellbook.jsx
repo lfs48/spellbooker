@@ -26,11 +26,13 @@ const Spellbook = () => {
 
     return(
     <section id="spellbook-container">
-        <SpellbookMenu editMode={edit} />
-        <SpellList />
-        <section id="spell-section-right">
-            <Filter />
-            <OpenSpells editMode={edit} />
+        <SpellbookMenu editMode={edit}/>
+        <section id="below-nav-section">
+            <SpellList />
+            <section id="spell-section-right">
+                <Filter />
+                <OpenSpells editMode={edit} />
+            </section>
         </section>
     </section>
     );

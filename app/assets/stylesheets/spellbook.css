@@ -1,15 +1,21 @@
 #spellbook-container {
     display: flex;
-    padding: 2em;
+    padding: 2rem;
+}
+
+#below-nav-section {
+    margin-top: 2.5em;
+    width: 100%;
+    display: flex;
 }
 
 #spell-list-sidebar {
     border-radius: 3px;
     margin-right: 2.5em;
+    height: 80vh;
 }
 
 #spell-list-sidebar ol {
-    height: 80vh;
     width: 15em;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -21,6 +27,7 @@
     border-bottom: 2px solid black;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    max-height: 100%;
 }
 
 #spell-list-sidebar ol::-webkit-scrollbar, .spell-info::-webkit-scrollbar {
@@ -152,6 +159,7 @@
     padding: 0.25em 0.5em;
     min-height: 4.5em;
     box-sizing: border-box;
+    width: 100%;
 }
 
 #search-container {
@@ -500,17 +508,31 @@
 }
 
 #spell-menu {
-    border: 2px solid black;
-    border-radius: 3px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 2px solid black;
     background-color: var(--light-parchment);
     margin-right: 0.5em;
     height: min-content;
     padding: 0 0.5em;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-evenly;
-    width: 5em;
+    width: 100%;
+    height: 3em;
+}
+
+#spell-menu b {
+    font-family: 'MedievalSharp', cursive;
+    font-weight: bolder;
+    font-size: 1.75em;
+    margin-left: 2rem;
+}
+
+#menu-button-section {
+    display: flex;
+    margin-right: 1rem;
 }
 
 .spell-menu-item {
@@ -519,19 +541,14 @@
     align-items: center;
     color: black;
     transition: color 0.5s;
-    margin-bottom: 1em;
-}
-
-.spell-menu-item:first-child {
-    margin-top: 1em;
+    margin-right: 1rem;
 }
 
 .spell-menu-item label {
-    font-size: 0.75em;
+    font-size: 0.5em;
     font-weight: bolder;
     text-align: center;
-    margin-bottom: 0.3em;
-    font-family: sans-serif;
+    margin-bottom: 0.2em;
 }
 
 .spell-menu-item label:hover {
@@ -539,7 +556,7 @@
 }
 
 #spell-menu svg {
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .spell-menu-item:hover {
