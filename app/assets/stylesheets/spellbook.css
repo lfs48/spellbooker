@@ -1,6 +1,7 @@
 #spellbook-container {
     display: flex;
     padding: 2rem;
+    height: 90%;
 }
 
 #below-nav-section {
@@ -12,22 +13,7 @@
 #spell-list-sidebar {
     border-radius: 3px;
     margin-right: 2.5em;
-    height: 80vh;
-}
-
-#spell-list-sidebar ol {
-    width: 15em;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    font-size: 1.1em;
-    scroll-snap-type: mandatory;
-    scroll-snap-points-y: repeat(500px);
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    max-height: 100%;
+    height: 100%;
 }
 
 #spell-list-sidebar ol::-webkit-scrollbar, .spell-info::-webkit-scrollbar {
@@ -106,6 +92,26 @@
 
 #spell-list-sidebar ol {
     background-color: var(--light-parchment);
+    width: 17em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-size: 1em;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(500px);
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    max-height: 100%;
+    transition: height 0.5s;
+}
+
+#spell-list-sidebar span:first-child {
+    width: 10em;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
 }
 
 #spell-list-sidebar li {
@@ -113,6 +119,8 @@
     padding: 0.4em 1em;
     transition: background-color 0.3s, padding-left 0.3s;
     border-right: 2px solid black;
+    height: 2em;
+    box-sizing: border-box;
 }
 
 #spell-list-sidebar li:hover {
@@ -255,6 +263,10 @@
     font-weight: bolder;
     font-size: 1.75em;
     position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 70%;
 }
 
 .spell-button-section {

@@ -14,6 +14,10 @@ const SpellList = () => {
         order: 1
     });
     const [tab, setTab] = useState("all");
+    const [olHeight, setOlHeight] = useState(0);
+    const [windowSize, setWindowSize] = useState(window.innerHeight);
+
+    window.addEventListener('resize', e => setWindowSize(window.innerHeight));
 
     const {spells, spellbookID, classFilter, levelFilter, schoolFilter, nameSearch, descSearch, openSpells} = useSelector(
         state => ({
@@ -82,6 +86,7 @@ const SpellList = () => {
         liColorClass = !liColorClass;
         return (
             <li 
+            id={`spell-list-li-${i}`}
             key={spell.id} 
             className={openSpells.includes(spell.id) ? "open-li" : liColorClass ? "white-li" : "dark-li"} 
             onClick={e => handleClickSpell(e, spell.id)}
@@ -114,6 +119,13 @@ const SpellList = () => {
         setTab(tab);
     }
 
+    useEffect( () => {
+        const lineHeight = $(`#spell-list-li-0`).outerHeight(true);
+        const maxLines = Math.floor( ( $(`#spell-list-sidebar`).outerHeight(false) - $(`#spell-list-tabs`).outerHeight(false) - $(`#spell-list-sort`).outerHeight(false) ) / lineHeight);
+        const newHeight = lineHeight * Math.max( Math.min(spellLis.length, maxLines), 1);
+        setOlHeight(newHeight);
+    }, [spellLis, windowSize]);
+
     return(
         <aside id="spell-list-sidebar">
             <header id="spell-list-tabs">
@@ -124,11 +136,11 @@ const SpellList = () => {
                 <button onClick={e => switchSort(e, "name")}>Name {sort.field === "name" ? sort.order > 0 ? "▼" : "▲" : ""}</button>
                 <button onClick={e => switchSort(e, "level")}>Level {sort.field === "level" ? sort.order > 0 ? "▼" : "▲" : ""}</button>
             </header>
-            <ol id="spell-list-ol">
+            <ol style={ {height: olHeight} } id="spell-list-ol">
                 {filteredSpells.length > 0 ?
                     spellLis
                 :
-                    <li className="white-li">No Results</li>
+                    <li id="spell-list-li-0" className="white-li">No Results</li>
                 }
             </ol>
         </aside>
