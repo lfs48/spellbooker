@@ -125,7 +125,11 @@ const SpellList = () => {
                 <button onClick={e => switchSort(e, "level")}>Level {sort.field === "level" ? sort.order > 0 ? "▼" : "▲" : ""}</button>
             </header>
             <ol id="spell-list-ol">
-                {spellLis}
+                {filteredSpells.length > 0 ?
+                    spellLis
+                :
+                    <li className="white-li">No Results</li>
+                }
             </ol>
         </aside>
     )
