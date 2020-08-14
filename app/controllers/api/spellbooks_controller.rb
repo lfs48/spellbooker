@@ -33,6 +33,12 @@ class Api::SpellbooksController < ApplicationController
         end
     end
 
+    def destroy
+        @spellbook = Spellbook.find_by(edit_url: spellbook_params[:url])
+        @spellbook.reset_to_srd
+        render "api/spellbooks/show"
+    end
+
     private
 
     def spellbook_params
