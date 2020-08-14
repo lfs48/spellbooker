@@ -36,6 +36,13 @@ export const updateSpellbook = (data) => (dispatch) => {
     );
 };
 
+export const destroySpellbook = (data) => (dispatch) => {
+    return SpellsAPIUtil.destroySpellbook(data)
+    .then(
+        (spellbook) => dispatch( receiveSpellbook(spellbook) )
+    );
+};
+
 export const createSpell = (data) => (dispatch) => {
     return SpellsAPIUtil.createSpell(data)
         .then(
