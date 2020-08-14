@@ -47,7 +47,6 @@ const Splash = () => {
             const newCookies = merge({}, cookies.spellbook);
             newCookies["url"] = res.spellbook.edit_url;
             newCookies["name"] = res.spellbook.name;
-            debugger
             setCookie("spellbook", newCookies);
             history.push(`/spellbook/edit/${res.spellbook.edit_url}`)
         });
