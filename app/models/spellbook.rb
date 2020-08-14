@@ -38,4 +38,9 @@ class Spellbook < ApplicationRecord
         self.classes = Spellbook.first.classes.clone
     end
 
+    def reset_to_srd
+        self.populate_initial_spells
+        self.populate_initial_classes
+    end
+
 end
