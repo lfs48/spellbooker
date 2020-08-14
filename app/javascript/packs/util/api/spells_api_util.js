@@ -22,6 +22,14 @@ export const updateSpellbook = (spellbook) => {
     });
 };
 
+export const destroySpellbook = (spellbook) => {
+    return $.ajax({
+        method: 'DELETE',
+        url: `api/spellbooks/`,
+        data: { spellbook: spellbook }
+    });
+};
+
 export const fetchSpell = (id) => {
     return $.ajax({
         method: 'GET',
