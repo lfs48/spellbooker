@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faScroll, faUserPlus, faShare, faUndo, faPen, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faScroll, faHatWizard, faShare, faUndo, faPen, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 
@@ -103,7 +103,7 @@ const SpellbookMenu = ({editMode}) => {
                 </section>
                 <section className="spell-menu-item" onClick={e => handleAddClassButton(e)}>
                     <label>Create Class</label>
-                    <FontAwesomeIcon icon={faUserPlus}/>
+                    <FontAwesomeIcon icon={faHatWizard}/>
                 </section>
                 <section className="spell-menu-item" onClick={e => handleResetButton(e) }>
                     <label>Reset to SRD</label>
