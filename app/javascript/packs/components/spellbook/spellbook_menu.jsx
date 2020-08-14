@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faScroll, faHatWizard, faShare, faUndo, faPen, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { useLocation } from 'react-router-dom';
+import { faScroll, faHatWizard, faShare, faUndo, faPen, faCheck, faTimes, faDungeon } from '@fortawesome/free-solid-svg-icons'
+import { useHistory, useLocation } from 'react-router-dom';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 
 const SpellbookMenu = ({editMode}) => {
 
     const dispatch = useDispatch();
     const location = useLocation();
+    const history = useHistory();
 
     const {bookName} = useSelector(
         state => ({
@@ -111,6 +112,10 @@ const SpellbookMenu = ({editMode}) => {
                 </section>
                 </>
             : <></>}
+                <section className="spell-menu-item" onClick={e => history.push("/spellbook/view/srd") }>
+                    <label>View SRD</label>
+                    <FontAwesomeIcon icon={faDungeon}/>
+                </section>
                 <section className="spell-menu-item" onClick={e => handleShareButton(e) }>
                     <label>Share</label>
                     <FontAwesomeIcon icon={faShare}/>
