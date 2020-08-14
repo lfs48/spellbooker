@@ -2,12 +2,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faScroll, faUserPlus, faShare, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faScroll, faUserPlus, faShare, faTimesCircle, faUndo } from '@fortawesome/free-solid-svg-icons'
 import { closeAllSpells } from '../../actions/ui/selected_spell_actions';
+import { updateSpellbook } from '../../actions/entities/spell_actions';
+import { useLocation } from 'react-router-dom';
 
 const SpellbookMenu = ({editMode}) => {
 
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const {bookName} = useSelector(
         state => ({
@@ -23,6 +26,11 @@ const SpellbookMenu = ({editMode}) => {
     const handleAddClassButton = (event) => {
         event.preventDefault();
         dispatch( openModal("CreateClass") );
+    }
+
+    const handleResetButton = (event) => {
+        event.preventDefault();
+        dispatch( openModal("Reset") );
     }
 
     const handleCloseButton = (event) => {
@@ -48,6 +56,10 @@ const SpellbookMenu = ({editMode}) => {
                 <section className="spell-menu-item" onClick={e => handleAddClassButton(e)}>
                     <label>Create Class</label>
                     <FontAwesomeIcon icon={faUserPlus}/>
+                </section>
+                <section className="spell-menu-item" onClick={e => handleResetButton(e) }>
+                    <label>Reset to SRD</label>
+                    <FontAwesomeIcon icon={faUndo}/>
                 </section>
                 </>
             : <></>}
