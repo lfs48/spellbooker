@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faScroll, faUserPlus, faShare, faUndo } from '@fortawesome/free-solid-svg-icons'
+import { faScroll, faUserPlus, faShare, faUndo, faPen, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
+import { updateSpellbook } from '../../actions/entities/spell_actions';
 
 const SpellbookMenu = ({editMode}) => {
 
@@ -15,6 +16,13 @@ const SpellbookMenu = ({editMode}) => {
             bookName: state.entities.spellbook.name
         })
     );
+
+    useEffect( () => {
+        setNameInput(bookName);
+    }, [bookName]);
+
+    const [editingName, setEditingName] = useState(false);
+    const [nameInput, setNameInput] = useState(bookName);
 
     const handleCreateButton = (event) => {
         event.preventDefault();
@@ -36,9 +44,56 @@ const SpellbookMenu = ({editMode}) => {
         dispatch( openModal("Share") );
     }
 
+    const handleEditNameButton = (event) => {
+        event.preventDefault();
+        setEditingName(true);
+    }
+
+    const handleSubmitNameButton = (event) => {
+        event.preventDefault();
+        const newBook = {};
+        newBook.name = nameInput;
+        newBook.url = location.pathname.slice( location.pathname.indexOf("edit/") + 5 );
+        dispatch( updateSpellbook(newBook) )
+        .then( () => setEditingName(false) );
+    }
+
+    const handleCancelEditButton = (event) => {
+        event.preventDefault();
+        setNameInput(bookName);
+        setEditingName(false);
+    }
+
+    const handleInput = (event) => {
+        event.preventDefault();
+        setNameInput(event.target.value);
+    }
+
     return(
         <header id="spell-menu">
-            <b>{bookName}</b>
+            <section id="menu-section-left">
+                {editingName ?
+                    <>
+                    <input
+                        id="spellbook-name-input"
+                        type="text"
+                        value={nameInput}
+                        onChange={e => handleInput(e)}
+                        spellCheck={false}
+                        autoFocus={true}
+                    ></input>
+                    <FontAwesomeIcon id="edit-bookname-submit" icon={faCheck} onClick={e => handleSubmitNameButton(e)}/>
+                    <FontAwesomeIcon id="edit-bookname-cancel" icon={faTimes} onClick={e => handleCancelEditButton(e)}/>
+                    </>
+                    :
+                    <>
+                    <b>{bookName}</b>
+                    {editMode ?
+                        <FontAwesomeIcon id="edit-bookname" icon={faPen} onClick={e => handleEditNameButton(e)}/>
+                    :<></>}
+                    </>
+                }
+            </section>
             <section id="menu-button-section">
             {editMode ?
                 <>

@@ -544,11 +544,38 @@
     height: 3em;
 }
 
-#spell-menu b {
+#menu-section-left {
+    margin-left: 3rem;
+}
+
+#menu-section-left b, input {
     font-family: 'MedievalSharp', cursive;
     font-weight: bolder;
     font-size: 1.75em;
-    margin-left: 2rem;
+}
+
+#menu-section-left input {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+#menu-section-left svg {
+    font-size: 0.75em;
+    vertical-align: top;
+    margin-left: 1em;
+}
+
+#edit-bookname-submit {
+    color: green;
+}
+
+#edit-bookname-cancel {
+    color: red;
+}
+
+#menu-section-left svg:hover {
+    cursor: pointer;
 }
 
 #menu-button-section {
@@ -576,7 +603,7 @@
     cursor: pointer;
 }
 
-#spell-menu svg {
+.spell-menu-item svg {
     font-size: 1.5em;
 }
 
