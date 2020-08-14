@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import Spellbook from './spellbook/spellbook';
 import Splash from './splash';
-import Modal from './modal';
+import Modal from './modal/modal';
 
 const App = () => (
     <main id="app-container">
