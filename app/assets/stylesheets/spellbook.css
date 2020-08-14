@@ -548,7 +548,7 @@
     margin-left: 3rem;
 }
 
-#menu-section-left b, input {
+#menu-section-left b, #menu-section-left input {
     font-family: 'MedievalSharp', cursive;
     font-weight: bolder;
     font-size: 1.75em;
