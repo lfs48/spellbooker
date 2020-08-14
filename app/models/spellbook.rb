@@ -41,6 +41,7 @@ class Spellbook < ApplicationRecord
     def reset_to_srd
         self.populate_initial_spells
         self.populate_initial_classes
+        return self.save
     end
 
 end
