@@ -2,9 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faScroll, faUserPlus, faShare, faTimesCircle, faUndo } from '@fortawesome/free-solid-svg-icons'
-import { closeAllSpells } from '../../actions/ui/selected_spell_actions';
-import { updateSpellbook } from '../../actions/entities/spell_actions';
+import { faScroll, faUserPlus, faShare, faUndo } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
 
 const SpellbookMenu = ({editMode}) => {
@@ -31,11 +29,6 @@ const SpellbookMenu = ({editMode}) => {
     const handleResetButton = (event) => {
         event.preventDefault();
         dispatch( openModal("Reset") );
-    }
-
-    const handleCloseButton = (event) => {
-        event.preventDefault();
-        dispatch( closeAllSpells() );
     }
 
     const handleShareButton = (event) => {
@@ -66,10 +59,6 @@ const SpellbookMenu = ({editMode}) => {
                 <section className="spell-menu-item" onClick={e => handleShareButton(e) }>
                     <label>Share</label>
                     <FontAwesomeIcon icon={faShare}/>
-                </section>
-                <section className="spell-menu-item" onClick={e => handleCloseButton(e) }>
-                    <label>Close All Spells</label>
-                    <FontAwesomeIcon icon={faTimesCircle}/>
                 </section>
             </section>
         </header>

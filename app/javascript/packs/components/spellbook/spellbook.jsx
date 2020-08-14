@@ -8,6 +8,8 @@ import SpellbookMenu from './spellbook_menu';
 import OpenSpells from './open_spells';
 import { closeAllSpells } from '../../actions/ui/selected_spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 
 const Spellbook = () => {
 
@@ -24,10 +26,16 @@ const Spellbook = () => {
         .then( res => document.title = res.spellbook.name );
     }, [location]);
 
+    const handleCloseButton = (event) => {
+        event.preventDefault();
+        dispatch( closeAllSpells() );
+    }
+
     return(
     <section id="spellbook-container">
         <SpellbookMenu editMode={edit}/>
         <section id="below-nav-section">
+            <FontAwesomeIcon className="list-button" onClick={e => handleCloseButton(e)} icon={faTimesCircle}/>
             <SpellList />
             <section id="spell-section-right">
                 <Filter />

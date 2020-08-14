@@ -16,6 +16,15 @@
     height: 100%;
 }
 
+.list-button {
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+}
+
+.list-button:hover {
+    cursor: pointer;
+}
+
 #spell-list-sidebar ol::-webkit-scrollbar, .spell-info::-webkit-scrollbar {
     width: 12px;
 }
