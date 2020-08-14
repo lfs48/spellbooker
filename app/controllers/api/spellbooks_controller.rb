@@ -35,8 +35,11 @@ class Api::SpellbooksController < ApplicationController
 
     def destroy
         @spellbook = Spellbook.find_by(edit_url: spellbook_params[:url])
-        @spellbook.reset_to_srd
-        render "api/spellbooks/show"
+        if @spellbook.reset_to_srd
+            render "api/spellbooks/show"
+        else
+            render json: @spellbook.errors.full_messages, status: 422
+        end
     end
 
     private
