@@ -1,9 +1,29 @@
 #app-footer {
     position: fixed;
     bottom: 1rem;
-    right: 1.5rem;
+    right: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
-#splash-info-button:hover {
+#app-footer section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+#app-footer svg {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+#app-footer svg:hover {
     cursor: pointer;
+}
+
+#app-footer label {
+    font-weight: bolder;
+    font-size: 0.75rem;
 }
