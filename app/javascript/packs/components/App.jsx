@@ -3,6 +3,7 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import Spellbook from './spellbook/spellbook';
 import Splash from './splash';
 import Modal from './modal/modal';
+import Footer from './footer';
 
 const App = () => (
     <main id="app-container">
@@ -15,6 +16,7 @@ const App = () => (
             </Route>
             <Route path="/" component={Splash} />
         </Switch>
+        <Footer />
     </main>
 );
 
