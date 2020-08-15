@@ -1,0 +1,9 @@
+#app-footer {
+    position: fixed;
+    bottom: 1rem;
+    right: 1.5rem;
+}
+
+#splash-info-button:hover {
+    cursor: pointer;
+}
