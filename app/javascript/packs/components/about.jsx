@@ -1,6 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const About = () => {
+
+    const history = useHistory();
+
     return(
         <section id="about-container">
             <article id="about-scroll">
@@ -13,8 +17,9 @@ const About = () => {
                     <p>Selecting spells from the spell list will open up panels displaying information about that spell. These panels can be dragged and resized, allowing you to have the spells you want handy for viewing during a session.</p>
                     <b>Custom Spellbooks.</b>
                     <p>Besides browsing the default SRD spell list, you can also make your own spellbook. In your custom spellbook, you can edit existing spells and create news ones, providing your group with an easy reference for homebrew content.</p>
-                    <b></b>
-                    <p></p>
+                    <button onClick={e => (history.goBack())}>
+                        Back
+                    </button>
                 </section>
             </article>
         </section>
