@@ -13,22 +13,27 @@ const Footer = () => {
         window.location = "https://github.com/lfs48/spellbooker";
     }
 
+    const handleAboutButton = (event) => {
+        event.preventDefault();
+        history.push("/about");
+    }
+
     return(
         <footer id="app-footer">
             <section>
-                <FontAwesomeIcon id="splash-contact-button" icon={faEnvelope} />
+                <FontAwesomeIcon id="footer-contact-button" icon={faEnvelope} />
                 <label>Contact</label>
             </section>
             <section>
-                <FontAwesomeIcon id="splash-patreon-button" icon={faPatreon} />
+                <FontAwesomeIcon id="footer-patreon-button" icon={faPatreon} />
                 <label>Patreon</label>
             </section>
             <section>
-                <FontAwesomeIcon id="splash-github-button" onClick={e => handleGithub(e)} icon={faGithub} />
+                <FontAwesomeIcon id="footer-github-button" onClick={e => handleGithub(e)} icon={faGithub} />
                 <label>Github</label>
             </section>
             <section>
-                <FontAwesomeIcon id="splash-info-button" icon={faQuestionCircle} />
+                <FontAwesomeIcon id="footer-about-button" onClick={e => handleAboutButton(e)} icon={faQuestionCircle} />
                 <label>About</label>
             </section>
         </footer>
