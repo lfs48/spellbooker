@@ -1,0 +1,50 @@
+#about-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#about-scroll {
+    background-image: url("about-bg.png");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 60rem;
+    width: 44.5rem;
+    position: relative;
+}
+
+#about-text-container {
+    position: absolute;
+    top: 11rem;
+    left: 7rem;
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height: 37rem;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    overflow: wrap;
+    background-color: var(--light-parchment);
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+#about-text-container h1 {
+    font-weight: bolder;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#about-text-container b {
+    font-weight: bolder;
+    margin-bottom: 0.25rem;
+}
+
+#about-text-container p {
+    margin-bottom: 1rem;
+}
