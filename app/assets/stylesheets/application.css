@@ -30,3 +30,14 @@ html, main, body {
     width: 100%;
     height: 100%;
 }
+
+body {
+    background-color: rgb(247, 243, 216);
+    font-family: sans-serif;
+    background-image: url('spellbooker-bg.jpg');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
