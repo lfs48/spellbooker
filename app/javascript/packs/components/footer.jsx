@@ -3,10 +3,18 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faQuestionCircle, faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import {faGithub, faPatreon} from '@fortawesome/free-brands-svg-icons';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../actions/ui/modal_actions';
 
 const Footer = () => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const handleContact = (event) => {
+        event.preventDefault();
+        dispatch( openModal("Contact") );
+    }
 
     const handleGithub = (event) => {
         event.preventDefault();
@@ -21,7 +29,7 @@ const Footer = () => {
     return(
         <footer id="app-footer">
             <section>
-                <FontAwesomeIcon id="footer-contact-button" icon={faEnvelope} />
+                <FontAwesomeIcon id="footer-contact-button" onClick={e => handleContact(e)} icon={faEnvelope} />
                 <label>Contact</label>
             </section>
             <section>
