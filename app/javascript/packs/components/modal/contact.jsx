@@ -32,7 +32,7 @@ const Contact = () => {
                 placeholder="Write a message here"
             ></textarea>
             <section>
-                <button onClick={e => handleClose(e)}>Close</button>
+                <button onClick={e => handleClose(e)}>Cancel</button>
                 <button onClick={e => handleSubmit(e)}>Submit</button>
             </section>
         </form>
