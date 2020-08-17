@@ -5,6 +5,7 @@ import DeleteSpellConfirmation from '../spellbook/delete_spell_confirmation';
 import Reset from './reset';
 import Share from './share';
 import SpellForm from './spell_form';
+import Contact from './contact';
 
 const Modal = () => {
 
@@ -13,7 +14,8 @@ const Modal = () => {
         DeleteSpellConfirmation: <DeleteSpellConfirmation />,
         CreateClass: <CreateClass />,
         Share: <Share />,
-        Reset: <Reset />
+        Reset: <Reset />,
+        Contact: <Contact />
     });
 
     const {modal} = useSelector(
