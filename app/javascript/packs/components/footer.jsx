@@ -16,9 +16,14 @@ const Footer = () => {
         dispatch( openModal("Contact") );
     }
 
+    const handlePatreon = (event) => {
+        event.preventDefault();
+        window.open("https://www.patreon.com/lfs48");
+    }
+
     const handleGithub = (event) => {
         event.preventDefault();
-        window.location = "https://github.com/lfs48/spellbooker";
+        window.open("https://github.com/lfs48/spellbooker");
     }
 
     const handleAboutButton = (event) => {
@@ -33,7 +38,7 @@ const Footer = () => {
                 <label>Contact</label>
             </section>
             <section>
-                <FontAwesomeIcon id="footer-patreon-button" icon={faPatreon} />
+                <FontAwesomeIcon id="footer-patreon-button" onClick={e => handlePatreon(e)} icon={faPatreon} />
                 <label>Patreon</label>
             </section>
             <section>
