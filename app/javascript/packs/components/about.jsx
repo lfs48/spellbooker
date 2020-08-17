@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { closeModal } from '../actions/ui/modal_actions';
 
 const About = () => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    useEffect( () => {
+        dispatch( closeModal() );
+    }, []);
 
     return(
         <section id="about-container">
