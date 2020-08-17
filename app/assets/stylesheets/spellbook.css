@@ -603,18 +603,14 @@
     margin-bottom: 0.2em;
 }
 
-.spell-menu-item label:hover {
-    cursor: pointer;
-}
-
 .spell-menu-item svg {
     font-size: 1.5em;
+    transition: color 0.5s;
 }
 
-.spell-menu-item:hover {
+.spell-menu-item svg:hover {
     cursor: pointer;
     color: green;
-    transition: color 0.5s;
 }
 
 .modal-form {
