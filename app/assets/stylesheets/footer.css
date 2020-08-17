@@ -17,6 +17,7 @@
 #app-footer svg {
     font-size: 2rem;
     margin-bottom: 0.25rem;
+    transition: color 0.5s;
 }
 
 #app-footer svg:hover {
@@ -26,4 +27,20 @@
 #app-footer label {
     font-weight: bolder;
     font-size: 0.75rem;
+}
+
+#footer-about-button:hover {
+    color: green;
+}
+
+#footer-github-button:hover {
+    color: purple;
+}
+
+#footer-patreon-button:hover {
+    color: #f96854;
+}
+
+#footer-contact-button:hover {
+    color: darkgray;
 }
