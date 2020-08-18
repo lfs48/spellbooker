@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CreateClass from './create_class';
 import DeleteSpellConfirmation from './delete_spell_confirmation';
@@ -9,6 +9,8 @@ import Contact from './contact';
 import ManageClasses from './manage_classes';
 
 const Modal = () => {
+
+    const [modalState, setModalState] = useState("closed");
 
     const modalComponents = ({
         SpellForm: <SpellForm />,
@@ -26,20 +28,26 @@ const Modal = () => {
         })
     );
 
-    let content = <></>
-    const component = modalComponents[modal.name];
-    if (modal.name in modalComponents) {
-        content = (
-            <div className="modal-bg">
-                {component}
-            </div>
-        );
-    }
+    useEffect( () => {
+
+        if (modal.open) {
+            setModalState("opening");
+            setTimeout( () => {
+                setModalState("open");
+            }, 100);
+        } else if (modal.name) {
+            setModalState("closing");
+            setTimeout( () => {
+                setModalState("closed");
+            }, 500);
+        }
+
+    }, [modal]);
 
     return(
-        <>
-            {content}
-        </>
+        <div className={`modal-bg modal-bg-${modalState}`}>
+            {modal.name in modalComponents ? modalComponents[modal.name] : <></>}
+        </div>
     );
 };
 
