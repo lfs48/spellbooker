@@ -11,10 +11,28 @@
     justify-content: center;
     align-items: center;
 }
+
+.modal-bg-closed {
+  display: none;
+}
   
 .modal-bg > * {
     position: relative;
     z-index: 101;
+}
+
+.modal-bg-opening > * {
+  opacity: 0;
+}
+
+.modal-bg-open > * {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.modal-bg-closing > * {
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
 #contact-form {
