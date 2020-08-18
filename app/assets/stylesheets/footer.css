@@ -30,11 +30,11 @@
 }
 
 #footer-about-button:hover {
-    color: green;
+    color: darkgreen;
 }
 
 #footer-github-button:hover {
-    color: purple;
+    color: #6e5494;
 }
 
 #footer-patreon-button:hover {
@@ -42,5 +42,5 @@
 }
 
 #footer-contact-button:hover {
-    color: darkgray;
+    color: var(--gray-parchment);
 }
