@@ -451,6 +451,11 @@
     font-weight: bolder;
     font-size: 1.75em;
     margin-bottom: 0.25em;
+    font-family: 'MedievalSharp', cursive;
+}
+
+#level-school-section {
+    margin-bottom: 0.5em;
 }
 
 #level-school-section > * {
@@ -463,22 +468,18 @@
     margin-right: 0.25em;
 }
 
-#spell-form-classes-section {
-    min-height: 4em;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-}
-
 #spell-form-classes-section button {
     border: 1px solid black;
     border-radius: 3px;
     margin-right: 0.5em;
-    font-size: auto;
-    width: 88px;
+    width: 5.55rem;
     box-sizing: border-box;
     margin-bottom: 0.25em;
-    height: 1.8em;
+    height: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.5s, background-color 0.5s;
+    line-height: 1em;
 }
 
 .add-class-button {
