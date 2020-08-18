@@ -10,44 +10,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .modal-bg > * {
+.modal-bg > * {
     position: relative;
     z-index: 101;
-  }
+}
 
-  #contact-form {
+#contact-form {
     width: 30rem;
     justify-content: flex-start;
     padding: 0.75rem 1.5rem;
-  }
+}
 
-  #contact-form h1 {
+#contact-form h1 {
     margin-bottom: 2rem;
-  }
+}
 
-  #contact-form label {
+#contact-form label {
     font-weight: bolder;
     margin-bottom: 1rem;
     margin-right: 0.5rem;
-  }
+}
 
-  #contact-form label, #contact-form select {
+#contact-form label, #contact-form select {
     font-size: 1.25rem;
-  }
+}
 
-  #contact-form select {
+#contact-form select {
     border: 2px solid black;
     border-radius: 3px;
-  }
+}
 
-  #contact-form section:first-of-type {
+#contact-form section:first-of-type {
     display: inline-block;
     margin-bottom: 1rem;;
-  }
+}
 
-  #contact-form textarea {
+#contact-form textarea {
     resize: none;
     width: 100%;
     box-sizing: border-box;
@@ -57,4 +57,4 @@
     margin-bottom: 2rem;
     font-size: 1.2rem;
     padding: 0.25rem 0.5rem;
-  }
+}
