@@ -58,3 +58,29 @@
     font-size: 1.2rem;
     padding: 0.25rem 0.5rem;
 }
+
+#manage-classes {
+  width: 24.5rem;
+  display: inline-block;
+}
+
+#manage-classes li {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 0.125rem 1rem;
+}
+
+#manage-classes section {
+  display: inline-block;
+  width: auto;
+}
+
+#manage-classes svg:hover {
+  cursor: pointer;
+}
+
+#manage-classes svg:first-of-type {
+  margin-right: 0.5rem;
+}
