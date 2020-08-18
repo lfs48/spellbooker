@@ -31,11 +31,19 @@ const ManageClasses = () => {
         );
     });
 
+    const handleCloseButton = (event) => {
+        event.preventDefault();
+        dispatch( closeModal() );
+    }
+
     return(
         <form className="modal-form" id="manage-classes">
             <ol>
                 {classButtons}
             </ol>
+            <section>
+                <button onClick={e => handleCloseButton(e)}>Close</button>
+            </section>
         </form>
     )
 };
