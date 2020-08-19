@@ -38,7 +38,7 @@ const ManageClasses = () => {
         if (dndclass in classesState) {
             const editedClass = classesState[dndclass].editedName;
             return (
-                <li key={i}>
+                <li key={i} className={`manage-classes-li-${classesState[dndclass].deleted ? `inactive` : `active`}`}>
                     {classesState[dndclass].editing ?
                         <>
                         <input
@@ -80,16 +80,19 @@ const ManageClasses = () => {
 
         const newClasses = [];
         Object.values(classesState).forEach( (val) => {
-            newClasses.push(val.editedName);
+            if (!val.deleted) {
+                newClasses.push(val.editedName);
+            }
         });
         newBook.classes = newClasses.join(",");
 
         const newSpells = {};
         Object.values(spells).forEach( (spell) => {
             const newSpell = merge({}, spell);
-            const oldSpellClasses = spell.classes.split(",");
-            const newSpellClasses = oldSpellClasses.map( oldClass => classesState[oldClass].editedName );
-            debugger
+            const oldSpellClasses = spell.classes.length > 0 ? spell.classes.split(",") : [];
+            let newSpellClasses = oldSpellClasses
+            .filter( oldClass => !classesState[oldClass].deleted )
+            .map( oldClass => classesState[oldClass].editedName );
             newSpell.classes = newSpellClasses.join(",");
             newSpells[spell.id] = newSpell;
         });
@@ -101,7 +104,8 @@ const ManageClasses = () => {
 
     const handleDeleteButton = (event, field) => {
         event.preventDefault();
-        const newState = classesState.filter( el => el.toLowerCase() != field.toLowerCase() );
+        const newState = merge({}, classesState);
+        newState[field].deleted = true;
         setClasses(newState);
     }
 
