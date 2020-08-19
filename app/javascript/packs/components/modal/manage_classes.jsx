@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {capitalize, merge} from 'lodash';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
@@ -13,42 +13,59 @@ const ManageClasses = () => {
     const location = useLocation().pathname;
     const edit_url = location.slice( location.indexOf("edit/") + 5 );
 
-    const {spellbook} = useSelector(
+    const {spellbook, spells} = useSelector(
         state => ({
-            spellbook: state.entities.spellbook
+            spellbook: state.entities.spellbook,
+            spells: state.entities.spells
         })
     );
 
-    const [classes, setClasses] = useState(spellbook.classes);
-    const [editState, setEditState] = useState({});
+    const [classesState, setClasses] = useState({});
 
-    const classButtons = classes.map( (dndclass, i) => {
-        return (
-            <li key={i}>
-                {i in editState ?
-                    <>
-                    <input
-                        type="text"
-                        value={editState[i]}
-                        onChange={e => handleInput(e, i)}
-                    >
-                    </input>
-                    <section>
-                        <FontAwesomeIcon onClick={e => handleSubmitEdit(e, i)} icon={faCheck}></FontAwesomeIcon>
-                        <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
-                    </section>
-                    </>
-                    :
-                    <>
-                    <label>{capitalize(dndclass)}</label>
-                    <section>
-                        <FontAwesomeIcon onClick={e => handleEditButton(e, i)} icon={faPen}></FontAwesomeIcon>
-                        <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTrash}></FontAwesomeIcon>
-                    </section>
-                    </>
-                }
-            </li>
-        );
+    useEffect( () => {
+        const newState = {};
+        spellbook.classes.forEach( dndclass => {
+            newState[dndclass] = {
+                editedName: dndclass,
+                deleted: false,
+                editing: false
+            }
+        });
+        setClasses(newState);
+    }, []);
+
+    const classButtons = spellbook.classes.map( (dndclass, i) => {
+        if (dndclass in classesState) {
+            const editedClass = classesState[dndclass].editedName;
+            return (
+                <li key={i}>
+                    {classesState[dndclass].editing ?
+                        <>
+                        <input
+                            type="text"
+                            value={classesState[dndclass].editedName}
+                            onChange={e => handleInput(e, dndclass)}
+                        >
+                        </input>
+                        <section>
+                            <FontAwesomeIcon onClick={e => handleSubmitEdit(e, dndclass)} icon={faCheck}></FontAwesomeIcon>
+                            <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
+                        </section>
+                        </>
+                        :
+                        <>
+                        <label>{capitalize(editedClass)}</label>
+                        <section>
+                            <FontAwesomeIcon onClick={e => handleEditButton(e, dndclass)} icon={faPen}></FontAwesomeIcon>
+                            <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTrash}></FontAwesomeIcon>
+                        </section>
+                        </>
+                    }
+                </li>
+            );
+        } else {
+            return <li key={i}></li>;
+        }
     });
 
     const handleCloseButton = (event) => {
@@ -60,39 +77,44 @@ const ManageClasses = () => {
         event.preventDefault();
         const newBook = {};
         newBook.url = edit_url;
-        newBook.classes = classes.join(",");
+        const newClasses = [];
+        Object.values(classesState).forEach( (val) => {
+            newClasses.push(val.editedName);
+        });
+        newBook.classes = newClasses.join(",");
         dispatch( updateSpellbook(newBook) )
         .then( dispatch( closeModal() ) );
     }
 
+    const updateSpellsWithClasses = () => {
+
+    }
+
     const handleDeleteButton = (event, field) => {
         event.preventDefault();
-        const newState = classes.filter( el => el.toLowerCase() != field.toLowerCase() );
+        const newState = classesState.filter( el => el.toLowerCase() != field.toLowerCase() );
         setClasses(newState);
     }
 
-    const handleEditButton = (event, index) => {
+    const handleEditButton = (event, field) => {
         event.preventDefault();
-        const newState = merge({}, editState);
-        newState[index] = classes[index];
-        setEditState(newState);
+        const newState = merge({}, classesState);
+        newState[field].editing = true;
+        setClasses(newState);
     }
 
-    const handleInput = (event, index) => {
+    const handleInput = (event, field) => {
         event.preventDefault();
-        const newState = merge({}, editState);
-        newState[index] = event.target.value;
-        setEditState(newState);
+        const newState = merge({}, classesState);
+        newState[field].editedName = event.target.value;
+        setClasses(newState);
     }
 
-    const handleSubmitEdit = (event, index) => {
+    const handleSubmitEdit = (event, field) => {
         event.preventDefault();
-        const newClasses = merge([], classes);
-        newClasses[index] = editState[index];
-        setClasses(newClasses);
-        const newEditState = merge({}, editState);
-        delete newEditState[index];
-        setEditState(newEditState);
+        const newState = merge({}, classesState);
+        newState[field].editing = false;
+        setClasses(newState);
     }
 
     return(
