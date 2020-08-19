@@ -77,17 +77,26 @@ const ManageClasses = () => {
         event.preventDefault();
         const newBook = {};
         newBook.url = edit_url;
+
         const newClasses = [];
         Object.values(classesState).forEach( (val) => {
             newClasses.push(val.editedName);
         });
         newBook.classes = newClasses.join(",");
+
+        const newSpells = {};
+        Object.values(spells).forEach( (spell) => {
+            const newSpell = merge({}, spell);
+            const oldSpellClasses = spell.classes.split(",");
+            const newSpellClasses = oldSpellClasses.map( oldClass => classesState[oldClass].editedName );
+            debugger
+            newSpell.classes = newSpellClasses.join(",");
+            newSpells[spell.id] = newSpell;
+        });
+        newBook.spells = JSON.stringify(newSpells);
+
         dispatch( updateSpellbook(newBook) )
         .then( dispatch( closeModal() ) );
-    }
-
-    const updateSpellsWithClasses = () => {
-
     }
 
     const handleDeleteButton = (event, field) => {
