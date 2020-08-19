@@ -46,7 +46,7 @@ const Modal = () => {
 
     return(
         <div className={`modal-bg modal-bg-${modalState}`}>
-            {modal.name in modalComponents ? modalComponents[modal.name] : <></>}
+            {modal.name in modalComponents && modalState != "closed" ? modalComponents[modal.name] : <></>}
         </div>
     );
 };

@@ -38,6 +38,15 @@ const ManageClasses = () => {
         dispatch( closeModal() );
     }
 
+    const handleSaveButton = (event) => {
+        event.preventDefault();
+        const newBook = {};
+        newBook.url = edit_url;
+        newBook.classes = classes.join(",");
+        dispatch( updateSpellbook(newBook) )
+        .then( dispatch( closeModal() ) );
+    }
+
     const handleDeleteButton = (event, field) => {
         event.preventDefault();
         const newState = classes.filter( el => el.toLowerCase() != field.toLowerCase() );
@@ -51,6 +60,7 @@ const ManageClasses = () => {
             </ol>
             <section>
                 <button onClick={e => handleCloseButton(e)}>Close</button>
+                <button onClick={e => handleSaveButton(e)}>Save Changes</button>
             </section>
         </form>
     )
