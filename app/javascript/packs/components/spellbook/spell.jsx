@@ -219,7 +219,7 @@ const Spell = (props) => {
                     <i>{intToOrdinal(selectedSpell.level)}-level {selectedSpell.school} {selectedSpell.ritual? "(ritual)" : ""}</i>
                     <dl>
                         <dt>Classes</dt>
-                        <dd>: {selectedSpell.classes.split(",").map(dndclass => capitalize(dndclass)).join(", ")}</dd>
+                        <dd>: {selectedSpell.classes.length > 0 ? selectedSpell.classes.split(",").map(dndclass => capitalize(dndclass)).join(", ") : "None"}</dd>
                     </dl>
                     <dl>
                         <dt>Casting Time</dt>
