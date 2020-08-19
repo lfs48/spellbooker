@@ -5,7 +5,7 @@ import { updateSpellbook } from '../../actions/entities/spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
 import { useLocation } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const ManageClasses = () => {
 
@@ -20,15 +20,33 @@ const ManageClasses = () => {
     );
 
     const [classes, setClasses] = useState(spellbook.classes);
+    const [editState, setEditState] = useState({});
 
     const classButtons = classes.map( (dndclass, i) => {
         return (
             <li key={i}>
-                <label>{capitalize(dndclass)}</label>
-                <section>
-                    <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
-                    <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTrash}></FontAwesomeIcon>
-                </section>
+                {i in editState ?
+                    <>
+                    <input
+                        type="text"
+                        value={editState[i]}
+                        onChange={e => handleInput(e, i)}
+                    >
+                    </input>
+                    <section>
+                        <FontAwesomeIcon onClick={e => handleSubmitEdit(e, i)} icon={faCheck}></FontAwesomeIcon>
+                        <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
+                    </section>
+                    </>
+                    :
+                    <>
+                    <label>{capitalize(dndclass)}</label>
+                    <section>
+                        <FontAwesomeIcon onClick={e => handleEditButton(e, i)} icon={faPen}></FontAwesomeIcon>
+                        <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTrash}></FontAwesomeIcon>
+                    </section>
+                    </>
+                }
             </li>
         );
     });
@@ -51,6 +69,30 @@ const ManageClasses = () => {
         event.preventDefault();
         const newState = classes.filter( el => el.toLowerCase() != field.toLowerCase() );
         setClasses(newState);
+    }
+
+    const handleEditButton = (event, index) => {
+        event.preventDefault();
+        const newState = merge({}, editState);
+        newState[index] = classes[index];
+        setEditState(newState);
+    }
+
+    const handleInput = (event, index) => {
+        event.preventDefault();
+        const newState = merge({}, editState);
+        newState[index] = event.target.value;
+        setEditState(newState);
+    }
+
+    const handleSubmitEdit = (event, index) => {
+        event.preventDefault();
+        const newClasses = merge([], classes);
+        newClasses[index] = editState[index];
+        setClasses(newClasses);
+        const newEditState = merge({}, editState);
+        delete newEditState[index];
+        setEditState(newEditState);
     }
 
     return(
