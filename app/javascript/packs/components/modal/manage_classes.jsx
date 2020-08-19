@@ -19,13 +19,15 @@ const ManageClasses = () => {
         })
     );
 
-    const classButtons = spellbook.classes.map( (dndclass, i) => {
+    const [classes, setClasses] = useState(spellbook.classes);
+
+    const classButtons = classes.map( (dndclass, i) => {
         return (
             <li key={i}>
                 <label>{capitalize(dndclass)}</label>
                 <section>
                     <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                    <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTrash}></FontAwesomeIcon>
                 </section>
             </li>
         );
@@ -34,6 +36,12 @@ const ManageClasses = () => {
     const handleCloseButton = (event) => {
         event.preventDefault();
         dispatch( closeModal() );
+    }
+
+    const handleDeleteButton = (event, field) => {
+        event.preventDefault();
+        const newState = classes.filter( el => el.toLowerCase() != field.toLowerCase() );
+        setClasses(newState);
     }
 
     return(
