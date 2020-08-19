@@ -60,7 +60,7 @@ const ManageClasses = () => {
             </ol>
             <section>
                 <button onClick={e => handleCloseButton(e)}>Close</button>
-                <button onClick={e => handleSaveButton(e)}>Save Changes</button>
+                <button onClick={e => handleSaveButton(e)}>Save</button>
             </section>
         </form>
     )
