@@ -53,6 +53,7 @@ const SpellbookMenu = ({editMode}) => {
     const handleEditNameButton = (event) => {
         event.preventDefault();
         setEditingName(true);
+        $("#spellbook-name-input").focus();
     }
 
     const handleSubmitNameButton = (event) => {
@@ -80,23 +81,32 @@ const SpellbookMenu = ({editMode}) => {
             <section id="menu-section-left">
                 {editingName ?
                     <>
+                    <section id="edit-name-controls">
+                        <FontAwesomeIcon id="edit-bookname-cancel" icon={faTimes} onClick={e => handleCancelEditButton(e)}/>
+                        <FontAwesomeIcon id="edit-bookname-submit" icon={faCheck} onClick={e => handleSubmitNameButton(e)}/>
+                    </section>
                     <input
+                        key={0}
                         id="spellbook-name-input"
                         type="text"
                         value={nameInput}
                         onChange={e => handleInput(e)}
                         spellCheck={false}
                         autoFocus={true}
+                        maxLength={20}
                     ></input>
-                    <FontAwesomeIcon id="edit-bookname-submit" icon={faCheck} onClick={e => handleSubmitNameButton(e)}/>
-                    <FontAwesomeIcon id="edit-bookname-cancel" icon={faTimes} onClick={e => handleCancelEditButton(e)}/>
                     </>
                     :
                     <>
-                    <b>{bookName}</b>
                     {editMode ?
                         <FontAwesomeIcon id="edit-bookname" icon={faPen} onClick={e => handleEditNameButton(e)}/>
                     :<></>}
+                    <input
+                        key={1}
+                        type="text"
+                        value={nameInput}
+                        disabled={true}
+                    ></input>
                     </>
                 }
             </section>
