@@ -44,7 +44,7 @@ const CreateClass = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newClass = inputs.name.toLowerCase();
+        const newClass = inputs.name;
         const newSpells = merge({}, spells);
         inputs.spells.forEach( id => {
             const classList = newSpells[id].classes.split(",");
