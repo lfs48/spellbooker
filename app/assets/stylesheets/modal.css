@@ -118,12 +118,37 @@
   display: inline-block;
 }
 
-.manage-classes-li-active {
+#manage-classes h1 {
   margin-bottom: 1rem;
+}
+
+.manage-classes-li-active {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
   border-bottom: 1px solid black;
   display: flex;
   justify-content: space-between;
-  padding: 0 1rem 0.125rem 1rem;
+  padding: 0.5rem 1rem;
+  height: 1rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  transition: background-color 1s;
+}
+
+.edit-li {
+  background-color: var(--dark-parchment);
+}
+
+.manage-classes-li-active:first-of-type {
+  border-top: 1px solid black;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.manage-classes-li-active:last-of-type {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-bottom: 1rem;
 }
 
 .manage-classes-li-inactive {
@@ -133,6 +158,11 @@
 #manage-classes section {
   display: inline-block;
   width: auto;
+  transition: margin-right 0.5s;
+}
+
+.edit-li section {
+  margin-right: 5rem;
 }
 
 #manage-classes svg:hover {
@@ -141,4 +171,16 @@
 
 #manage-classes svg:first-of-type {
   margin-right: 0.5rem;
+}
+
+#manage-classes input {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+#manage-classes label, #manage-classes input {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: bold;
 }

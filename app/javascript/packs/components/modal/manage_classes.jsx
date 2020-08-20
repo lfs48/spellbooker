@@ -39,7 +39,7 @@ const ManageClasses = () => {
         if (dndclass in classesState) {
             const editedClass = classesState[dndclass].editedName;
             return (
-                <li key={i} className={`manage-classes-li-${classesState[dndclass].deleted ? `inactive` : `active`}`}>
+                <li key={i} className={`manage-classes-li-${classesState[dndclass].deleted ? `inactive` : `active`} ${classesState[dndclass].editing ? `edit-li` : i % 2 === 0 ? `white-li` : `dark-li`}`}>
                     {classesState[dndclass].editing ?
                         <>
                         <input
@@ -47,11 +47,12 @@ const ManageClasses = () => {
                             autoFocus={true}
                             value={classesState[dndclass].editedName}
                             onChange={e => handleInput(e, dndclass)}
+                            maxLength={20}
                         >
                         </input>
                         <section>
-                            <FontAwesomeIcon onClick={e => handleSubmitEdit(e, dndclass)} icon={faCheck}></FontAwesomeIcon>
-                            <FontAwesomeIcon onClick={e => handleCancelEdit(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
+                            <FontAwesomeIcon style={{color: 'green'}} onClick={e => handleSubmitEdit(e, dndclass)} icon={faCheck}></FontAwesomeIcon>
+                            <FontAwesomeIcon style={{color: 'red'}} onClick={e => handleCancelEdit(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
                         </section>
                         </>
                         :
@@ -95,7 +96,7 @@ const ManageClasses = () => {
             let newSpellClasses = oldSpellClasses
             .filter( oldClass => !classesState[oldClass].deleted )
             .map( oldClass => classesState[oldClass].editedName );
-            newSpell.classes = newSpellClasses.join(",");
+            newSpell.classes =  newSpellClasses.length > 0 ? newSpellClasses.join(",") : "";
             newSpells[spell.id] = newSpell;
         });
         newBook.spells = JSON.stringify(newSpells);
@@ -144,11 +145,12 @@ const ManageClasses = () => {
 
     return(
         <form className="modal-form" id="manage-classes">
+            <h1>Classes</h1>
             <ol>
                 {classButtons}
             </ol>
             <section>
-                <button onClick={e => handleCloseButton(e)}>Close</button>
+                <button onClick={e => handleCloseButton(e)}>Cancel</button>
                 <button onClick={e => handleSaveButton(e)}>Save</button>
             </section>
         </form>
