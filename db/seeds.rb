@@ -27,7 +27,7 @@ RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
             spell["casting_time"] = api_spell["casting_time"]
             spell["school"] = api_spell["school"]["index"]
             classes = []
-            api_spell["classes"].each {|dndclass| classes << dndclass["index"]}
+            api_spell["classes"].each {|dndclass| classes << dndclass["name"]}
             classes = classes.join(",")
             spell["classes"] = classes
             spell["desc"] = api_spell["desc"]
@@ -39,5 +39,5 @@ RestClient.get("https://www.dnd5eapi.co/api/spells") do |resp, req, res|
 end
 
 spells = spells.to_json
-dndclasses = "bard,cleric,druid,paladin,ranger,sorcerer,warlock,wizard"
+dndclasses = "Bard,Cleric,Druid,Paladin,Ranger,Sorcerer,Warlock,Wizard"
 sb = Spellbook.create(name: "5e SRD Spellbook", edit_url:"srd", share_url:"srd", spells: spells, classes: dndclasses)
