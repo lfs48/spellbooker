@@ -42,8 +42,7 @@ const SpellForm = () => {
     });
 
     useEffect( () => {
-
-        if (modal.data.id) {
+        if ("data" in modal && "id" in modal.data) {
             const spell = spells[modal.data.id];
             const newState = {
                 id: spell.id,
