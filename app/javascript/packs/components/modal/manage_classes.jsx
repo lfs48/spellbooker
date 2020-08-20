@@ -63,6 +63,10 @@ const ManageClasses = () => {
         }
     });
 
+    const editing = Object.values(classesState).some( (state) => {
+        return state.editing
+    });
+
     const classButtons = spellbook.classes.map( (dndclass, i) => {
         let posClass = "";
         if (i === first) {
@@ -85,7 +89,7 @@ const ManageClasses = () => {
                             maxLength={20}
                         >
                         </input>
-                        <section>
+                        <section className="class-li-buttons">
                             <FontAwesomeIcon style={{color: 'green'}} onClick={e => handleSubmitEdit(e, dndclass)} icon={faCheck}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{color: 'red'}} onClick={e => handleCancelEdit(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
                         </section>
@@ -93,7 +97,7 @@ const ManageClasses = () => {
                         :
                         <>
                         <label>{editedClass}</label>
-                        <section>
+                        <section className="class-li-buttons">
                             <FontAwesomeIcon onClick={e => handleEditButton(e, dndclass)} icon={faPen}></FontAwesomeIcon>
                             <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTrash}></FontAwesomeIcon>
                         </section>
@@ -144,6 +148,7 @@ const ManageClasses = () => {
         event.preventDefault();
         const newState = merge({}, classesState);
         newState[field].deleted = true;
+        newState[field].editing = false;
         setClasses(newState);
     }
 
@@ -166,11 +171,11 @@ const ManageClasses = () => {
         event.preventDefault();
         const newState = merge({}, classesState);
         if( classesState[field].editedName.length > 0  ) {
-            newState[field].editing = false;
             newState[field].prevName = newState[field].editedName;
         } else {
             newState[field].deleted = true;
         }
+        newState[field].editing = false;
         setClasses(newState);
     }
 
@@ -188,9 +193,9 @@ const ManageClasses = () => {
             <ol>
                 {classButtons}
             </ol>
-            <section>
+            <section id="manage-classes-button-section">
                 <button onClick={e => handleCloseButton(e)}>Cancel</button>
-                <button onClick={e => handleSaveButton(e)}>Save</button>
+                <button disabled={editing} onClick={e => handleSaveButton(e)}>Save</button>
             </section>
         </form>
     )
