@@ -550,13 +550,15 @@
 }
 
 #menu-section-left {
-    margin-left: 3rem;
+    margin-left: 2rem;
+    display: flex;
 }
 
-#menu-section-left b, #menu-section-left input {
+#menu-section-left input {
     font-family: 'MedievalSharp', cursive;
     font-weight: bolder;
     font-size: 1.75em;
+    max-width: 20em;
 }
 
 #menu-section-left input {
@@ -565,10 +567,20 @@
     padding: 0;
 }
 
+#menu-section-left input:disabled {
+    color: black;
+}
+
 #menu-section-left svg {
     font-size: 0.75em;
     vertical-align: top;
-    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#edit-name-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #edit-bookname-submit {
