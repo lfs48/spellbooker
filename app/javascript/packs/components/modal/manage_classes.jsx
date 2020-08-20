@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {capitalize, merge} from 'lodash';
+import {merge} from 'lodash';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
 import { useLocation } from 'react-router-dom';
@@ -27,6 +27,7 @@ const ManageClasses = () => {
         spellbook.classes.forEach( dndclass => {
             newState[dndclass] = {
                 editedName: dndclass,
+                prevName: dndclass,
                 deleted: false,
                 editing: false
             }
@@ -43,18 +44,19 @@ const ManageClasses = () => {
                         <>
                         <input
                             type="text"
+                            autoFocus={true}
                             value={classesState[dndclass].editedName}
                             onChange={e => handleInput(e, dndclass)}
                         >
                         </input>
                         <section>
                             <FontAwesomeIcon onClick={e => handleSubmitEdit(e, dndclass)} icon={faCheck}></FontAwesomeIcon>
-                            <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
+                            <FontAwesomeIcon onClick={e => handleCancelEdit(e, dndclass)} icon={faTimes}></FontAwesomeIcon>
                         </section>
                         </>
                         :
                         <>
-                        <label>{capitalize(editedClass)}</label>
+                        <label>{editedClass}</label>
                         <section>
                             <FontAwesomeIcon onClick={e => handleEditButton(e, dndclass)} icon={faPen}></FontAwesomeIcon>
                             <FontAwesomeIcon onClick={e => handleDeleteButton(e, dndclass)} icon={faTrash}></FontAwesomeIcon>
@@ -113,6 +115,7 @@ const ManageClasses = () => {
         event.preventDefault();
         const newState = merge({}, classesState);
         newState[field].editing = true;
+        newState[field].prevName = classesState[field].editedName;
         setClasses(newState);
     }
 
@@ -126,6 +129,15 @@ const ManageClasses = () => {
     const handleSubmitEdit = (event, field) => {
         event.preventDefault();
         const newState = merge({}, classesState);
+        newState[field].editing = false;
+        newState[field].prevName = newState[field].editedName;
+        setClasses(newState);
+    }
+
+    const handleCancelEdit = (event, field) => {
+        event.preventDefault();
+        const newState = merge({}, classesState);
+        newState[field].editedName = classesState[field].prevName;
         newState[field].editing = false;
         setClasses(newState);
     }
