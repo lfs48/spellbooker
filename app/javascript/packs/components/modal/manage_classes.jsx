@@ -53,6 +53,16 @@ const ManageClasses = () => {
         }
     }
 
+    let light = false;
+    let colors = spellbook.classes.map( (dndclass) => {
+        if ( dndclass in classesState && !classesState[dndclass].deleted) {
+            light = !light;
+            return light ? "white-li" : "dark-li";
+        } else {
+            return "";
+        }
+    });
+
     const classButtons = spellbook.classes.map( (dndclass, i) => {
         let posClass = "";
         if (i === first) {
@@ -63,9 +73,8 @@ const ManageClasses = () => {
 
         if (dndclass in classesState) {
             const editedClass = classesState[dndclass].editedName;
-
             return (
-                <li key={i} className={`manage-classes-li-${classesState[dndclass].deleted ? `inactive` : `active`} ${classesState[dndclass].editing ? `edit-li` : i % 2 === 0 ? `white-li` : `dark-li`} ${posClass}`}>
+                <li key={i} className={`manage-classes-li-${classesState[dndclass].deleted ? `inactive` : `active`} ${classesState[dndclass].editing ? `edit-li` : colors[i]} ${posClass}`}>
                     {classesState[dndclass].editing ?
                         <>
                         <input
