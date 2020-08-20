@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { dndSchoolList } from '../../data/dnd_data';
 import {intToOrdinal} from '../../util/functions/util_functions';
 import { merge } from 'lodash';
@@ -22,50 +22,51 @@ const SpellForm = () => {
         })
     );
 
-    let presetInputs;
+    const [inputs, setInputs] = useState({
+        id: Object.keys(spells).length,
+        name: "",
+        level: 0,
+        school: "abjuration",
+        ritual: "false",
+        classes: [],
+        castingTime: "",
+        range: "",
+        v: "false",
+        s: "false",
+        m: "false",
+        material: "",
+        duration: "",
+        concentration: "false",
+        desc: "",
+        higher_level: ""
+    });
 
-    if (modal.data.id) {
-        const spell = spells[modal.data.id];
-        presetInputs = {
-            id: spell.id,
-            name: spell.name,
-            level: spell.level,
-            school: spell.school,
-            ritual: spell.ritual,
-            classes: spell.classes.split(","),
-            castingTime: spell.casting_time,
-            range: spell.range,
-            v: spell.components.includes("V") ? "true" : "false",
-            s: spell.components.includes("S")  ? "true" : "false",
-            m: spell.components.includes("M")  ? "true" : "false",
-            material: spell.material,
-            duration: spell.duration,
-            concentration: spell.concentration ? "true" : "false",
-            desc: spell.desc.join("\n\n"),
-            higher_level: spell.higher_level ? spell.higher_level.join("\n\n") : ""
-        }
-    } else {
-        presetInputs = {
-            id: Object.keys(spells).length,
-            name: "",
-            level: 0,
-            school: "abjuration",
-            ritual: "false",
-            classes: [],
-            castingTime: "",
-            range: "",
-            v: "false",
-            s: "false",
-            m: "false",
-            material: "",
-            duration: "",
-            concentration: "false",
-            desc: "",
-            higher_level: ""
-        }
-    };
+    useEffect( () => {
 
-    const [inputs, setInputs] = useState(presetInputs);
+        if (modal.data.id) {
+            const spell = spells[modal.data.id];
+            const newState = {
+                id: spell.id,
+                name: spell.name,
+                level: spell.level,
+                school: spell.school,
+                ritual: spell.ritual,
+                classes: spell.classes.split(","),
+                castingTime: spell.casting_time,
+                range: spell.range,
+                v: spell.components.includes("V") ? "true" : "false",
+                s: spell.components.includes("S")  ? "true" : "false",
+                m: spell.components.includes("M")  ? "true" : "false",
+                material: spell.material,
+                duration: spell.duration,
+                concentration: spell.concentration ? "true" : "false",
+                desc: spell.desc.join("\n\n"),
+                higher_level: spell.higher_level ? spell.higher_level.join("\n\n") : ""
+            }
+            setInputs(newState);
+        }
+
+    }, [modal]);
 
     const [errors, setErrors] = useState({
         name: false,
