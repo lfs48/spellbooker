@@ -59,7 +59,7 @@ const ManageClasses = () => {
             light = !light;
             return light ? "white-li" : "dark-li";
         } else {
-            return "";
+            return light ? "dark-li" : "white-li";
         }
     });
 
