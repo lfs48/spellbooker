@@ -148,7 +148,6 @@
 #manage-classes li.last {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  margin-bottom: 1rem;
 }
 
 .manage-classes-li-inactive {
@@ -158,6 +157,12 @@
   padding: 0rem 1rem;
   overflow: hidden;
   transition: height 0.5s, padding 0.5s;
+}
+
+li.last ~ .manage-classes-li-inactive {
+  border-left: none;
+  border-right: none;
+  background: none;
 }
 
 .manage-classes-li-inactive > * {
@@ -171,13 +176,15 @@
   transition: margin-right 0.5s;
 }
 
-#manage-classes section:last-of-type {
+#manage-classes-button-section {
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .edit-li section {
-  margin-right: 5rem;
+  margin-right: 3rem;
 }
 
 #manage-classes svg:hover {
