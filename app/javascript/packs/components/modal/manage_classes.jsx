@@ -35,11 +35,37 @@ const ManageClasses = () => {
         setClasses(newState);
     }, []);
 
+    let first; 
+    for (let i = 0; i < spellbook.classes.length; i++) {
+        const dndclass = spellbook.classes[i];
+        if ( dndclass in classesState && !classesState[dndclass].deleted) {
+            first = i;
+            break;
+        }
+    }
+
+    let last; 
+    for (let i = spellbook.classes.length; i >= 0; i--) {
+        const dndclass = spellbook.classes[i];
+        if ( dndclass in classesState && !classesState[dndclass].deleted) {
+            last = i;
+            break;
+        }
+    }
+
     const classButtons = spellbook.classes.map( (dndclass, i) => {
+        let posClass = "";
+        if (i === first) {
+            posClass = "first";
+        } else if (i === last) {
+            posClass = "last";
+        }
+
         if (dndclass in classesState) {
             const editedClass = classesState[dndclass].editedName;
+
             return (
-                <li key={i} className={`manage-classes-li-${classesState[dndclass].deleted ? `inactive` : `active`} ${classesState[dndclass].editing ? `edit-li` : i % 2 === 0 ? `white-li` : `dark-li`}`}>
+                <li key={i} className={`manage-classes-li-${classesState[dndclass].deleted ? `inactive` : `active`} ${classesState[dndclass].editing ? `edit-li` : i % 2 === 0 ? `white-li` : `dark-li`} ${posClass}`}>
                     {classesState[dndclass].editing ?
                         <>
                         <input
@@ -130,8 +156,12 @@ const ManageClasses = () => {
     const handleSubmitEdit = (event, field) => {
         event.preventDefault();
         const newState = merge({}, classesState);
-        newState[field].editing = false;
-        newState[field].prevName = newState[field].editedName;
+        if( classesState[field].editedName.length > 0  ) {
+            newState[field].editing = false;
+            newState[field].prevName = newState[field].editedName;
+        } else {
+            newState[field].deleted = true;
+        }
         setClasses(newState);
     }
 
