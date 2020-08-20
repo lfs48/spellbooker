@@ -56,19 +56,28 @@
   font-style: italic;
 }
 
-.modal-form section {
+.modal-form > section {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
 .modal-form button {
-  background: var(--dark-parchment);
+  background-color: var(--dark-parchment);
   border: 2px solid black;
   border-radius: 3px;
   font-weight: bolder;
   font-size: 1em;
   width: 5em;
+  transition: background-color 0.5s;
+}
+
+.modal-form button:disabled {
+  background-color: var(--gray-parchment);
+}
+
+.modal-form button:disabled:hover {
+  cursor: not-allowed;
 }
 
 #contact-form {
@@ -170,9 +179,9 @@ li.last ~ .manage-classes-li-inactive {
   transition: opacity 0.2s;
 }
 
-#manage-classes section {
+.class-li-buttons {
   display: inline-block;
-  width: auto;
+  width: 3rem;
   transition: margin-right 0.5s;
 }
 
