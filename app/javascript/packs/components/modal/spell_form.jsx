@@ -148,7 +148,7 @@ const SpellForm = () => {
             name: inputs.name,
             level: parseInt(inputs.level),
             school: inputs.school,
-            ritual: inputs.ritual,
+            ritual: inputs.ritual === "true",
             classes: inputs.classes.sort().join(","),
             casting_time: inputs.castingTime,
             range: inputs.range,
@@ -244,9 +244,9 @@ const SpellForm = () => {
                     className="spell-form-input"
                     value={inputs.ritual} 
                     onChange={e => handleInput(e, "ritual")}>
-                    <option value={false}>No</option>
-                    <option value={true}>Yes</option>
-                </select>
+                    <option value={"false"}>No</option>
+                    <option value={"true"}>Yes</option>
+                    </select>
             </section>
             <section id="spell-form-classes-section">
                 <div>
