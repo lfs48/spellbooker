@@ -23,7 +23,7 @@ const SpellForm = () => {
     );
 
     const [inputs, setInputs] = useState({
-        id: Object.keys(spells).length,
+        id: Math.max(...Object.keys(spells)) + 1,
         name: "",
         level: 0,
         school: "abjuration",
