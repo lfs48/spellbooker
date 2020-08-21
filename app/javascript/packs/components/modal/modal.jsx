@@ -7,6 +7,7 @@ import Share from './share';
 import SpellForm from './spell_form';
 import Contact from './contact';
 import ManageClasses from './manage_classes';
+import SplashError from './splash_error';
 
 const Modal = () => {
 
@@ -19,7 +20,8 @@ const Modal = () => {
         Share: <Share />,
         Reset: <Reset />,
         Contact: <Contact />,
-        ManageClasses: <ManageClasses />
+        ManageClasses: <ManageClasses />,
+        SplashErrors: <SplashError />
     });
 
     const {modal} = useSelector(
