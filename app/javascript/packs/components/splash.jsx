@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createSpellbook, fetchSpellbook } from '../actions/entities/spell_actions';
-import { closeModal } from '../actions/ui/modal_actions';
+import { closeModal, openModal } from '../actions/ui/modal_actions';
 import { closeAllSpells } from '../actions/ui/selected_spell_actions';
 import { useCookies } from 'react-cookie';
 import {merge} from 'lodash';
@@ -26,7 +26,13 @@ const Splash = () => {
     const handleOpenSpellbook = (event) => {
         event.preventDefault();
         if ("spellbook" in cookies && "url" in cookies.spellbook) {
-            history.push(`/spellbook/edit/${cookies.spellbook.url}`);
+            dispatch( fetchSpellbook({url: cookies.spellbook.url}) )
+            .then( (res) => {
+                history.push(`/spellbook/edit/${cookies.spellbook.url}`);
+            }, (rej) => {
+                removeCookie("spellbook");
+                dispatch( openModal("SplashErrors") );
+            });
         } else {
             const newBook = {name: "My Spellbook"};
             dispatch( createSpellbook(newBook) )
@@ -35,7 +41,7 @@ const Splash = () => {
                 newCookies["url"] = res.spellbook.edit_url;
                 newCookies["name"] = res.spellbook.name;
                 setCookie("spellbook", newCookies);
-                history.push(`/spellbook/edit/${res.spellbook.edit_url}`)
+                history.push(`/spellbook/edit/${res.spellbook.edit_url}`);
             });
         }
     }
