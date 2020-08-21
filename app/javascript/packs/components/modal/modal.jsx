@@ -41,7 +41,7 @@ const Modal = () => {
             setModalState("closing");
             setTimeout( () => {
                 setModalState("closed");
-            }, 500);
+            }, 250);
         }
 
     }, [modal]);
