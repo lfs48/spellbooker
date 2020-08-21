@@ -5,12 +5,15 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faScroll, faHatWizard, faLink, faUndo, faPen, faCheck, faTimes, faDungeon, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { useHistory, useLocation } from 'react-router-dom';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
+import { useCookies } from 'react-cookie';
+import {merge} from 'lodash';
 
 const SpellbookMenu = ({editMode}) => {
 
     const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
+    const [cookies, setCookie, removeCookie] = useCookies(["spellbook"]);
 
     const {bookName} = useSelector(
         state => ({
@@ -62,7 +65,12 @@ const SpellbookMenu = ({editMode}) => {
         newBook.name = nameInput;
         newBook.url = location.pathname.slice( location.pathname.indexOf("edit/") + 5 );
         dispatch( updateSpellbook(newBook) )
-        .then( () => setEditingName(false) );
+        .then( (res) => {
+            setEditingName(false);
+            const newCookies = merge({}, cookies.spellbook);
+            newCookies["name"] = res.spellbook.name;
+            setCookie("spellbook", newCookies);
+        });
     }
 
     const handleCancelEditButton = (event) => {
