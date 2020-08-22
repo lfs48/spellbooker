@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {dndSchoolList} from '../../data/dnd_data';
-import { selectClass, selectLevel, selectSchool, setSearch } from '../../actions/ui/filter_actions';
+import { clearSearch, selectClass, selectLevel, selectSchool, setSearch } from '../../actions/ui/filter_actions';
 import { intToOrdinal } from '../../util/functions/util_functions';
 import {capitalize, merge} from 'lodash';
 
@@ -41,8 +41,18 @@ const Filter = () => {
 
     const handleSearchButton = (event) => {
         event.preventDefault();
-        dispatch( setSearch(searchInput) )
-    }
+        dispatch( setSearch(searchInput) );
+    };
+
+    const handleClearButton = (event) => {
+        event.preventDefault();
+        const newState = {
+            name: "",
+            desc: ""
+        };
+        setSearchInput(newState);
+        dispatch( clearSearch() );
+    };
 
     const handleClassSelect = (event) => {
         event.preventDefault();
@@ -105,7 +115,10 @@ const Filter = () => {
                         ></input>
                     </section>
                 </form>
-                <button onClick={e => handleSearchButton(e)}>Search</button>
+                <section id="search-controls">
+                    <button onClick={e => handleSearchButton(e)}>Search</button>
+                    <button onClick={e => handleClearButton(e)}>Clear</button>
+                </section>
             </section>
         </nav>
     )
