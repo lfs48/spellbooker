@@ -222,6 +222,7 @@ const SpellForm = () => {
                 value={inputs.name}
                 onChange={e => handleInput(e, 'name')}
                 autoComplete="off"
+                maxLength={30}
             ></input>
                 <section id="level-school-section">
                     <select 
