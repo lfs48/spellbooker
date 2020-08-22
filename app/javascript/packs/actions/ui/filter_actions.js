@@ -1,6 +1,6 @@
 // Standard actions
 
-import { SELECT_CLASS, SELECT_LEVEL, SELECT_SCHOOL, SET_SEARCH } from "../types";
+import { CLEAR_SEARCH, SELECT_CLASS, SELECT_LEVEL, SELECT_SCHOOL, SET_SEARCH } from "../types";
 
 export const selectClass = (dndclass) => ({
     type: SELECT_CLASS,
@@ -21,3 +21,7 @@ export const setSearch = (search) => ({
     type: SET_SEARCH,
     search: search
 });
+
+export const clearSearch = () => ({
+    type: CLEAR_SEARCH
+})

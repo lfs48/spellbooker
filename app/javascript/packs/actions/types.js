@@ -20,6 +20,7 @@
     export const SELECT_LEVEL = "SELECT_LEVEL";
     export const SELECT_SCHOOL = "SELECT_SCHOOL"
     export const SET_SEARCH = "SET_SEARCH";
+    export const CLEAR_SEARCH = "CLEAR_SEARCH";
 
     // Modal
 
