@@ -212,7 +212,13 @@
     background-color: var(--dark-parchment);
     height: 3em;
     font-weight: bolder;
+    width: 5em;
 }
+
+#search-container button:first-of-type {
+    margin-right: 1rem;
+}
+
 #search-container> *, #selects-container > * {
     padding: 0 0.25em;
 }
