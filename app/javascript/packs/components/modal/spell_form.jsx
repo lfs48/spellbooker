@@ -264,6 +264,7 @@ const SpellForm = () => {
                     value={inputs.castingTime}
                     onChange={e => handleInput(e, 'castingTime')}
                     autoComplete="off"
+                    maxLength={20}
                 ></input>
             </section>
             <section>
@@ -276,6 +277,7 @@ const SpellForm = () => {
                     value={inputs.range}
                     onChange={e => handleInput(e, 'range')}
                     autoComplete="off"
+                    maxLength={20}
                 ></input>
             </section>
              <section>
@@ -293,6 +295,7 @@ const SpellForm = () => {
                     value={inputs.duration}
                     onChange={e => handleInput(e, 'duration')}
                     autoComplete="off"
+                    maxLength={20}
                 ></input>
                 <label htmlFor="spell-form-concentration-input">Concentration?</label>
                 <select 
@@ -311,6 +314,7 @@ const SpellForm = () => {
                     placeholder="A bright streak flashes from your pointing finger to a point you choose within range..."
                     value={inputs.desc}
                     onChange={e => handleInput(e, 'desc')}
+                    maxLength={5000}
                 ></textarea>
                 <label>At Higher Levels.</label>
                 <textarea
@@ -319,6 +323,7 @@ const SpellForm = () => {
                     placeholder="When you cast this spell using a spell slot of 4th level or higher..."
                     value={inputs.higher_level}
                     onChange={e => handleInput(e, 'higher_level')}
+                    maxLength={1000}
                 ></textarea>
             </section>
             <section id="spell-form-button-section">
