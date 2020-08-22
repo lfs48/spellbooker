@@ -84,7 +84,15 @@ const CreateClass = () => {
 
     let colorClass = false;
 
-    const spellOptions = Object.values(spells).map( (spell) => {
+    const spellOptions = Object.values(spells)
+    .sort( (spellA, spellB) => {
+            if (spellA.name.toLowerCase() >= spellB.name.toLowerCase()) {
+                return 1;
+            } else {
+                return -1;
+            }
+    })
+    .map( (spell) => {
         colorClass = !colorClass
         return <option key={spell.id} value={spell.id}>{spell.name}</option>
     });
