@@ -107,6 +107,70 @@ const Spell = (props) => {
         setStyleData(newState);
     };
 
+    const resizeBottomRight = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (event.pageX > 0) {
+            const newWidth = newState.width + event.pageX - newState.left - $(`#spell-${selectedSpell.id}`).outerWidth(true)
+            newState.width = Math.max( newWidth, newState.minWidth );
+        }
+        if (event.pageY > 0) {
+            const newHeight = event.pageY - newState.top;
+            newState.height = Math.max(newHeight, newState.minHeight);
+        }
+
+        setStyleData(newState);
+    }
+
+    const resizeBottomLeft = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (event.pageX > 0) {
+            const newWidth = newState.width + newState.left - event.pageX;
+            newState.width = Math.max(newWidth, newState.minWidth);
+            if (newState.width != styleData.width) {newState.left = event.pageX; }
+        }
+        if (event.pageY > 0) {
+            const newHeight = event.pageY - newState.top;
+            newState.height = Math.max(newHeight, newState.minHeight);
+        }
+
+        setStyleData(newState);
+    }
+
+    const resizeTopRight = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (event.pageX > 0) {
+            const newWidth = newState.width + event.pageX - newState.left - $(`#spell-${selectedSpell.id}`).outerWidth(true)
+            newState.width = Math.max( newWidth, newState.minWidth );
+        }
+        if (event.pageY > 0) {
+            const newHeight = newState.height + newState.top - event.pageY;
+            newState.height = Math.max(newHeight, newState.minHeight);
+            if (newState.height != styleData.height) {newState.top = event.pageY};
+        }
+
+        setStyleData(newState);
+    }
+
+    const resizeTopLeft = (event) => {
+        event.preventDefault();
+        const newState = merge({}, styleData);
+        if (event.pageX > 0) {
+            const newWidth = newState.width + newState.left - event.pageX;
+            newState.width = Math.max(newWidth, newState.minWidth);
+            if (newState.width != styleData.width) {newState.left = event.pageX; }
+        }
+        if (event.pageY > 0) {
+            const newHeight = newState.height + newState.top - event.pageY;
+            newState.height = Math.max(newHeight, newState.minHeight);
+            if (newState.height != styleData.height) {newState.top = event.pageY};
+        }
+
+        setStyleData(newState);
+    }
+
     const handleDragStart = (event) => {
         event.preventDefault();
         if (!styleData.dragging) {
@@ -200,6 +264,10 @@ const Spell = (props) => {
                 <div draggable="true" className="resize-area resize-left" onDrag={e => resizeLeft(e)}></div>
                 <div draggable="true" className="resize-area resize-bottom" onDrag={e => resizeDown(e)} ></div>
                 <div draggable="true" className="resize-area resize-right" onDrag={e => resizeRight(e)}></div>
+                <div draggable="true" className="resize-area resize-corner resize-bottomright" onDrag={e => resizeBottomRight(e)}></div>
+                <div draggable="true" className="resize-area resize-corner resize-bottomleft" onDrag={e => resizeBottomLeft(e)}></div>
+                <div draggable="true" className="resize-area resize-corner resize-topright" onDrag={e => resizeTopRight(e)}></div>
+                <div draggable="true" className="resize-area resize-corner resize-topleft" onDrag={e => resizeTopLeft(e)}></div>
             </div>
 
             <header className="spell-header" draggable="true" onDrag={e => handleDrag(e)} 
