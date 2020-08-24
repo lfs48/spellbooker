@@ -34,12 +34,51 @@
     height: 100%;
 }
 
+.resize-corner {
+    height: 1rem;
+    width: 1rem;
+}
+
+.resize-bottomright {
+    bottom: -3px;
+    right: -3px;
+}
+
+.resize-bottomleft {
+    bottom: -3px;
+    left: -3px;
+}
+
+.resize-topright {
+    top: -3px;
+    right: -3px;
+}
+
+.resize-topleft {
+    top: -3px;
+    left: -3px;
+}
+
 .resize-top:hover, .resize-bottom:hover {
     cursor: n-resize;
 }
 
-
-
 .resize-left:hover, .resize-right:hover {
     cursor: e-resize;
+}
+
+.resize-bottomright:hover {
+    cursor: se-resize;
+}
+
+.resize-bottomleft:hover {
+    cursor: sw-resize;
+}
+
+.resize-topright:hover {
+    cursor: ne-resize;
+}
+
+.resize-topleft:hover {
+    cursor: nw-resize;
 }
