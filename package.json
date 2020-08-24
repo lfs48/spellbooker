@@ -1,5 +1,5 @@
 {
-  "name": "Spellbooker",
+  "name": "spellbooker",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
