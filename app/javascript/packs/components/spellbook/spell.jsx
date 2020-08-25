@@ -5,7 +5,7 @@ import {merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
 import { closeModal, openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faTimes, faPencilAlt, faTrash, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faPencilAlt, faTrash, faBookmark, faCopy } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
 import {useCookies} from 'react-cookie'
 
@@ -175,6 +175,11 @@ const Spell = (props) => {
         }
         setCookie("bookmarks", newCookies);
     }
+
+    const handleCopy = (event) => {
+        event.preventDefault();
+        navigator.clipboard.writeText( selectedSpell.desc.join("\n\n") );
+    }
     
     return(
         <article id={`spell-${selectedSpell.id}`} className={"spell-container resizable" + ` ${props.isFocus ? "focus-spell" : "unfocus-spell"}` + `  spell-stage-${styleData.stage}`} 
@@ -195,6 +200,7 @@ const Spell = (props) => {
                 <h1 id={`spell-${selectedSpell.id}-name`}>{selectedSpell.name}</h1>
                 <section className="spell-button-section">
                     <FontAwesomeIcon icon={faBookmark} className={ ("bookmarks" in cookies && spellbookID in cookies.bookmarks && cookies.bookmarks[spellbookID].includes(selectedSpell.id) ) ? "already-bookmarked" : "not-bookmarked"} onClick={e => handleBookmark(e)}/>
+                    <FontAwesomeIcon icon={faCopy} onClick={e => handleCopy(e)} />
                     { props.editMode ?<FontAwesomeIcon icon={faPencilAlt} className="spell-edit-button" onClick={e => handleEdit(e)}/> : <></> }
                     { props.editMode ?<FontAwesomeIcon icon={faTrash} className="spell-delete-button" onClick={e => handleDelete(e)}/> : <></> }
                     <FontAwesomeIcon icon={faTimes} className="spell-close-button" onClick={e => handleClose(e)} />
