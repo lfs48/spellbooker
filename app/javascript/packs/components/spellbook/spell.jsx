@@ -3,16 +3,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {intToOrdinal} from '../../util/functions/util_functions'
 import {merge} from 'lodash';
 import { focusSpell, closeSpell } from '../../actions/ui/selected_spell_actions';
-import { closeModal, openModal } from '../../actions/ui/modal_actions';
+import { openModal } from '../../actions/ui/modal_actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faTimes, faPencilAlt, faTrash, faBookmark, faCopy } from '@fortawesome/free-solid-svg-icons'
-import { useLocation } from 'react-router-dom';
 import {useCookies} from 'react-cookie'
 
 const Spell = (props) => {
 
     const dispatch = useDispatch();
-    const location = useLocation();
     const [cookies, setCookie, removeCookie] = useCookies(["bookmarks"]);
 
     const selectedSpell = props.spell
