@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../actions/ui/modal_actions';
 import {merge} from 'lodash';
+import { createMessage } from '../../util/api/messages_api_util';
 
 const Contact = () => {
 
@@ -23,6 +24,8 @@ const Contact = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        createMessage( inputs );
+        closeModal();
     }
 
     const handleInput = (event, field) => {
