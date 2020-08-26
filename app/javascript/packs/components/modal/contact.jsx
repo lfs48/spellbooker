@@ -25,7 +25,7 @@ const Contact = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         createMessage( inputs );
-        closeModal();
+        dispatch( closeModal() );
     }
 
     const handleInput = (event, field) => {
