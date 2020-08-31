@@ -6,6 +6,7 @@ import { closeModal, openModal } from '../actions/ui/modal_actions';
 import { closeAllSpells } from '../actions/ui/selected_spell_actions';
 import { useCookies } from 'react-cookie';
 import {merge} from 'lodash';
+import logo from '../../../assets/images/logo.png';
 
 const Splash = () => {
 
@@ -49,7 +50,8 @@ const Splash = () => {
     return(
         <section id="splash-container">
             <h1>Spellbooker 5e</h1>
-                <form id="splash-buttons-container">
+            <img className="logo" id="splash-logo" />
+            <form id="splash-buttons-container">
                 <button onClick={e => handleSRD(e)}>View SRD Spells</button>
                 <button onClick={e => handleOpenSpellbook(e)}>{"spellbook" in cookies && "name" in cookies.spellbook ? cookies.spellbook.name : "My Spellbook"}</button>
             </form>
