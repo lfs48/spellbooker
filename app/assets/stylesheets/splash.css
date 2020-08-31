@@ -3,14 +3,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
     font-family: 'MedievalSharp', cursive;
 }
 
 #splash-container h1 {
     font-size: 5em;
     font-weight: bolder;
-    margin-top: 3em;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.5em;
 }
 
 #splash-container button {
@@ -19,8 +19,8 @@
     border-radius: 5px;
     font-weight: bolder;
     font-family: 'MedievalSharp', cursive;
-    font-size: 2em;
-    width: 10em;
+    font-size: 1.75em;
+    width: 9em;
     height: 5em;
 }
 
@@ -28,6 +28,7 @@
     display: flex;
     width: 60em;
     justify-content: space-evenly;
+    margin-bottom: 1rem;
 }
 
 #splash-input-container {
@@ -53,4 +54,14 @@
     font-size: 1.5em;
     width: 12em;
     padding: 0.5em;
+}
+
+.logo {
+    content:url("logo.png");
+}
+
+#splash-logo {
+    height: 15rem;
+    width: 13.89em;
+    margin-bottom: 1rem;
 }
