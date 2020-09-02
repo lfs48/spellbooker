@@ -171,7 +171,7 @@ const Spell = (props) => {
         } else {
             newCookies[spellbookID] = [selectedSpell.id];
         }
-        setCookie("bookmarks", newCookies);
+        setCookie("bookmarks", newCookies, {expires: new Date("2100-01-01")});
     }
 
     const handleCopy = (event) => {
