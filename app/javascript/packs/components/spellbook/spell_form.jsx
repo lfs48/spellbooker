@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
 import { openSpell } from '../../actions/ui/selected_spell_actions';
+import { useLocation } from 'react-router-dom';
 
 const SpellForm = () => {
 
     const dispatch = useDispatch();
+    const location = useLocation().pathname;
+    const edit_url = location.slice( location.indexOf("edit/") + 5 );
 
     const {spellbook, spells, modal} = useSelector(
         state => ({
@@ -160,6 +163,8 @@ const SpellForm = () => {
         const newSpellbook = merge({}, spellbook);
         newSpells[spell.id] = spell;
         newSpellbook.spells = JSON.stringify(newSpells);
+        newSpellbook.classes = newSpellbook.classes.join(",");
+        newSpellbook.url = edit_url;
         if ( validateInput() ) { 
             dispatch(updateSpellbook(newSpellbook))
             .then( () => dispatch( closeModal() ) )
@@ -283,7 +288,7 @@ const SpellForm = () => {
                     id="spell-form-duration-input"
                     type="text"
                     className="spell-form-input"
-                    placeholder="Duration"
+                    placeholder="1 minute"
                     value={inputs.duration}
                     onChange={e => handleInput(e, 'duration')}
                     autoComplete="off"

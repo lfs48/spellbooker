@@ -12,7 +12,7 @@ const spellbookReducer = (state = {}, action) => {
             const spellbook = {
                 id: action.spellbook.id,
                 name: action.spellbook.name,
-                url: action.spellbook.url,
+                url: action.spellbook.share_url,
                 classes: action.spellbook.classes.split(",")
             };
             return spellbook;

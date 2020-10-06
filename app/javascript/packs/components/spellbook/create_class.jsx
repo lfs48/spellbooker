@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {merge} from 'lodash';
 import { updateSpellbook } from '../../actions/entities/spell_actions';
 import { closeModal } from '../../actions/ui/modal_actions';
+import { useLocation } from 'react-router-dom';
 
 const CreateClass = () => {
 
     const dispatch = useDispatch();
+    const location = useLocation().pathname;
+    const edit_url = location.slice( location.indexOf("edit/") + 5 );
+
     const [inputs, setInputs] = useState({
         name: "",
         spells: []
@@ -51,6 +55,7 @@ const CreateClass = () => {
         newSpellbook.classes.push(newClass);
         newSpellbook.classes = newSpellbook.classes.sort().join(",");
         newSpellbook.spells = JSON.stringify(newSpells);
+        newSpellbook.url = edit_url;
         if (validateInputs()) {
             dispatch( updateSpellbook(newSpellbook) )
             .then( () => dispatch(closeModal()) );

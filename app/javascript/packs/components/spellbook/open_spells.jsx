@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import Spell from './spell';
 
-const OpenSpells = () => {
+const OpenSpells = (props) => {
 
     const {openSpellIDs, focusID, spells} = useSelector(
         state => ({
@@ -15,7 +15,7 @@ const OpenSpells = () => {
     let openSpells = <></>;
     if (openSpellIDs.length > 0) {
         openSpells = openSpellIDs.map( (spellID) => {
-            return <Spell key={spellID} spell={spells[spellID]} isFocus={focusID === spellID}/>
+            return <Spell key={spellID} spell={spells[spellID]} editMode={props.editMode} isFocus={focusID === spellID}/>
         });
     };
 

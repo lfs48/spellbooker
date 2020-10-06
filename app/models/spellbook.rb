@@ -1,15 +1,9 @@
 class Spellbook < ApplicationRecord
 
-    validates :name, :url, :spells, presence: true
+    validates :name, :edit_url, :share_url, :spells, :classes, presence: true
 
-    def self.generate_url
-        url = SecureRandom.alphanumeric(16)
-        spellbook = Spellbook.find_by(url: url)
-        while spellbook
-            url = SecureRandom.alphanumeric(16)
-            spellbook = Spellbook.find_by(url: url)
-        end
-        return url
+    def self.find_by_url(url)
+        return Spellbook.find_by(share_url: url) || Spellbook.find_by(edit_url: url)
     end
 
     def initialize_data
@@ -19,7 +13,21 @@ class Spellbook < ApplicationRecord
     end
 
     def ensure_url
-        self.url ||= Spellbook.generate_url
+        edit_url = SecureRandom.alphanumeric(16)
+        spellbook = Spellbook.find_by_url(edit_url)
+        while spellbook
+            edit_url = SecureRandom.alphanumeric(16)
+            spellbook = Spellbook.find_by_url(edit_url)
+        end
+        self.edit_url = edit_url
+
+        share_url = SecureRandom.alphanumeric(16)
+        spellbook = Spellbook.find_by_url(share_url)
+        while spellbook
+            share_url = SecureRandom.alphanumeric(16)
+            spellbook = Spellbook.find_by_url(share_url)
+        end
+        self.share_url = share_url
     end
 
     def populate_initial_spells

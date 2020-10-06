@@ -8,7 +8,8 @@ const App = () => (
     <main id="app-container">
         <Modal />
         <Switch>
-            <Route path="/spellbook/:url" component={Spellbook} />
+            <Route path="/spellbook/edit/:url" component={Spellbook} />
+            <Route path="/spellbook/view/:url" component={Spellbook} />
             <Route exact path="/spellbook">
                 <Redirect to="/spellbook/srd"/>
             </Route>

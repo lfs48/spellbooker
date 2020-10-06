@@ -1,0 +1,1 @@
+json.extract! @spellbook, :id, :name, :edit_url, :share_url, :classes, :spells
